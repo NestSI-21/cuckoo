@@ -1,0 +1,41 @@
+version: '3.9'
+services:
+  database:
+    container_name: postgres
+    image: postgres:13-alpine
+    ports:
+      - '5432:5432'
+    environment:
+      POSTGRES_DB: cuckoo
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_HOST_AUTH_METHOD: trust
+  api:
+    container_name: api
+    build:
+      context: ./server
+      dockerfile: Dockerfile
+    ports:
+      - '8000:8000'
+    volumes:
+      - ./server:/server
+      - /server/vendor/bundle
+    depends_on:
+      - database
+    environment:
+      DATABASE_URL: postgres://postgres@database:5432/cuckoo
+    command: bundle exec rails s -p 8000
+  client:
+    container_name: client
+    build:
+      context: ./client
+      dockerfile: Dockerfile
+    stdin_open: true
+    ports:
+      - '3000:3000'
+    volumes:
+      - /client/node_modules
+      - ./client:/client
+    environment:
+      - NODE_ENV=development
+    command: yarn start
