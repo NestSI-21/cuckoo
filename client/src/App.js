@@ -4,7 +4,6 @@ import SignIn from './screens/Signin';
 import News from './screens/News';
 import Companies from './screens/Companies';
 import Profile from './screens/Profile';
-import './App.css';
 
 function App() {
   return (
