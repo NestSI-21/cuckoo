@@ -25,5 +25,3 @@ COPY . /app
 
 RUN gem install bundler
 RUN bundle install
-RUN yarn install --check-files
-RUN bundle exec rails webpacker:install

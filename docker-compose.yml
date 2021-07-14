@@ -10,8 +10,8 @@ services:
       POSTGRES_USER: postgres
       POSTGRES_PASSWORD: postgres
       POSTGRES_HOST_AUTH_METHOD: trust
-  api:
-    container_name: api
+  server:
+    container_name: server
     build:
       context: ./server
       dockerfile: Dockerfile
@@ -27,15 +27,13 @@ services:
     command: bundle exec rails s -p 8000
   client:
     container_name: client
-    build:
-      context: ./client
-      dockerfile: Dockerfile
-    stdin_open: true
+    image: 'node:16-alpine'
+    user: 'node'
+    working_dir: /cuckoo/client
     ports:
       - '3000:3000'
     volumes:
-      - /client/node_modules
-      - ./client:/client
-    environment:
-      - NODE_ENV=development
-    command: yarn start
+      - ./client:/cuckoo/client
+    command: bash -c "yarn && yarn start"
+    depends_on:
+      - server
