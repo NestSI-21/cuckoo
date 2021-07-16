@@ -24,7 +24,7 @@ services:
       - database
     environment:
       DATABASE_URL: postgres://postgres@database:5432/cuckoo
-    command: bundle exec rails s -p 8000
+    command: sh -c "rm -f tmp/pids/server.pid && bundle && bundle exec rails s -p 8000 -b '0.0.0.0'"
   client:
     container_name: client
     image: 'node:16-alpine'

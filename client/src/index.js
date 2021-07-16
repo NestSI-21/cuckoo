@@ -7,5 +7,5 @@ ReactDOM.render(
   <Router>
     <Route path='/' component={App} />
   </Router>,
-  document.getElementById('root')
+  document.getElementById('root'),
 );

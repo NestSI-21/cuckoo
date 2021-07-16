@@ -5,8 +5,8 @@ import Dashboard from './screens/Dashboard';
 import Cuckoos from './screens/Cuckoos';
 import Companies from './screens/Companies';
 import Profile from './screens/Profile';
+import React from 'react';
 
-function App() {
   return (
     <Router>
       <div className='App'>
@@ -22,6 +22,5 @@ function App() {
       </Switch>
     </Router>
   );
-}
 
 export default App;
