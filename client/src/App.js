@@ -1,3 +1,4 @@
+import React from 'react';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import Landing from './screens/Landing';
 import SignIn from './screens/SignIn';
@@ -5,8 +6,8 @@ import Dashboard from './screens/Dashboard';
 import Cuckoos from './screens/Cuckoos';
 import Companies from './screens/Companies';
 import Profile from './screens/Profile';
-import React from 'react';
 
+function App() {
   return (
     <Router>
       <div className='App'>
@@ -22,5 +23,6 @@ import React from 'react';
       </Switch>
     </Router>
   );
+}
 
 export default App;
