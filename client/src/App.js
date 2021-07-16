@@ -1,24 +1,26 @@
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
+import Landing from './screens/Landing';
+import SignIn from './screens/SignIn';
+import Dashboard from './screens/Dashboard';
+import Cuckoos from './screens/Cuckoos';
+import Companies from './screens/Companies';
+import Profile from './screens/Profile';
 import React from 'react';
-import logo from './logo.svg';
-import './App.css';
 
   return (
-    <div className='App'>
-      <header className='App-header'>
-        <img src={logo} className='App-logo' alt='logo' />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className='App-link'
-          href='https://reactjs.org'
-          target='_blank'
-          rel='noopener noreferrer'
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Router>
+      <div className='App'>
+        <h1>Cuckoo</h1>
+      </div>
+      <Switch>
+        <Route path='/' component={Landing} exact />
+        <Route path='/signin' component={SignIn} exact />
+        <Route path='/dashboard' component={Dashboard} exact />
+        <Route path='/cuckoos' component={Cuckoos} />
+        <Route path='/companies' component={Companies} />
+        <Route path='/profile' component={Profile} />
+      </Switch>
+    </Router>
   );
 
 export default App;
