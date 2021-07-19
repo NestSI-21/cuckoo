@@ -18,13 +18,14 @@ services:
     ports:
       - '8000:8000'
     volumes:
-      - ./server:/server
-      - /server/vendor/bundle
+      - ./server:/app
     depends_on:
       - database
     environment:
       DATABASE_URL: postgres://postgres@database:5432/cuckoo
-    command: bundle exec rails s -p 8000
+    command: sh -c "rm -f tmp/pids/server.pid && bundle && bundle exec rails db:migrate && bundle exec rails s -p 8000 -b '0.0.0.0'"
+    stdin_open: true
+    tty: true
   client:
     container_name: client
     image: 'node:16-alpine'
