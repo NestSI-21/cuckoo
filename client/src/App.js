@@ -1,5 +1,6 @@
 import React from 'react';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
+import './styles/applications.scss';
 import Landing from './screens/Landing';
 import SignIn from './screens/SignIn';
 import Dashboard from './screens/Dashboard';
@@ -10,9 +11,7 @@ import Profile from './screens/Profile';
 function App() {
   return (
     <Router>
-      <div className='App'>
-        <h1>Cuckoo</h1>
-      </div>
+      <div className='App'></div>
       <Switch>
         <Route path='/' component={Landing} exact />
         <Route path='/signin' component={SignIn} exact />
