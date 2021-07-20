@@ -1,0 +1,6 @@
+@import '../../styles/applications.scss';
+
+.container {
+  @include container();
+  width: 60%;
+}

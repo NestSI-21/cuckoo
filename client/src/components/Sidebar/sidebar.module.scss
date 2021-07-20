@@ -23,15 +23,16 @@
         display: flex;
         justify-content: flex-start;
         padding: 8%;
-        border-radius: 10px;
+        border-radius: 1rem;
+        color: $green;
         img {
-          width: 20px;
+          width: 2rem;
           display: flex;
           margin: 0;
           padding: 0;
         }
         span {
-          margin-left: 20px;
+          margin-left: 2rem;
         }
         &:hover {
           background: $dark-gray;
@@ -49,7 +50,7 @@
     padding: 6% 0;
 
     border-style: none;
-    border-radius: 5px;
+    border-radius: 0.5rem;
     cursor: pointer;
 
     background-color: $green;
