@@ -7,23 +7,17 @@ import Dashboard from './screens/Dashboard';
 import Cuckoos from './screens/Cuckoos';
 import Companies from './screens/Companies';
 import Profile from './screens/Profile';
-import Sidebar from './components/Sidebar';
-import Header from './components/Header';
 
 function App() {
   return (
     <Router>
-      <div className='App'>
-        <Header />
-        <Sidebar />
-      </div>
       <Switch>
         <Route path='/' component={Landing} exact />
         <Route path='/signin' component={SignIn} exact />
         <Route path='/dashboard' component={Dashboard} exact />
-        <Route path='/cuckoos' component={Cuckoos} />
-        <Route path='/companies' component={Companies} />
-        <Route path='/profile' component={Profile} />
+        <Route path='/cuckoos' component={Cuckoos} exact />
+        <Route path='/companies' component={Companies} exact />
+        <Route path='/profile' component={Profile} exact />
       </Switch>
     </Router>
   );

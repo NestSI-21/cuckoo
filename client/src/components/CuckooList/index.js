@@ -11,7 +11,6 @@ const CuckooList = () => {
     setCuckoos(data);
   }, []);
 
-  console.log(cuckoos);
   return (
     <div className={container}>
       {cuckoos.map((cuckoo, i) => (
