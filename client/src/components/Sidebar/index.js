@@ -15,22 +15,22 @@ const Sidebar = () => {
 
       <ul>
         <li>
-          <a href='#'>
+          <a href='/dashboard'>
             <img src={dashboardIcon} alt='dashboard icon' />
             <span>Dashboard</span>
           </a>
 
-          <a href='#'>
+          <a href='/cuckoos'>
             <img src={cuckoosIcon} alt='cuckoos icon' />
             <span>Cuckoos</span>
           </a>
 
-          <a href='#'>
+          <a href='/companies'>
             <img src={companiesIcon} alt='companies icon' />
             <span>Companies</span>
           </a>
 
-          <a href='#'>
+          <a href='/profile'>
             <img src={profileIcon} alt='profile icon' />
             <span>Profile</span>
           </a>
