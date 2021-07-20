@@ -1,7 +1,44 @@
+@import '../../styles/applications.scss';
 .card {
-  border-bottom: 1px solid #eef1f0;
+  border-bottom: 0.1rem solid #eef1f0;
+  padding: 1.5rem 0;
+
+  .cardDescription {
+    margin-top: 1rem;
+  }
+
+  .cardHeading {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    h3 {
+      max-width: 70%;
+    }
+    p {
+      border: 0.1rem solid $green;
+      border-radius: 5rem;
+      padding: 0.2rem 1.5rem;
+      color: $green;
+      font-size: $annotation;
+    }
+  }
 }
 
 .detailsWrapper {
   display: flex;
+  margin-top: 1rem;
+
+  div {
+    width: fit-content;
+    display: flex;
+    p {
+      margin-left: 0.5rem;
+      white-space: nowrap;
+      font-size: $annotation;
+    }
+  }
+
+  .cardTime {
+    margin-left: 1.5rem;
+  }
 }

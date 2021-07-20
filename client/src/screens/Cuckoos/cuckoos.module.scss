@@ -1,11 +1,12 @@
 @import '../../styles/applications.scss';
 
-.dashboardMain {
+.cuckoosMain {
   @include main();
 
-  .calendar {
+  .filters {
     @include container();
-    width: 40%;
-    margin-left: 4%;
+    width: 30%;
+    margin-right: 4%;
+    height: fit-content;
   }
 }

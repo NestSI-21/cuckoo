@@ -1,10 +1,13 @@
 import React from 'react';
+import { cuckoosMain, filters } from './cuckoos.module.scss';
 import CuckooList from '../../components/CuckooList';
 
 const Cuckoos = () => {
   return (
-    <div>
-      <h1>Cuckoos</h1>
+    <div className={cuckoosMain}>
+      <div className={filters}>
+        <h3>Filters</h3>
+      </div>
       <CuckooList />
     </div>
   );

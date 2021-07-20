@@ -1,4 +1,5 @@
 import React, { useState, useEffect, Fragment } from 'react';
+import { container } from './cuckoolist.module.scss';
 import CuckooCard from '../CuckooCard';
 import jsondata from '../../mockdata.json';
 
@@ -12,7 +13,7 @@ const CuckooList = () => {
 
   console.log(cuckoos);
   return (
-    <div>
+    <div className={container}>
       {cuckoos.map((cuckoo, i) => (
         <Fragment key={i}>
           <CuckooCard cuckoo={cuckoo} />

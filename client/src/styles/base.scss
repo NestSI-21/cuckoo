@@ -3,38 +3,42 @@
   padding: 0;
 }
 
+html {
+  font-size: 10px;
+}
+
 h1 {
   font-family: $sora;
   color: $gray;
-  font-size: 2rem;
+  font-size: $title;
   font-weight: 600;
 }
 
 h3 {
   font-family: $sora;
   color: $gray;
-  font-size: 1.25rem;
+  font-size: $subtitle;
   font-weight: 600;
 }
 
 p {
   font-family: $rubik;
   color: $gray;
-  font-size: 1rem;
+  font-size: $text;
   font-weight: 300;
   line-height: 150%;
 }
 
-a {
+a,
+button {
   font-family: $rubik;
-  color: $green;
+  font-size: $text;
   text-decoration: none;
-  font-size: 1rem;
   font-weight: 400;
 }
-.annotations {
+.annotation {
   color: $light-gray;
-  font-size: 0.85rem;
+  font-size: $annotation;
 }
 
 ul {
