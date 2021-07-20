@@ -10,9 +10,7 @@ import Profile from './screens/Profile';
 function App() {
   return (
     <Router>
-      <div className='App'>
-        <h1>Cuckoo</h1>
-      </div>
+      <div className='App'></div>
       <Switch>
         <Route path='/' component={Landing} exact />
         <Route path='/signin' component={SignIn} exact />

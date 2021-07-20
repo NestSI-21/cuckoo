@@ -1,0 +1,96 @@
+[
+  {
+    "id": "1",
+    "type": "announcement",
+    "title": "All employees to get $100k bonus",
+    "username": "mike",
+    "company": "RedLight",
+    "datePosted": "14 Jul",
+    "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mi elementum in tellus, vel facilisis vel. Eu adipiscing quis..."
+  },
+  {
+    "id": "2",
+    "type": "event",
+    "title": "Barbecue at Nest Downtown",
+    "username": "monteiro",
+    "company": "Deemaze",
+    "datePosted": "14 Jul",
+    "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mi elementum in tellus, vel facilisis vel. Eu adipiscing quis...",
+    "location": "Nest Downtown",
+    "startDate": "16 Jul",
+    "endDate": "20 Jul",
+    "startTime": "6pm",
+    "endTime": "10pm"
+  },
+  {
+    "id": "3",
+    "type": "announcement",
+    "title": "Basement Bathroom in Maintenance",
+    "username": "joebloggs",
+    "company": "Grama",
+    "datePosted": "14 Jul",
+    "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mi elementum in tellus, vel facilisis vel. Eu adipiscing quis...",
+    "location": "Nest Uptown",
+    "startDate": "18 Jul",
+    "endDate": "20 Jul"
+  },
+  {
+    "id": "4",
+    "type": "event",
+    "title": "The Zain Talks Coming!",
+    "username": "joebloggs",
+    "company": "Deemaze",
+    "datePosted": "14 Jul",
+    "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mi elementum in tellus, vel facilisis vel. Eu adipiscing quis...",
+    "location": "Nest Downtown",
+    "startDate": "16 Jul",
+    "endDate": "18 Jul",
+    "startTime": "10am",
+    "endTime": "6pm"
+  },
+  {
+    "id": "5",
+    "type": "event",
+    "title": "Test Event!",
+    "username": "joebloggs",
+    "company": "Deemaze",
+    "datePosted": "14 Jul",
+    "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mi elementum in tellus, vel facilisis vel. Eu adipiscing quis...",
+    "location": "Nest Downtown",
+    "startTime": "10am",
+    "endTime": "6pm"
+  },
+  {
+    "id": "5",
+    "type": "event",
+    "title": "Test Event 2!",
+    "username": "joebloggs",
+    "company": "Deemaze",
+    "datePosted": "14 Jul",
+    "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mi elementum in tellus, vel facilisis vel. Eu adipiscing quis...",
+    "location": "Nest Downtown",
+    "startTime": "10am"
+  },
+  {
+    "id": "5",
+    "type": "event",
+    "title": "Test Event 3!",
+    "username": "joebloggs",
+    "company": "Deemaze",
+    "datePosted": "14 Jul",
+    "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mi elementum in tellus, vel facilisis vel. Eu adipiscing quis...",
+    "location": "Nest Downtown",
+    "startDate": "20 Jul"
+  },
+  {
+    "id": "6",
+    "type": "event",
+    "title": "Test Event 3!",
+    "username": "joebloggs",
+    "company": "Deemaze",
+    "datePosted": "14 Jul",
+    "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mi elementum in tellus, vel facilisis vel. Eu adipiscing quis...",
+    "location": "Nest Downtown",
+    "endDate": "20 Jul"
+  }
+]
