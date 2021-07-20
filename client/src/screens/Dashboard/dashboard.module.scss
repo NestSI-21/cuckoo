@@ -1,0 +1,26 @@
+@import '../../styles/applications.scss';
+
+.dashboard {
+  width: 85vw;
+  height: 90vh;
+  float: right;
+  background-color: $background;
+  display: flex;
+  position: relative;
+  box-sizing: border-box;
+  padding: 4%;
+
+  .card {
+    background-color: #fff;
+    box-shadow: 0px 0px 24px -15px rgba(0, 16, 12, 0.57);
+    border-radius: 15px;
+    &:first-child {
+      width: 60%;
+      position: relative;
+    }
+    &:last-child {
+      width: 40%;
+      margin-left: 4%;
+    }
+  }
+}

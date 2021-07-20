@@ -1,0 +1,13 @@
+@import '../../styles/applications.scss';
+
+.header {
+  background-color: $background;
+  box-sizing: border-box;
+  padding: 0 4% 0 4%;
+  width: 85vw;
+  height: 10vh;
+  display: flex;
+  align-items: flex-end;
+  float: right;
+  //border-bottom: 1px solid rgba(31, 31, 31, 0.1);
+}
