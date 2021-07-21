@@ -1,15 +1,18 @@
 import React from 'react';
-import { dashboardMain, calendar } from './dashboard.module.scss';
+import Layout from '../../components/Layout';
 import CuckooList from '../../components/CuckooList';
+import { dashboardMain, calendar } from './dashboard.module.scss';
 
 const Dashboard = () => {
   return (
-    <div className={dashboardMain}>
-      <CuckooList />
-      <div className={calendar}>
-        <h3>Upcoming Events</h3>
+    <Layout pageTitle='Dashboard'>
+      <div className={dashboardMain}>
+        <CuckooList />
+        <div className={calendar}>
+          <h3>Upcoming Events</h3>
+        </div>
       </div>
-    </div>
+    </Layout>
   );
 };
 

@@ -1,10 +1,11 @@
 import React from 'react';
+import Layout from '../../components/Layout';
 
 const Profile = () => {
   return (
-    <div>
-      <h1>Profile</h1>
-    </div>
+    <Layout pageTitle='Profile'>
+      <div></div>
+    </Layout>
   );
 };
 
