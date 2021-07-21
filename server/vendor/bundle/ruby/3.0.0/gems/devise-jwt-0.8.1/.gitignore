@@ -1,0 +1,12 @@
+/.bundle/
+/.yardoc
+/Gemfile.lock
+/_yardoc/
+/coverage/
+/doc/
+/pkg/
+/spec/reports/
+/tmp/
+.overcommit_gems.rb.lock
+*.log
+*sqlite3-journal

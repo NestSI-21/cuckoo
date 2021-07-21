@@ -1,0 +1,17 @@
+require: rubocop-rspec
+AllCops:
+  TargetRubyVersion: 2.6
+RSpec/NestedGroups:
+  Max: 3
+RSpec/MessageSpies:
+  EnforcedStyle: 'receive'
+RSpec/ContextWording:
+  Exclude:
+    - "spec/support/shared_contexts/*rb"
+Metrics/BlockLength:
+  Exclude:
+    - "spec/**/*.rb"
+Metrics/LineLength:
+  Max: 100
+Naming/RescuedExceptionsVariableName:
+  PreferredName: exception

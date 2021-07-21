@@ -1,0 +1,19 @@
+engines:
+  duplication:
+    enabled: true
+    config:
+      languages:
+      - ruby
+  fixme:
+    enabled: true
+  rubocop:
+    enabled: true
+ratings:
+  paths:
+  - "**.rb"
+exclude_paths:
+  - spec/
+  - Gemfile
+  - bin/console
+  - devise-jwt.gemspec
+  - vendor/
