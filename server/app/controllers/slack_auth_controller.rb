@@ -39,10 +39,10 @@ class SlackAuthController <  ActionController::API
       sign_in @user
       render json: { id: @user.id }, status: :ok
     else
-    rescue
       render json: { message: "There was an error!"}, status: :unauthorized 
     end 
-    
-  
+
+    rescue
+      render json: { message: "There was an error with the Slack API"}, status: :unauthorized
   end
 end
