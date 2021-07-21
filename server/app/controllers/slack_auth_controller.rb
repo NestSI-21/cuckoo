@@ -5,10 +5,10 @@ class SlackAuthController <  ActionController::API
   def create 
     payload = {
       code: params[:code],
-      client_id: "6615268295.2272567825572",
-      client_secret: "d380d2e7afbff131379e2556a0c4bfc3",
-      redirect_uri: "https://4068efe5a5f8.ngrok.io/api/v1/auth/slack",
-      refresh_token: "xoxp-6615268295-2216501939842-2306065222960-226d063dfe5a944210745a4bb1698a09"
+      client_id: ENV['SLACK_CLIENT_ID'],
+      client_secret: ENV['SLACK_CLIENT_SECRET'],
+      redirect_uri: "#{ENV["FRONTEND_HOST"]}/api/v1/auth/slack",
+      refresh_token: ENV['SLACK_OAUTH_TOKEN']
     }
     
 
@@ -27,7 +27,7 @@ class SlackAuthController <  ActionController::API
 
     # byebug
 
-    User.find_or_create_by(provider: "slack",uid: body["authed_user"]["id"]) do |user|
+    @user = User.find_or_create_by(provider: "slack",uid: body["authed_user"]["id"]) do |user|
       user.name = profile_body["profile"]["display_name"]
       user.uid = body["authed_user"]["id"]
       user.email = profile_body["profile"]["email"]
@@ -35,11 +35,11 @@ class SlackAuthController <  ActionController::API
       user.password = Devise.friendly_token[0,20]
     end
 
-    @user = User.find_by(uid: body["authed_user"]["id"])
     if @user 
-      render json: { id: @user.id }, status: :ok
       sign_in @user
+      render json: { id: @user.id }, status: :ok
     else
+    rescue
       render json: { message: "There was an error!"}, status: :unauthorized 
     end 
     
