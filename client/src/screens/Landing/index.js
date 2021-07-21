@@ -1,10 +1,11 @@
 import React from 'react';
+import Layout from '../../components/Layout';
 
 const Landing = () => {
   return (
-    <div>
-      <h1>Landing</h1>
-    </div>
+    <Layout hideHeaderSidebar>
+      <div></div>
+    </Layout>
   );
 };
 

@@ -1,15 +1,18 @@
 import React from 'react';
-import { cuckoosMain, filters } from './cuckoos.module.scss';
 import CuckooList from '../../components/CuckooList';
+import Layout from '../../components/Layout';
+import { cuckoosMain, filters } from './cuckoos.module.scss';
 
 const Cuckoos = () => {
   return (
-    <div className={cuckoosMain}>
-      <div className={filters}>
-        <h3>Filters</h3>
+    <Layout pageTitle='Cuckoos'>
+      <div className={cuckoosMain}>
+        <div className={filters}>
+          <h3>Filters</h3>
+        </div>
+        <CuckooList />
       </div>
-      <CuckooList />
-    </div>
+    </Layout>
   );
 };
 
