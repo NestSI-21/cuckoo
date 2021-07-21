@@ -1,8 +1,6 @@
 import React from 'react';
 import Layout from '../../components/Layout';
-import { landing } from './landing.module.scss';
-import { landingContent } from './landing.module.scss';
-import { logo } from './landing.module.scss';
+import { landing, landingContent, logo } from './landing.module.scss';
 import horizontalLogo from '../../assets/logos/logo.svg';
 import slackIcon from '../../assets/icons/slack.svg';
 
