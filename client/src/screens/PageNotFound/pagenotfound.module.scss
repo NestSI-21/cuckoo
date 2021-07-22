@@ -1,0 +1,31 @@
+@import '../../styles/applications.scss';
+
+.notFound {
+  width: 100vw;
+  height: 100vh;
+  position: relative;
+  text-align: center;
+  margin: auto;
+
+  .notFoundContent {
+    position: absolute;
+    top: 45%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 100%;
+
+    button {
+      height: 4.4rem;
+      border: none;
+      border-radius: 0.5rem;
+      margin: 18.5rem auto 0;
+      color: $green;
+      padding: 0 1.7rem;
+      text-align: left;
+      display: flex;
+      align-items: center;
+      justify-content: flex-start;
+      cursor: pointer;
+    }
+  }
+}
