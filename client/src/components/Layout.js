@@ -18,7 +18,7 @@ const Layout = ({ hideHeaderSidebar, pageTitle, children }) => {
 };
 
 Layout.propTypes = {
-  hideHeaderSidebar: PropTypes.func,
+  hideHeaderSidebar: PropTypes.bool,
   pageTitle: PropTypes.string,
   children: PropTypes.node,
 };

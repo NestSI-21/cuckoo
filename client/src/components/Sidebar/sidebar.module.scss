@@ -1,4 +1,5 @@
 @import '../../styles/applications.scss';
+
 .sidebar {
   background-color: $gray;
   float: left;
@@ -38,28 +39,6 @@
           background: $dark-gray;
         }
       }
-    }
-  }
-
-  button {
-    position: absolute;
-    left: 50%;
-    transform: translateX(-50%);
-    width: 80%;
-    bottom: 8%;
-    padding: 6% 0;
-
-    border-style: none;
-    border-radius: 0.5rem;
-    cursor: pointer;
-
-    background-color: $green;
-    color: #fff;
-    transition: 0.3s;
-
-    &:hover {
-      background: #fff;
-      color: $green;
     }
   }
 }
