@@ -1,20 +1,21 @@
 import React from 'react';
 import Layout from '../../components/Layout';
-import { landing, landingContent, logo } from './landing.module.scss';
-import horizontalLogo from '../../assets/logos/logo.svg';
+import Button from '../../elements/Button';
+import { Link } from 'react-router-dom';
+import { content, logo } from './landing.module.scss';
+import horizontalLogo from '../../assets/logos/logo-white.svg';
 import slackIcon from '../../assets/icons/slack.svg';
 
 const Landing = () => {
   return (
     <Layout hideHeaderSidebar>
-      <div className={landing}>
-        <div className={landingContent}>
+      <div className={content}>
+        <div>
           <img src={horizontalLogo} alt='Cuckoo horizontal logo' className={logo} />
           <h1>Welcome to Cuckoo</h1>
-          <button className='button'>
-            <img src={slackIcon} alt='Slack·Icon' />
-            <span>Sign in with Slack</span>
-          </button>
+          <Link to='/Dashboard'>
+            <Button text={'Sign in with Slack'} img={slackIcon} />
+          </Link>
         </div>
       </div>
     </Layout>

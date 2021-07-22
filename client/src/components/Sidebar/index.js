@@ -1,11 +1,9 @@
 import React from 'react';
-
 import dashboardIcon from '../../assets/icons/dashboard.svg';
 import cuckoosIcon from '../../assets/icons/cuckoos.svg';
 import companiesIcon from '../../assets/icons/companies.svg';
 import profileIcon from '../../assets/icons/profile.svg';
-
-import horizontalLogo from '../../assets/logos/logo-horizontal.png';
+import horizontalLogo from '../../assets/logos/logo-green.svg';
 import { sidebar } from './sidebar.module.scss';
 
 const Sidebar = () => {
@@ -36,8 +34,6 @@ const Sidebar = () => {
           </a>
         </li>
       </ul>
-
-      <button>LOG OUT</button>
     </div>
   );
 };

@@ -1,14 +1,16 @@
 import React from 'react';
-import { notFound, notFoundContent, button } from './pagenotfound.module.scss';
+import Button from '../../elements/Button';
+import { Link } from 'react-router-dom';
+import { content } from './pagenotfound.module.scss';
 
 const PageNotFound = () => {
   return (
-    <div className={notFound}>
-      <div className={notFoundContent}>
+    <div className={content}>
+      <div>
         <h1>{"Cuck-OOPS sorry we couldn't find that page."}</h1>
-        <button>
-          <span>Back to Dashboard</span>
-        </button>
+        <Link to='/Dashboard'>
+          <Button text='Back to Dashboard' />
+        </Link>
       </div>
     </div>
   );
