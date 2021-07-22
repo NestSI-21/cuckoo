@@ -1,0 +1,12 @@
+@import '../../styles/applications.scss';
+
+.content {
+  @include main();
+
+  .filters {
+    @include container();
+    width: 30%;
+    margin-right: 4%;
+    height: fit-content;
+  }
+}

@@ -1,0 +1,19 @@
+@import '../../styles/applications.scss';
+
+.content {
+  @include flex();
+  width: 100vw;
+  height: 100vh;
+
+  div {
+    text-align: center;
+
+    h1 {
+      padding-bottom: 10rem;
+    }
+
+    a {
+      display: inline-block;
+    }
+  }
+}

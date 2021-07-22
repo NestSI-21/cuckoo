@@ -1,0 +1,47 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  font-size: 10px;
+}
+
+h1 {
+  font-family: $sora;
+  color: $gray;
+  font-size: $title;
+  font-weight: 600;
+}
+
+h3 {
+  font-family: $sora;
+  color: $gray;
+  font-size: $subtitle;
+  font-weight: 600;
+}
+
+p {
+  font-family: $rubik;
+  color: $gray;
+  font-size: $text;
+  font-weight: 300;
+  line-height: 150%;
+}
+
+a,
+button {
+  font-family: $rubik;
+  font-size: $text;
+  text-decoration: none;
+  font-weight: 400;
+}
+.annotation {
+  color: $light-gray;
+  font-size: $annotation;
+}
+
+ul {
+  list-style: none;
+}

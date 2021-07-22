@@ -1,0 +1,12 @@
+@import '../../styles/applications.scss';
+
+.header {
+  background-color: $background;
+  box-sizing: border-box;
+  padding: 0 4% 0 4%;
+  width: 85vw;
+  height: 10vh;
+  display: flex;
+  align-items: flex-end;
+  float: right;
+}

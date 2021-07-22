@@ -1,0 +1,11 @@
+@import '../../styles/applications.scss';
+
+.content {
+  @include main();
+
+  .calendar {
+    @include container();
+    width: 40%;
+    margin-left: 4%;
+  }
+}
