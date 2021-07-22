@@ -16,6 +16,11 @@ class SlackAuthController < ActionController::API
     response = RestClient.post('https://slack.com/api/oauth.v2.access', payload)
     body = JSON.parse(response.body)
 
+    unless body["ok"]
+      render json: { message: "The slack temporary OAuth verifier code was invalid" }, status: :unauthorized
+      return
+    end
+
     profile_payload = {
       user: body['authed_user']['id'],
       token: body['authed_user']['access_token']
@@ -26,8 +31,6 @@ class SlackAuthController < ActionController::API
                                       headers = { Authorization: "Bearer #{body['authed_user']['access_token']}" })
 
     profile_body = JSON.parse(profile_response.body)
-
-    # byebug
 
     @user = User.find_or_create_by(provider: 'slack', uid: body['authed_user']['id']) do |user|
       user.name = profile_body['profile']['display_name']
