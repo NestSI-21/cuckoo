@@ -1,48 +1,47 @@
 @import '../../styles/applications.scss';
 
 .landing {
-    background-color: $green;
-    width: 100vw;
-    height: 100vh;
-    position: relative;
-    text-align: center;
-    margin: auto;
+  background-color: $green;
+  width: 100vw;
+  height: 100vh;
+  position: relative;
+  text-align: center;
+  margin: auto;
 
-    .landingContent{
-        position: absolute;
-        top: 55%;
-        left: 50%;
-        transform: translate(-50%, -50%);
+  .landingContent {
+    position: absolute;
+    top: 55%;
+    left: 50%;
+    transform: translate(-50%, -50%);
 
-        .logo{
-            width: 100%;
-        }
-
-        h1 {
-            margin-top: 1.5rem;
-            color: white;
-        }
-        button {
-            width: 24.0rem;
-            height: 4.4rem;
-            border: none;
-            border-radius: .5rem;
-            margin: 18.5rem auto 0;
-            color: $green;
-            padding: 0 1.7rem;
-            text-align: left;
-            display: flex;
-            align-items: center;
-            justify-content: flex-start;
-            cursor: pointer;
-            
-            span{
-                margin-left: 2.8rem;
-            }
-            &:hover{
-                filter: drop-shadow(-0.1rem 0.1rem 1rem rgba(0, 0, 0, 0.2));
-            }
-        }
+    .logo {
+      width: 100%;
     }
 
+    h1 {
+      margin-top: 1.5rem;
+      color: white;
+    }
+    button {
+      width: 24rem;
+      height: 4.4rem;
+      border: none;
+      border-radius: 0.5rem;
+      margin: 18.5rem auto 0;
+      color: $green;
+      padding: 0 1.7rem;
+      text-align: left;
+      display: flex;
+      align-items: center;
+      justify-content: flex-start;
+      cursor: pointer;
+
+      span {
+        margin-left: 2.8rem;
+      }
+      &:hover {
+        filter: drop-shadow(-0.1rem 0.1rem 1rem rgba(0, 0, 0, 0.2));
+      }
+    }
+  }
 }
