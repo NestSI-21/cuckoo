@@ -1,0 +1,34 @@
+@import '../../styles/applications.scss';
+
+.companyMain{
+    width: 85vw;
+    float: right;
+
+    .company{
+    display: flex;
+    align-items: center;
+
+        .logoBox{
+        border: 1px solid #21c49c;
+        border-radius: 100%;
+        height: 120px;
+        min-width: 120px;
+        background: white;
+        position: relative;
+
+            img{
+            position: absolute;
+            margin: auto;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            }
+        }
+        .companyInfo{
+        margin-left: 20px;
+        justify-content: space-between;
+        max-width: 600px;
+        }
+    }
+}
