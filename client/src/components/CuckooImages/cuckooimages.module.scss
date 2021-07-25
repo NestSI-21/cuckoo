@@ -1,0 +1,7 @@
+@import '../../styles/applications.scss';
+
+.imageGrid {
+  @include grid();
+  grid-template-columns: 1fr 1fr;
+  gap: 0rem 1.5rem;
+}

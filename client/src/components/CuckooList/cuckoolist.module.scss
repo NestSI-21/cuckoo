@@ -2,10 +2,9 @@
 
 .container {
   @include container();
-  width: 60%;
 
   &::-webkit-scrollbar {
-    width: 2.6rem;
+    width: 2.5rem;
     border-radius: 0.5rem;
   }
   &::-webkit-scrollbar-track {

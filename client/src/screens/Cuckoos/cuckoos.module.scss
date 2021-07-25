@@ -2,11 +2,13 @@
 
 .content {
   @include main();
+  @include grid();
+
+  grid-template-columns: 1fr 2fr;
+  gap: 0rem 3rem;
 
   .filters {
     @include container();
-    width: 30%;
-    margin-right: 4%;
     height: fit-content;
   }
 }

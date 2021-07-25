@@ -1,9 +1,9 @@
 import React from 'react';
-import Layout from '../../components/Layout';
-import { content, logo } from './landing.module.scss';
-import horizontalLogo from '../../assets/logos/logo-white.svg';
-import SlackLogin from 'react-slack-login';
 import axios from 'axios';
+import SlackLogin from 'react-slack-login';
+import Layout from '../../components/Layout';
+import horizontalLogo from '../../assets/logos/logo-white.svg';
+import { content, logo } from './landing.module.scss';
 
 const Landing = () => {
   const onFailed = (error) => {
