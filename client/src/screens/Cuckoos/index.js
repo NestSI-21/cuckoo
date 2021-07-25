@@ -1,6 +1,7 @@
 import React from 'react';
-import CuckooList from '../../components/CuckooList';
 import Layout from '../../components/Layout';
+import FilterBtn from '../../elements/FilterBtn';
+import CuckooList from '../../components/CuckooList';
 import { content, filters } from './cuckoos.module.scss';
 
 const Cuckoos = () => {
@@ -8,7 +9,16 @@ const Cuckoos = () => {
     <Layout pageTitle='Cuckoos'>
       <div className={content}>
         <div className={filters}>
-          <h3>Filters</h3>
+          <h3>Type:</h3>
+          <FilterBtn text='Event' />
+          <FilterBtn text='Announcement' />
+          <h3>Category:</h3>
+          <FilterBtn text='Alert' />
+          <FilterBtn text='Education' />
+          <FilterBtn text='New Company' />
+          <FilterBtn text='New Employee' />
+          <FilterBtn text='Social' />
+          <FilterBtn text='Other' />
         </div>
         <CuckooList />
       </div>
