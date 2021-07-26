@@ -311,15 +311,15 @@ Devise.setup do |config|
   # config.sign_in_after_change_password = true
 
   config.jwt do |jwt|
-    jwt.secret = ENV["DEVISE_JWT_SECRET_KEY"] || "my_random_dev_key"
+    jwt.secret = ENV['DEVISE_JWT_SECRET_KEY'] || 'my_random_dev_key'
     jwt.dispatch_requests = [
-      ["POST", %r{^/slack/login$}],
+      ['POST', %r{^/slack/login$}]
     ]
     jwt.revocation_requests = [
-      ["DELETE", %r{^/users/sign_out$}],
+      ['DELETE', %r{^/users/sign_out$}]
     ]
     jwt.request_formats = {
-      user: [:json],
+      user: [:json]
     }
   end
 end

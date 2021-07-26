@@ -3,7 +3,6 @@
 require 'rest-client'
 
 class SlackAuthController < ActionController::API
-  # before_action :authenticate_user!
   def create
     payload = {
       code: params[:code],
@@ -16,8 +15,8 @@ class SlackAuthController < ActionController::API
     response = RestClient.post('https://slack.com/api/oauth.v2.access', payload)
     body = JSON.parse(response.body)
 
-    unless body["ok"]
-      render json: { message: "The slack temporary OAuth verifier code was invalid" }, status: :unauthorized
+    unless body['ok']
+      render json: { message: 'The slack temporary OAuth verifier code was invalid' }, status: :unauthorized
       return
     end
 
@@ -40,9 +39,13 @@ class SlackAuthController < ActionController::API
       user.password = Devise.friendly_token[0, 20]
     end
 
-    if @user
+    @companies = Company.all
+    if @user && (@user.profile_flag == false)
       sign_in @user
-      render json: { id: @user.id }, status: :ok
+      render json: { user: @user, companies: @companies }, status: :ok
+    elsif @user && (@user.profile_flag == true)
+      sign_in @user
+      render json: { user: @user }, status: :ok
     else
       render json: { message: 'There was an error!' }, status: :unauthorized
     end
