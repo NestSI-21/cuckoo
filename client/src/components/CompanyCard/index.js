@@ -15,6 +15,7 @@ const CompanyCard = ({ company: { name, description } }) => {
           <p>{description}</p>
         </div>
       </div>
+      <hr></hr>
     </div>
   );
 };
