@@ -18,7 +18,7 @@ const Landing = () => {
   };
 
   return (
-    <Layout hideHeaderSidebar>
+    <Layout hideSidebar>
       <div className={content}>
         <div>
           <img src={horizontalLogo} alt='Cuckoo horizontal logo' className={logo} />

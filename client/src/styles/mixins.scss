@@ -1,21 +1,16 @@
 @mixin main() {
   width: 85vw;
   height: 90vh;
-  float: right;
   background-color: $background;
-  display: flex;
-  position: relative;
-  box-sizing: border-box;
-  padding: 2% 2% 2% 2%;
+  padding: 3rem;
 }
 
-@mixin container() {
+@mixin container($height: initial) {
   background-color: #fff;
   box-shadow: 0 0 2.4rem -1.5rem rgba(0, 16, 12, 0.57);
   border-radius: 1.5rem;
   padding: 3rem 3rem;
-  overflow-x: hidden;
-  overflow-y: scroll;
+  height: $height;
 }
 
 @mixin flex($direction: row, $align: center, $justify: center) {
@@ -25,6 +20,8 @@
   justify-content: $justify;
 }
 
-@mixin grid() {
+@mixin grid($gap-row, $gap-column, $template-column) {
   display: grid;
+  gap: $gap-row $gap-column;
+  grid-template-columns: $template-column;
 }

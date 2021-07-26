@@ -1,9 +1,8 @@
-@import '../../styles/applications.scss';
+@import '../../styles/variables.scss';
+@import '../../styles/mixins.scss';
 
 .cuckooCard {
-  @include grid();
-  grid-template-columns: 4.5rem 1fr;
-  gap: 0rem 1.5rem;
+  @include grid(0, 1.5rem, 4.5rem 1fr);
   border-bottom: 0.1rem solid #eef1f0;
   padding: 1.5rem 0;
 
@@ -16,25 +15,20 @@
     border-bottom: none;
   }
 
-  .cuckooAuthor {
+  .author {
     color: $light-gray;
-    font-size: $annotation;
+    font-size: $text-small;
+    margin-bottom: 1rem;
 
-    .cuckooType {
-      color: $green;
-      font-size: $annotation;
+    span {
+      font-size: $text-small;
       text-transform: capitalize;
     }
   }
 
-  .cuckooDesc {
-    margin-top: 1rem;
-  }
-
-  .cuckooExpand {
+  .seeMore {
     color: $green;
-    font-size: $annotation;
-    font-weight: 400;
+    font-size: $text-small;
     cursor: pointer;
   }
 
@@ -43,28 +37,11 @@
     margin-top: 1rem;
 
     div {
-      width: fit-content;
       display: flex;
       p {
-        margin-left: 0.5rem;
-        white-space: nowrap;
-        font-size: $annotation;
+        margin: 0 1.5rem 0 0.5rem;
+        font-size: $text-small;
       }
     }
-
-    .cuckooTime {
-      margin-left: 1.5rem;
-    }
   }
-
-  // .titleTypeWrapper {
-  //   @include flex($align: flex-start, $justify: space-between);
-  //   p {
-  //     border: 0.1rem solid $green;
-  //     border-radius: 5rem;
-  //     padding: 0.2rem 1.5rem;
-  //     color: $green;
-  //     font-size: $annotation;
-  //   }
-  // }
 }

@@ -5,16 +5,7 @@ import CuckooImages from '../CuckooImages';
 import locationPin from '../../assets/icons/location-pin.svg';
 import clock from '../../assets/icons/clock.svg';
 import dog from '../../assets/icons/dog.jpeg';
-import {
-  cuckooCard,
-  cuckooAuthor,
-  cuckooType,
-  detailsWrapper,
-  cuckooDesc,
-  cuckooExpand,
-  cuckooLocation,
-  cuckooTime,
-} from './cuckoocard.module.scss';
+import { cuckooCard, author, seeMore, detailsWrapper } from './cuckoocard.module.scss';
 
 const CuckooCard = ({
   cuckoo: {
@@ -45,12 +36,12 @@ const CuckooCard = ({
       <Avatar userImage={dog} />
       <div>
         <h3>{title}</h3>
-        <p className={cuckooAuthor}>
-          <span className={cuckooType}>{type}</span> • @{username}, {company} • {datePosted}
+        <p className={author}>
+          <span>{type}</span> • @{username}, {company} • {datePosted}
         </p>
-        <p className={cuckooDesc}>{cuckooDescription}</p>
+        <p>{cuckooDescription}</p>
         {description.length >= maxPreview ? (
-          <span className={cuckooExpand} onClick={togglePreview}>
+          <span className={seeMore} onClick={togglePreview}>
             {isPreview ? 'see more' : 'see less'}
           </span>
         ) : null}
@@ -58,13 +49,13 @@ const CuckooCard = ({
         {location || startDate || endDate || startTime || endTime ? (
           <div className={detailsWrapper}>
             {location ? (
-              <div className={cuckooLocation}>
+              <div>
                 <img src={locationPin} alt='location' />
                 <p>{location}</p>
               </div>
             ) : null}
             {startDate || endDate || startTime || endTime ? (
-              <div className={cuckooTime}>
+              <div>
                 <img src={clock} alt='time' />
                 <p>
                   {startDate ? startDate : null}

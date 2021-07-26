@@ -2,12 +2,12 @@ import React from 'react';
 import Layout from '../../components/Layout';
 import FilterBtn from '../../elements/FilterBtn';
 import CuckooList from '../../components/CuckooList';
-import { content, filters } from './cuckoos.module.scss';
+import { contentContainer, filters } from './cuckoos.module.scss';
 
 const Cuckoos = () => {
   return (
     <Layout pageTitle='Cuckoos'>
-      <div className={content}>
+      <div className={contentContainer}>
         <div className={filters}>
           <h3>Type:</h3>
           <FilterBtn text='Event' />

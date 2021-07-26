@@ -7,7 +7,7 @@ import Cuckoos from './screens/Cuckoos';
 import Companies from './screens/Companies';
 import Profile from './screens/Profile';
 import PageNotFound from './screens/PageNotFound';
-import './styles/applications.scss';
+import './styles/base.scss';
 
 function App() {
   return (
