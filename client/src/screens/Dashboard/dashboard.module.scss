@@ -1,7 +1,7 @@
 @import '../../styles/applications.scss';
 
 .content {
-  @include main();
+  @include main($mainWidth: 85%, $mainHeight: 90vh);
 
   .calendar {
     @include container();

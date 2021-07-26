@@ -1,0 +1,35 @@
+@import '../../styles/applications.scss';
+
+.form {
+  margin-top: 5rem;
+  width: 65%;
+  div {
+    margin-bottom: 2rem;
+  }
+  .flexWrapper {
+    display: flex;
+    justify-content: space-between;
+    div {
+      width: 50%;
+      margin-bottom: 0;
+      &:last-child {
+        width: 48%;
+      }
+    }
+  }
+  .gridWrapper {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 0 2rem;
+  }
+
+  button {
+    background: $green;
+    color: #fff;
+    width: 100%;
+    text-align: center;
+    span {
+      width: 100%;
+    }
+  }
+}

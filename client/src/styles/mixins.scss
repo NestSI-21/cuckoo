@@ -1,6 +1,6 @@
-@mixin main() {
-  width: 85vw;
-  height: 90vh;
+@mixin main($mainWidth: 85%, $mainHeight: 90vh) {
+  width: $mainWidth;
+  height: $mainHeight;
   float: right;
   background-color: $background;
   display: flex;
@@ -23,4 +23,30 @@
   flex-direction: $direction;
   align-items: $align;
   justify-content: $justify;
+}
+
+@mixin topButton($rotateBtn: 0) {
+  position: absolute;
+  right: 4%;
+  top: 4%;
+  transform: rotate($rotateBtn);
+  z-index: 2;
+  cursor: pointer;
+  width: 5rem;
+  height: 5rem;
+  background: $green;
+  border-radius: 50%;
+  border-style: none;
+  color: #fff;
+  font-weight: bolder;
+  font-size: 2em;
+  transition: 0.3s;
+
+  &:hover {
+    filter: drop-shadow(-0.1rem 0.1rem 1rem rgba(0, 0, 0, 0.2));
+  }
+}
+
+@mixin formField($fieldHeight: auto, $fieldWidth: 100%) {
+  position: relative;
 }

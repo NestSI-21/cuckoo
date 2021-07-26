@@ -1,0 +1,4 @@
+@import '../../styles/applications.scss';
+#close {
+  @include topButton($rotateBtn: 45deg);
+}

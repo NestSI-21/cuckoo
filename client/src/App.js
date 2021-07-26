@@ -7,6 +7,7 @@ import Dashboard from './screens/Dashboard';
 import Cuckoos from './screens/Cuckoos';
 import Companies from './screens/Companies';
 import Profile from './screens/Profile';
+import Create from './screens/Create';
 import PageNotFound from './screens/PageNotFound';
 
 function App() {
@@ -19,6 +20,7 @@ function App() {
         <Route path='/cuckoos' component={Cuckoos} exact />
         <Route path='/companies' component={Companies} exact />
         <Route path='/profile' component={Profile} exact />
+        <Route path='/create' component={Create} exact />
         <Route component={PageNotFound} />
       </Switch>
     </Router>
