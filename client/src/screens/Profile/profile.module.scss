@@ -1,0 +1,44 @@
+@import '../../styles/applications.scss';
+
+.content {
+  @include main();
+
+  .profileSection {
+    width: 85vw;
+    float: right;
+    text-align: center;
+    margin-top: 20px;
+
+    .profilePhoto {
+      order: 1px solid $green;
+      border-radius: 100%;
+      height: 20rem;
+      width: 20rem;
+      background: $green;
+      margin: auto;
+    }
+    h3 {
+      margin-top: 2rem;
+      margin-bottom: 0.5rem;
+    }
+    .linkOne {
+      color: $green;
+    }
+    .linkTwo {
+      color: #f27178;
+    }
+    p {
+      margin-bottom: 20px;
+    }
+    .annotation {
+      margin-top: 2rem;
+      margin-bottom: 0;
+    }
+    hr {
+      size: 1rem;
+      color: #d8d8d8;
+      width: 22rem;
+      margin: auto;
+    }
+  }
+}
