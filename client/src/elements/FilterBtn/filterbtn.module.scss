@@ -1,0 +1,21 @@
+@import '../../styles/applications.scss';
+
+.selected {
+  border: 0.1rem solid $green;
+  border-radius: 5rem;
+  padding: 0.5rem 2rem;
+  color: #ffffff;
+  font-size: $text-small;
+  background: $green;
+  cursor: pointer;
+}
+
+.unselected {
+  border: 0.1rem solid $green;
+  border-radius: 5rem;
+  padding: 0.5rem 2rem;
+  color: $green;
+  font-size: $text-small;
+  background: none;
+  cursor: pointer;
+}

@@ -6,8 +6,8 @@ import { header } from './header.module.scss';
 const Header = ({ pageTitle }) => {
   return (
     <div className={header}>
-      <CreateBtn />
       <h1>{pageTitle}</h1>
+      <CreateBtn />
     </div>
   );
 };

@@ -3,7 +3,7 @@ import Layout from '../../components/Layout';
 
 const SignIn = () => {
   return (
-    <Layout hideHeaderSidebar>
+    <Layout hideSidebar>
       <div></div>
     </Layout>
   );

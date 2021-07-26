@@ -3,7 +3,7 @@ import { create } from './createbtn.module.scss';
 const CreateBtn = () => {
   return (
     <div>
-      <button id={create}>+</button>
+      <button className={create}>+</button>
     </div>
   );
 };
