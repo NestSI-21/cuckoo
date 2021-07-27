@@ -2,7 +2,7 @@ import React from 'react';
 import axios from 'axios';
 import SlackLogin from 'react-slack-login';
 import Layout from '../../components/Layout';
-import horizontalLogo from '../../assets/logos/logo-white.svg';
+import animatedLogo from '../../assets/logos/cuckooAnimation.svg';
 import { content, logo } from './landing.module.scss';
 
 const Landing = () => {
@@ -20,7 +20,9 @@ const Landing = () => {
   return (
     <Layout hideSidebar>
       <div className={content}>
-        <img src={horizontalLogo} alt='Cuckoo horizontal logo' className={logo} />
+        <object type='image/svg+xml' data={animatedLogo} className={logo}>
+          svg-animation
+        </object>
         <h1>Welcome to Cuckoo</h1>
         <SlackLogin
           redirectUrl={process.env.REACT_APP_SLACK_REDIRECT_URL}
