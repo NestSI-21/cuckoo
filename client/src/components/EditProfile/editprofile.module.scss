@@ -1,0 +1,17 @@
+@import '../../styles/applications.scss';
+
+.form {
+  width: 40rem;
+  div {
+    margin-bottom: 2rem;
+  }
+  button {
+    background: $green;
+    color: #fff;
+    width: 100%;
+    text-align: center;
+    span {
+      width: 100%;
+    }
+  }
+}
