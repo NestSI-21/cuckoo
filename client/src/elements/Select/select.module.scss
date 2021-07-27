@@ -2,4 +2,7 @@
 
 .select {
   position: relative;
+  select {
+    -webkit-appearance: none;
+  }
 }

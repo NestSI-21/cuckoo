@@ -1,9 +1,9 @@
 import React from 'react';
-import Layout from '../../components/Layout';
-import { content, logo } from './landing.module.scss';
-import horizontalLogo from '../../assets/logos/logo-white.svg';
-import SlackLogin from 'react-slack-login';
 import axios from 'axios';
+import SlackLogin from 'react-slack-login';
+import Layout from '../../components/Layout';
+import horizontalLogo from '../../assets/logos/logo-white.svg';
+import { content, logo } from './landing.module.scss';
 
 const Landing = () => {
   const onFailed = (error) => {
@@ -18,19 +18,17 @@ const Landing = () => {
   };
 
   return (
-    <Layout hideHeaderSidebar>
+    <Layout hideSidebar>
       <div className={content}>
-        <div>
-          <img src={horizontalLogo} alt='Cuckoo horizontal logo' className={logo} />
-          <h1>Welcome to Cuckoo</h1>
-          <SlackLogin
-            redirectUrl={process.env.REACT_APP_SLACK_REDIRECT_URL}
-            onFailure={onFailed}
-            onSuccess={onSuccess}
-            slackClientId={process.env.REACT_APP_SLACK_CLIENT_ID}
-            slackUserScope='team:read,users:read,identify,users.profile:read'
-          />
-        </div>
+        <img src={horizontalLogo} alt='Cuckoo horizontal logo' className={logo} />
+        <h1>Welcome to Cuckoo</h1>
+        <SlackLogin
+          redirectUrl={process.env.REACT_APP_SLACK_REDIRECT_URL}
+          onFailure={onFailed}
+          onSuccess={onSuccess}
+          slackClientId={process.env.REACT_APP_SLACK_CLIENT_ID}
+          slackUserScope='team:read,users:read,identify,users.profile:read'
+        />
       </div>
     </Layout>
   );

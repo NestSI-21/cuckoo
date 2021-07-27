@@ -1,12 +1,9 @@
 @import '../../styles/applications.scss';
 
 .header {
+  @include flex($align: flex-end, $justify: space-between);
   background-color: $background;
-  box-sizing: border-box;
-  padding: 0 4% 0 4%;
-  width: 85%;
+  padding: 0 3rem;
+  width: calc(100vw - 20rem);
   height: 10vh;
-  display: flex;
-  align-items: flex-end;
-  float: right;
 }

@@ -1,6 +1,6 @@
 import React from 'react';
-import Button from '../../elements/Button';
 import { Link } from 'react-router-dom';
+import Button from '../../elements/Button';
 import { content } from './pagenotfound.module.scss';
 
 const PageNotFound = () => {

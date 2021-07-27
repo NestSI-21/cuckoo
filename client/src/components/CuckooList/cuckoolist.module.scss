@@ -2,10 +2,11 @@
 
 .container {
   @include container();
-  width: 60%;
+  overflow-x: hidden;
+  overflow-y: scroll;
 
   &::-webkit-scrollbar {
-    width: 2.6rem;
+    width: 2.5rem;
     border-radius: 0.5rem;
   }
   &::-webkit-scrollbar-track {

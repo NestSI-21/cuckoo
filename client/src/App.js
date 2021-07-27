@@ -1,6 +1,5 @@
 import React from 'react';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
-import './styles/applications.scss';
 import Landing from './screens/Landing';
 import SignIn from './screens/SignIn';
 import Dashboard from './screens/Dashboard';
@@ -9,6 +8,7 @@ import Companies from './screens/Companies';
 import Profile from './screens/Profile';
 import Create from './screens/Create';
 import PageNotFound from './screens/PageNotFound';
+import './styles/base.scss';
 
 function App() {
   return (

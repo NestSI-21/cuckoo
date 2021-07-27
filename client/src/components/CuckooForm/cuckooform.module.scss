@@ -18,9 +18,7 @@
     }
   }
   .gridWrapper {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    gap: 0 2rem;
+    @include grid(0, 2rem, 1fr 1fr 1fr 1fr);
   }
 
   button {

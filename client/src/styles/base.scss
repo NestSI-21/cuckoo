@@ -1,3 +1,5 @@
+@import './variables.scss';
+
 * {
   margin: 0;
   padding: 0;
@@ -8,39 +10,38 @@ html {
   font-size: 10px;
 }
 
+body {
+  font-family: $rubik;
+  color: $gray;
+}
+
 h1 {
   font-family: $sora;
-  color: $gray;
   font-size: $title;
   font-weight: 600;
 }
 
 h3 {
   font-family: $sora;
-  color: $gray;
   font-size: $subtitle;
   font-weight: 600;
 }
 
 p {
-  font-family: $rubik;
-  color: $gray;
   font-size: $text;
   font-weight: 300;
   line-height: 150%;
 }
 
+span {
+  font-size: $text;
+}
+
 a,
 button {
-  font-family: $rubik;
   font-size: $text;
   text-decoration: none;
   font-weight: 400;
-}
-
-.annotation {
-  color: $light-gray;
-  font-size: $annotation;
 }
 
 ul {
@@ -52,7 +53,7 @@ textarea,
 select,
 option {
   font-family: $rubik;
-  font-size: $annotation;
+  font-size: $text-small;
 }
 input,
 textarea,
@@ -78,13 +79,14 @@ label {
   transition: 0.1s ease all;
   color: $light-gray;
   font-family: $rubik;
-  font-size: $annotation;
+  font-size: $text-small;
 }
 input:focus ~ label,
 input:not(:placeholder-shown) ~ label,
 textarea:focus ~ label,
 textarea:not(:placeholder-shown) ~ label,
-select:focus ~ label {
+select:focus ~ label,
+select:valid ~ label {
   top: 1.2rem;
   transform: none;
   font-size: 1.2rem;
