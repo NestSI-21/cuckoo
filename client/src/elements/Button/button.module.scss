@@ -1,14 +1,18 @@
 @import '../../styles/applications.scss';
 
 .button {
+  @include flex();
   border: none;
   border-radius: 0.5rem;
-  color: $green;
   padding: 1rem 1.7rem;
-  display: flex;
-  align-items: center;
   cursor: pointer;
   transition: 0.3s;
+  width: inherit;
+
+  &.green {
+    background-color: $green;
+    color: #fff;
+  }
 
   img {
     padding-right: 1.7rem;

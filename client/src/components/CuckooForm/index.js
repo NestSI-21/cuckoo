@@ -1,9 +1,10 @@
 import React from 'react';
+import ImageUpload from '../ImageUpload';
 import Input from '../../elements/Input';
 import Textarea from '../../elements/Textarea';
 import Select from '../../elements/Select';
 import Button from '../../elements/Button';
-import { form, flexWrapper, gridWrapper } from './cuckooform.module.scss';
+import { form, flexWrapper, gridWrapper, btnWrapper } from './cuckooform.module.scss';
 
 const CuckooForm = () => {
   return (
@@ -20,13 +21,16 @@ const CuckooForm = () => {
         />
       </div>
       <Textarea name='description' placeholder='Tell us more about what you want to share' />
+      <ImageUpload />
       <div className={gridWrapper}>
         <Input type='date' name='startDate' placeholder='From:' />
         <Input type='time' name='startHour' placeholder='Starting at:' />
         <Input type='date' name='endDate' placeholder='To:' />
         <Input type='time' name='endHour' placeholder='Ending at:' />
       </div>
-      <Button text='PUBLISH' type='submit' />
+      <div className={btnWrapper}>
+        <Button text='PUBLISH' type='submit' style='green' />
+      </div>
     </form>
   );
 };

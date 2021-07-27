@@ -3,9 +3,11 @@
 .form {
   margin-top: 5rem;
   width: 65%;
+
   div {
     margin-bottom: 2rem;
   }
+
   .flexWrapper {
     @include flex($justify: space-between);
     div {
@@ -16,17 +18,12 @@
       }
     }
   }
+
   .gridWrapper {
     @include grid(0, 2rem, 1fr 1fr 1fr 1fr);
   }
 
-  button {
-    background: $green;
-    color: #fff;
+  .btnWrapper {
     width: 100%;
-    text-align: center;
-    span {
-      width: 100%;
-    }
   }
 }
