@@ -1,0 +1,6 @@
+@import '../../styles/applications.scss';
+
+.contentContainer {
+  @include main();
+  overflow-y: scroll;
+}

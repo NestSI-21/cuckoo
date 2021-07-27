@@ -1,7 +1,7 @@
-@mixin main() {
-  width: 85vw;
-  height: 90vh;
-  background-color: $background;
+@mixin main($mainWidth: calc(100vw - 20rem), $mainHeight: 90vh, $mainBackgorund: $background) {
+  width: $mainWidth;
+  height: $mainHeight;
+  background-color: $mainBackgorund;
   padding: 3rem;
 }
 
@@ -18,6 +18,10 @@
   flex-direction: $direction;
   align-items: $align;
   justify-content: $justify;
+}
+
+@mixin formField($fieldHeight: auto, $fieldWidth: 100%) {
+  position: relative;
 }
 
 @mixin grid($gap-row, $gap-column, $template-column) {

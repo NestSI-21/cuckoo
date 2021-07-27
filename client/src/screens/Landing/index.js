@@ -20,17 +20,15 @@ const Landing = () => {
   return (
     <Layout hideSidebar>
       <div className={content}>
-        <div>
-          <img src={horizontalLogo} alt='Cuckoo horizontal logo' className={logo} />
-          <h1>Welcome to Cuckoo</h1>
-          <SlackLogin
-            redirectUrl={process.env.REACT_APP_SLACK_REDIRECT_URL}
-            onFailure={onFailed}
-            onSuccess={onSuccess}
-            slackClientId={process.env.REACT_APP_SLACK_CLIENT_ID}
-            slackUserScope='team:read,users:read,identify,users.profile:read'
-          />
-        </div>
+        <img src={horizontalLogo} alt='Cuckoo horizontal logo' className={logo} />
+        <h1>Welcome to Cuckoo</h1>
+        <SlackLogin
+          redirectUrl={process.env.REACT_APP_SLACK_REDIRECT_URL}
+          onFailure={onFailed}
+          onSuccess={onSuccess}
+          slackClientId={process.env.REACT_APP_SLACK_CLIENT_ID}
+          slackUserScope='team:read,users:read,identify,users.profile:read'
+        />
       </div>
     </Layout>
   );

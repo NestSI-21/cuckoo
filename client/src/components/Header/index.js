@@ -1,13 +1,16 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import CreateBtn from '../../elements/CreateBtn';
+import { Link } from 'react-router-dom';
+import CircularButton from '../../elements/CircularButton';
 import { header } from './header.module.scss';
 
 const Header = ({ pageTitle }) => {
   return (
     <div className={header}>
       <h1>{pageTitle}</h1>
-      <CreateBtn />
+      <Link to='/Create'>
+        <CircularButton />
+      </Link>
     </div>
   );
 };

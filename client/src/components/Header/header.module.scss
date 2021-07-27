@@ -4,6 +4,6 @@
   @include flex($align: flex-end, $justify: space-between);
   background-color: $background;
   padding: 0 3rem;
-  width: 85vw;
+  width: calc(100vw - 20rem);
   height: 10vh;
 }

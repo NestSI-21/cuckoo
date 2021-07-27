@@ -1,44 +1,36 @@
 @import '../../styles/applications.scss';
 
-.content {
+.contentContainer {
   @include main();
+  @include flex($direction: column);
 
+  .profilePhoto {
+    border-radius: 100%;
+    height: 20rem;
+    width: 20rem;
+    background: $green;
+  }
+  h3 {
+    margin-top: 3rem;
+  }
   .profileSection {
-    width: 85vw;
-    float: right;
     text-align: center;
-    margin-top: 20px;
+    padding: 1rem 0;
+    border-bottom: 0.1rem solid #d8d8d8;
+    width: 22rem;
+    span {
+      color: $light-gray;
+    }
+  }
 
-    .profilePhoto {
-      order: 1px solid $green;
-      border-radius: 100%;
-      height: 20rem;
-      width: 20rem;
-      background: $green;
-      margin: auto;
-    }
-    h3 {
-      margin-top: 2rem;
-      margin-bottom: 0.5rem;
-    }
-    .linkOne {
-      color: $green;
-    }
-    .linkTwo {
-      color: #f27178;
-    }
-    p {
-      margin-bottom: 20px;
-    }
-    .annotation {
-      margin-top: 2rem;
-      margin-bottom: 0;
-    }
-    hr {
-      size: 1rem;
-      color: #d8d8d8;
-      width: 22rem;
-      margin: auto;
-    }
+  .edit {
+    color: $green;
+  }
+  .logout {
+    color: $error;
+    margin-top: 2rem;
+  }
+  a:hover {
+    opacity: 0.5;
   }
 }

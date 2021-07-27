@@ -1,34 +1,43 @@
 import React from 'react';
 import Layout from '../../components/Layout';
 import {
-  content,
-  profileSection,
+  contentContainer,
   profilePhoto,
-  linkOne,
-  annotation,
-  linkTwo,
+  edit,
+  logout,
+  profileSection,
 } from './profile.module.scss';
 
 const Profile = () => {
   return (
     <Layout pageTitle='Profile'>
-      <div className={content}>
+      <div className={contentContainer}>
+        <div className={profilePhoto}></div>
+        <h3>UserName</h3>
+        <a href='#' className={edit}>
+          Edit Profile
+        </a>
         <div className={profileSection}>
-          <div className={profilePhoto}></div>
-          <h3>UserName</h3>
-          <a className={linkOne}>Edit Profile</a>
-          <br></br>
-          <br></br>
-          <p className={annotation}>Role</p>
+          <p>
+            <span>Role</span>
+          </p>
           <p>Software Engineer</p>
-          <hr></hr>
-          <p className={annotation}>Company</p>
-          <p>RedLight</p>
-          <hr></hr>
-          <p className={annotation}>Birthday</p>
-          <p>07/03/1988</p>
-          <a className={linkTwo}>Log out</a>
         </div>
+        <div className={profileSection}>
+          <p>
+            <span>Company</span>
+          </p>
+          <p>RedLight</p>
+        </div>
+        <div className={profileSection}>
+          <p>
+            <span>Birthday</span>
+          </p>
+          <p>07/03/1988</p>
+        </div>
+        <a href='#' className={logout}>
+          Log out
+        </a>
       </div>
     </Layout>
   );

@@ -47,3 +47,47 @@ button {
 ul {
   list-style: none;
 }
+
+input,
+textarea,
+select,
+option {
+  font-family: $rubik;
+  font-size: $text-small;
+}
+input,
+textarea,
+select {
+  display: block;
+  background: transparent;
+  border: 0.1rem solid $green;
+  border-radius: 5px;
+  width: 100%;
+  padding: 2.5rem 2rem 1.5rem 2rem;
+  outline: none;
+  transition: 0.1s ease all;
+}
+textarea {
+  resize: none;
+  height: 20rem;
+}
+label {
+  position: absolute;
+  pointer-events: none;
+  left: 2rem;
+  top: 2rem;
+  transition: 0.1s ease all;
+  color: $light-gray;
+  font-family: $rubik;
+  font-size: $text-small;
+}
+input:focus ~ label,
+input:not(:placeholder-shown) ~ label,
+textarea:focus ~ label,
+textarea:not(:placeholder-shown) ~ label,
+select:focus ~ label,
+select:valid ~ label {
+  top: 1.2rem;
+  transform: none;
+  font-size: 1.2rem;
+}
