@@ -7,13 +7,12 @@
     margin-bottom: 2rem;
   }
   .flexWrapper {
-    display: flex;
-    justify-content: space-between;
+    @include flex($justify: space-between);
     div {
-      width: 50%;
+      width: 60%;
       margin-bottom: 0;
       &:last-child {
-        width: 48%;
+        width: 38%;
       }
     }
   }
