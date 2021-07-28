@@ -1,18 +1,14 @@
 import React from 'react';
 import Layout from '../../components/Layout';
-import {
-  contentContainer,
-  profilePhoto,
-  edit,
-  logout,
-  profileSection,
-} from './profile.module.scss';
+import Avatar from '../../elements/Avatar';
+import dog from '../../assets/icons/dog.jpeg';
+import { contentContainer, edit, logout, profileSection } from './profile.module.scss';
 
 const Profile = () => {
   return (
     <Layout pageTitle='Profile'>
       <div className={contentContainer}>
-        <div className={profilePhoto}></div>
+        <Avatar userImage={dog} />
         <h3>UserName</h3>
         <a href='#' className={edit}>
           Edit Profile

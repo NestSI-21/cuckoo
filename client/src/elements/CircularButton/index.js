@@ -5,7 +5,15 @@ import { btnContainer, createBtn, closeBtn } from './circularbutton.module.scss'
 const CircularButton = ({ close }) => {
   return (
     <div className={btnContainer}>
-      {!close ? <button className={createBtn}>+</button> : <button className={closeBtn}>+</button>}
+      {!close ? (
+        <button className={createBtn}>
+          <i className='fas fa-plus'></i>
+        </button>
+      ) : (
+        <button className={closeBtn}>
+          <i className='fas fa-plus'></i>
+        </button>
+      )}
     </div>
   );
 };
