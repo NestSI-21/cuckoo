@@ -2,28 +2,26 @@
 
 .sidebar {
   background-color: $gray;
-  float: left;
-  width: 15vw;
+  width: 20rem;
   height: 100vh;
   box-sizing: border-box;
-  padding: 4% 0;
-  position: relative;
+  padding: 5rem 0;
 
   img {
-    width: 100%;
+    width: 20rem;
     display: block;
     box-sizing: border-box;
-    padding: 0 8%;
+    padding: 0 2rem;
   }
 
   ul {
-    margin-top: 25%;
+    margin-top: 4rem;
     li {
-      padding: 0 4%;
+      padding: 0 0.5rem;
       a {
         display: flex;
         justify-content: flex-start;
-        padding: 8%;
+        padding: 1.8rem;
         border-radius: 1rem;
         color: $green;
         img {

@@ -1,13 +1,14 @@
 import React from 'react';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
-import './styles/applications.scss';
 import Landing from './screens/Landing';
 import SignIn from './screens/SignIn';
 import Dashboard from './screens/Dashboard';
 import Cuckoos from './screens/Cuckoos';
 import Companies from './screens/Companies';
 import Profile from './screens/Profile';
+import Create from './screens/Create';
 import PageNotFound from './screens/PageNotFound';
+import './styles/base.scss';
 
 function App() {
   return (
@@ -19,6 +20,7 @@ function App() {
         <Route path='/cuckoos' component={Cuckoos} exact />
         <Route path='/companies' component={Companies} exact />
         <Route path='/profile' component={Profile} exact />
+        <Route path='/create' component={Create} exact />
         <Route component={PageNotFound} />
       </Switch>
     </Router>

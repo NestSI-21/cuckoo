@@ -1,0 +1,30 @@
+@import '../../styles/applications.scss';
+
+.form {
+  margin-top: 5rem;
+  max-width: 75rem;
+  div {
+    margin-bottom: 2rem;
+  }
+
+  .flexWrapper {
+    @include flex($justify: space-between);
+    div {
+      width: 60%;
+      margin-bottom: 0;
+      &:last-child {
+        width: 38%;
+      }
+    }
+  }
+
+  .gridWrapper {
+    @include grid(0, 2rem, 1fr 1fr 1fr 1fr);
+  }
+
+  .btnWrapper {
+    button {
+      width: 100%;
+    }
+  }
+}

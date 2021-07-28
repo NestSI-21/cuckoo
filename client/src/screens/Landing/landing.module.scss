@@ -1,28 +1,17 @@
 @import '../../styles/applications.scss';
 
 .content {
-  @include flex();
-  background-color: $green;
-  width: 100vw;
-  height: 100vh;
+  @include main($mainWidth: 100vw, $mainHeight: 100vh, $mainBackgorund: $green);
+  @include flex($direction: column);
 
-  div {
-    text-align: center;
-    padding: 2rem;
+  .logo {
+    width: 50%;
+    // ONLY IF BIGGER THAN PHONE SIZE
+    // min-width: 30rem;
+  }
 
-    .logo {
-      width: 100%;
-      // ONLY IF BIGGER THAN PHONE SIZE
-      // min-width: 30rem;
-    }
-
-    h1 {
-      margin: 1.5rem 0 18.5rem 0;
-      color: white;
-    }
-
-    a {
-      display: inline-block;
-    }
+  h1 {
+    margin: 1.5rem 0 18.5rem 0;
+    color: white;
   }
 }

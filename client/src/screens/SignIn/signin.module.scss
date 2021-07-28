@@ -1,0 +1,14 @@
+@import '../../styles/applications.scss';
+
+.contentContainer {
+  @include main($mainWidth: 100vw, $mainHeight: 100vh);
+  @include flex($direction: column);
+
+  img {
+    width: 25rem;
+    min-height: 25rem;
+  }
+  h1 {
+    padding: 2rem 0 4rem 0;
+  }
+}

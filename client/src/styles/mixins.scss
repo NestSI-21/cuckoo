@@ -1,21 +1,16 @@
-@mixin main() {
-  width: 85vw;
-  height: 90vh;
-  float: right;
-  background-color: $background;
-  display: flex;
-  position: relative;
-  box-sizing: border-box;
-  padding: 2% 4% 4% 4%;
+@mixin main($mainWidth: calc(100vw - 20rem), $mainHeight: 90vh, $mainBackgorund: $background) {
+  width: $mainWidth;
+  height: $mainHeight;
+  background-color: $mainBackgorund;
+  padding: 3rem;
 }
 
-@mixin container() {
+@mixin container($height: initial) {
   background-color: #fff;
   box-shadow: 0 0 2.4rem -1.5rem rgba(0, 16, 12, 0.57);
   border-radius: 1.5rem;
-  padding: 1.5rem 3rem;
-  overflow-x: hidden;
-  overflow-y: scroll;
+  padding: 3rem 3rem;
+  height: $height;
 }
 
 @mixin flex($direction: row, $align: center, $justify: center) {
@@ -23,4 +18,14 @@
   flex-direction: $direction;
   align-items: $align;
   justify-content: $justify;
+}
+
+@mixin formField($fieldHeight: auto, $fieldWidth: 100%) {
+  position: relative;
+}
+
+@mixin grid($gap-row, $gap-column, $template-column) {
+  display: grid;
+  gap: $gap-row $gap-column;
+  grid-template-columns: $template-column;
 }

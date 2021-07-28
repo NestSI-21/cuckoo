@@ -1,0 +1,6 @@
+@import '../../styles/applications.scss';
+
+.contentContainer {
+  @include main($mainWidth: 100vw, $mainHeight: 100vh);
+  @include flex($direction: column);
+}

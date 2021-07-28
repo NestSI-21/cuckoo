@@ -28,8 +28,7 @@ services:
     tty: true
   client:
     container_name: client
-    image: 'node:16-alpine'
-    user: 'node'
+    image: 'node:16'
     working_dir: /cuckoo/client
     ports:
       - '3000:3000'
