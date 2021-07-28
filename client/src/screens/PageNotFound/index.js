@@ -9,7 +9,7 @@ const PageNotFound = () => {
       <div>
         <h1>{"Cuck-OOPS sorry we couldn't find that page."}</h1>
         <Link to='/Dashboard'>
-          <Button text='Back to Dashboard' />
+          <Button text='Back to Dashboard' style='grey' />
         </Link>
       </div>
     </div>

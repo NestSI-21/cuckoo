@@ -7,11 +7,15 @@
   padding: 1rem 1.7rem;
   cursor: pointer;
   transition: 0.3s;
-  width: inherit;
 
   &.green {
     background-color: $green;
     color: #fff;
+  }
+
+  &.grey {
+    background-color: $background;
+    color: $green;
   }
 
   img {
