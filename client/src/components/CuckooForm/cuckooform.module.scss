@@ -6,6 +6,7 @@
   div {
     margin-bottom: 2rem;
   }
+
   .flexWrapper {
     @include flex($justify: space-between);
     div {
@@ -16,16 +17,13 @@
       }
     }
   }
+
   .gridWrapper {
     @include grid(0, 2rem, 1fr 1fr 1fr 1fr);
   }
 
-  button {
-    background: $green;
-    color: #fff;
-    width: 100%;
-    text-align: center;
-    span {
+  .btnWrapper {
+    button {
       width: 100%;
     }
   }

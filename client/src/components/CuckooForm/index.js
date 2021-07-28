@@ -1,9 +1,10 @@
 import React from 'react';
+import ImageUpload from '../ImageUpload';
 import Input from '../../elements/Input';
 import Textarea from '../../elements/Textarea';
 import Select from '../../elements/Select';
 import Button from '../../elements/Button';
-import { form, flexWrapper, gridWrapper } from './cuckooform.module.scss';
+import { form, flexWrapper, gridWrapper, btnWrapper } from './cuckooform.module.scss';
 
 const CuckooForm = () => {
   return (
@@ -14,13 +15,16 @@ const CuckooForm = () => {
         <Select name='Category' value='test' content='test' label='Category' mandatory />
       </div>
       <Textarea name='description' label='Tell us more about what you want to share' />
+      <ImageUpload />
       <div className={gridWrapper}>
         <Input type='date' name='startDate' label='From:' />
         <Input type='time' name='startHour' label='Starting at:' />
         <Input type='date' name='endDate' label='To:' />
         <Input type='time' name='endHour' label='Ending at:' />
       </div>
-      <Button text='PUBLISH' type='submit' />
+      <div className={btnWrapper}>
+        <Button text='PUBLISH' type='submit' style='green' />
+      </div>
     </form>
   );
 };
