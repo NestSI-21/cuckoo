@@ -66,10 +66,11 @@ textarea,
 select {
   display: block;
   background: transparent;
+  color: $gray;
   border: 0.1rem solid $green;
   border-radius: 5px;
   width: 100%;
-  padding: 2.5rem 2rem 1.5rem 2rem;
+  padding: 2.8rem 2rem 0.8rem 2rem;
   outline: none;
   transition: 0.1s ease all;
 }
@@ -86,6 +87,7 @@ label {
   font-family: $rubik;
   font-size: $text-small;
 }
+
 input:focus ~ label,
 input:not(:placeholder-shown) ~ label,
 textarea:focus ~ label,

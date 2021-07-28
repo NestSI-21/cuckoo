@@ -3,12 +3,12 @@ import Layout from '../../components/Layout';
 import { Link } from 'react-router-dom';
 import CuckooForm from '../../components/CuckooForm';
 import CircularButton from '../../elements/CircularButton';
-import { content } from './create.module.scss';
+import { contentContainer } from './create.module.scss';
 
 const Create = () => {
   return (
     <Layout hideSidebar>
-      <div className={content}>
+      <div className={contentContainer}>
         <Link to='/Dashboard'>
           <CircularButton close />
         </Link>

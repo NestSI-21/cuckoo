@@ -2,18 +2,18 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { textarea } from './textarea.module.scss';
 
-const Textarea = ({ name, placeholder }) => {
+const Textarea = ({ name, label }) => {
   return (
     <div className={textarea}>
-      <textarea name={name} placeholder=' ' rows={6}></textarea>
-      <label>{placeholder}</label>
+      <textarea name={name} placeholder=' '></textarea>
+      <label>{label}</label>
     </div>
   );
 };
 
 Textarea.propTypes = {
   name: PropTypes.string,
-  placeholder: PropTypes.string,
+  label: PropTypes.string,
 };
 
 export default Textarea;

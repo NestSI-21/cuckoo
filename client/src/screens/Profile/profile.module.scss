@@ -4,11 +4,9 @@
   @include main();
   @include flex($direction: column);
 
-  .profilePhoto {
-    border-radius: 100%;
+  img {
     height: 20rem;
     width: 20rem;
-    background: $green;
   }
   h3 {
     margin-top: 3rem;
