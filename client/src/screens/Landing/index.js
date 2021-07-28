@@ -28,7 +28,7 @@ const Landing = () => {
             onFailure={onFailed}
             onSuccess={onSuccess}
             slackClientId={process.env.REACT_APP_SLACK_CLIENT_ID}
-            slackUserScope='team:read,users:read,identify,users.profile:read'
+            slackUserScope='team:read,users:read,identify,users.profile:read,chat:write'
           />
         </div>
       </div>
