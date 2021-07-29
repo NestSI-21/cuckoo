@@ -6,6 +6,7 @@ class CompleteProfileController < ActionController::API
   def update
     if current_user.update(profile_params)
       current_user.profile_flag = true
+      current_user.save()
       render json: { message: 'The request was successful' }, status: :ok
     else
       render json: { message: 'An error has occurred, the information was not updated!' }, status: :unauthorized
@@ -13,6 +14,6 @@ class CompleteProfileController < ActionController::API
   end
 
   def profile_params
-    params.require(:user).permit(:role, :company_id, :date_of_birth)
+    params.require(:user).permit(:company_role, :company_id, :birthday)
   end
 end

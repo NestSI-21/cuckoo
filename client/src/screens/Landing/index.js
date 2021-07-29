@@ -13,8 +13,9 @@ const Landing = () => {
   const onSuccess = (slackCode) => {
     axios
       .post(`${process.env.REACT_APP_API_BASE_URL}/slack/login`, { code: slackCode })
-      .then((resp) => console.log(resp));
-    console.log(slackCode);
+      .then((resp) => {
+        localStorage.setItem('token', resp.headers.authorization);
+      });
   };
 
   return (

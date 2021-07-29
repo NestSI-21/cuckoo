@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import Input from '../../elements/Input';
 import Button from '../../elements/Button';
 import { form } from './editprofile.module.scss';
-// import axios from 'axios';
+import axios from 'axios';
 
 const EditProfile = () => {
   const [data, setData] = useState({
@@ -11,30 +11,32 @@ const EditProfile = () => {
     birthdate: {},
   });
 
-  // const [company, setCompany] = useState("")
-  // const [role, setRole] = useState("")
-  // const [birthdate, setBirthdate] = useState("")
-
   const handleChange = (e) => {
     const { name, value } = e.target;
     setData((prevData) => ({ ...prevData, [name]: value }));
-    console.log(data);
   };
 
-  console.log(data);
-
-  // const handleSubmit=(event)=>{
-  //   event.preventDefault()
-  //   // console.log(company,role,birthdate)  // const [company, setCompany] = useState("")
-  // // const [role, setRole] = useState("")
-  // // const [birthdate, setBirthdate] = useState("")
-  //   axios
-  //     .post(`${process.env.REACT_APP_API_BASE_URL}/users/complete_profile`, { company: company, role: role, birthdate: birthdate })
-  //     .then((resp) => console.log(resp));
-  // }
+  const handleSubmit = (event) => {
+    event.preventDefault();
+    const headers = {
+      authorization: localStorage.getItem('token'),
+    };
+    axios
+      .post(
+        `${process.env.REACT_APP_API_BASE_URL}/users/complete_profile`,
+        {
+          // im passing the same company id because we dont have the select yet
+          user: { company_id: 1, company_role: data.role, birthday: data.birthdate },
+        },
+        {
+          headers: headers,
+        },
+      )
+      .then((resp) => console.log(resp));
+  };
 
   return (
-    <form className={form}>
+    <form className={form} onSubmit={handleSubmit}>
       <Input
         type='text'
         name='company'
