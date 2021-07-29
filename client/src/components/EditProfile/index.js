@@ -8,7 +8,7 @@ const EditProfile = () => {
   const [data, setData] = useState({
     company: '',
     role: '',
-    birthdate: {},
+    birthdate: '',
   });
 
   const handleChange = (e) => {
