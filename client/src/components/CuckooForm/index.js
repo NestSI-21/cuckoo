@@ -4,7 +4,7 @@ import Input from '../../elements/Input';
 import Textarea from '../../elements/Textarea';
 import Select from '../../elements/Select';
 import Button from '../../elements/Button';
-import { form, flexWrapper, gridWrapper, btnWrapper } from './cuckooform.module.scss';
+import { form, radioWrapper, flexWrapper, gridWrapper, btnWrapper } from './cuckooform.module.scss';
 import Radio from '../../elements/Radio';
 
 const CuckooForm = () => {
@@ -36,7 +36,7 @@ const CuckooForm = () => {
 
   return (
     <form className={form} onSubmit={handleSubmit}>
-      <div>
+      <div className={radioWrapper}>
         <Radio
           id='Announcement'
           name='type'

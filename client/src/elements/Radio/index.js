@@ -1,8 +1,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { radioInnerWrapper } from './radio.module.scss';
 
 const Radio = ({ id, label, ...rest }) => (
-  <div>
+  <div className={radioInnerWrapper}>
     <input id={id} type='radio' {...rest} />
     <label htmlFor={id}>{label}</label>
   </div>

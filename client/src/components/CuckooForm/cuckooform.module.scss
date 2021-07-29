@@ -4,6 +4,12 @@
   margin-top: 5rem;
   max-width: 75rem;
 
+  .radioWrapper {
+    @include grid(0, 1.6rem, 1fr 1fr);
+    width: 41.6rem;
+    margin: 0 auto;
+  }
+
   div {
     margin-bottom: 2rem;
   }
