@@ -4,7 +4,7 @@
   @include flex();
   width: 100%;
   height: 100vh;
-  background-color: #f27178;
+  background-color: $error;
 
   div {
     text-align: center;
@@ -23,7 +23,7 @@
     }
 
     span {
-      color: #f27178;
+      color: $error;
     }
   }
 }
