@@ -1,11 +1,11 @@
 import React, { useState } from 'react';
-import ImageUpload from '../ImageUpload';
+import Radio from '../../elements/Radio';
 import Input from '../../elements/Input';
-import Textarea from '../../elements/Textarea';
 import Select from '../../elements/Select';
+import Textarea from '../../elements/Textarea';
+import ImageUpload from '../ImageUpload';
 import Button from '../../elements/Button';
 import { form, radioWrapper, flexWrapper, gridWrapper, btnWrapper } from './cuckooform.module.scss';
-import Radio from '../../elements/Radio';
 
 const CuckooForm = () => {
   const [data, setData] = useState({
