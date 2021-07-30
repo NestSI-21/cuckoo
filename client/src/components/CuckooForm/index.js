@@ -21,19 +21,27 @@ const CuckooForm = () => {
     endTime: {},
   });
 
-  //Select dropdown options - announcements/events
+  // Select dropdown options - announcements/events
   const announcementOptions = ['Alert', 'New Company', 'New Employee', 'Other'];
   const eventOptions = ['Education', 'Social', 'Other'];
 
+  // Handler for inputs
   const handleChange = (e) => {
     const { name, value } = e.target;
     setData((prevData) => ({ ...prevData, [name]: value }));
   };
 
+  // Handler for image upload
   const handleImageChange = (newImages) => {
     setData((prevData) => ({ ...prevData, images: newImages }));
   };
 
+  // Resets category when cuckoo type is selected
+  const resetCategory = () => {
+    setData((prevData) => ({ ...prevData, category: '' }));
+  };
+
+  // Handler for form submit
   const handleSubmit = (e) => {
     e.preventDefault();
     console.log(data);
@@ -48,6 +56,7 @@ const CuckooForm = () => {
           label='Announcement'
           value='Announcement'
           checked={data.type === 'Announcement'}
+          onClick={resetCategory}
           onChange={handleChange}
           required
         />
@@ -57,6 +66,7 @@ const CuckooForm = () => {
           label='Event'
           value='Event'
           checked={data.type === 'Event'}
+          onClick={resetCategory}
           onChange={handleChange}
           required
         />
