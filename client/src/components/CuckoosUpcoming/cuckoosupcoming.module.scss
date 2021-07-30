@@ -1,0 +1,31 @@
+@import '../../styles/applications.scss';
+.upcoming {
+  padding: 2rem 0;
+  height: 58%;
+  overflow-x: hidden;
+  overflow-y: scroll;
+
+  h3 {
+    color: $green;
+  }
+  .upcomingCard {
+    @include flex($direction: row, $align: center, $justify: flex-start);
+    padding: 2rem 0;
+    .upcomingDay {
+      @include flex($direction: column, $align: center, $justify: flex-start);
+      width: max-content;
+      h3 {
+        color: $gray;
+      }
+      p {
+        text-transform: uppercase;
+      }
+    }
+    .upcomingDescription {
+      margin-left: 2rem;
+      p {
+        color: $light-gray;
+      }
+    }
+  }
+}

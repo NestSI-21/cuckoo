@@ -3,8 +3,4 @@
 .contentContainer {
   @include main();
   @include grid(0, 2rem, 2fr 1fr);
-
-  .calendar {
-    @include container();
-  }
 }
