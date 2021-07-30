@@ -26,4 +26,10 @@
     right: 3rem;
     transform: rotate(45deg);
   }
+  @include mobile-breakpoint {
+    button {
+      width: 5.7rem;
+      height: 5.7rem;
+    }
+  }
 }
