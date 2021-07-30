@@ -46,8 +46,10 @@
     display: none;
     position: fixed;
     bottom: 0;
+    padding-bottom: 0.7rem;
     background: $gray;
     width: 100vw;
+    z-index: 1;
     ul {
       margin-top: 0;
       li {
@@ -57,7 +59,7 @@
           margin: auto;
           padding: 1.5rem 1.8rem;
           img {
-            width: 2rem;
+            width: 3rem;
           }
           span {
             display: none;

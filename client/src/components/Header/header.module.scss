@@ -6,4 +6,10 @@
   padding: 0 3rem;
   width: calc(100vw - 20rem);
   height: 10vh;
+  @include tablet-breakpoint {
+    width: calc(100vw - 15rem);
+  }
+  @include mobile-breakpoint {
+    width: 100vw;
+  }
 }
