@@ -41,7 +41,7 @@ const EditProfile = () => {
         type='text'
         name='company'
         value={data.company}
-        onChange={(e) => handleChange(e)}
+        onChange={handleChange}
         label='Which company do you work for?'
         mandatory
       />
