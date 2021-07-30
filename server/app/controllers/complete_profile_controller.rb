@@ -19,10 +19,10 @@ class CompleteProfileController < ActionController::API
 
   def logout
     sign_out current_user 
-    if !current_user
+    # if not current_user
       render json: { message: 'User successfully logged out!'}, status: :ok
-    else 
-      render json: { message: 'There was an error!' }, status: :unauthorized
-    end
+    # else 
+    #   render json: { message: 'There was an error!' }, status: :unauthorized
+    # end
   end
 end
