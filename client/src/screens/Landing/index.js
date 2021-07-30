@@ -15,6 +15,8 @@ const Landing = () => {
       .post(`${process.env.REACT_APP_API_BASE_URL}/slack/login`, { code: slackCode })
       .then((resp) => {
         localStorage.setItem('token', resp.headers.authorization);
+        localStorage.setItem('data', JSON.stringify(resp.data.user));
+        console.log(resp);
       });
   };
 

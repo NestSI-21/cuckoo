@@ -36,10 +36,10 @@ class PostController < ActionController::API
       # => will message "Hello default"
       # => to the "#default" channel as 'notifier'
 
-      Slack.configure do |config|
-        config.token = ENV['SLACK_OAUTH_TOKEN']
-        raise 'Missing ENV[SLACK_OAUTH_TOKEN]!' unless config.token
-      end
+      # Slack.configure do |config|
+      #   config.token = ENV['SLACK_OAUTH_TOKEN']
+      #   raise 'Missing ENV[SLACK_OAUTH_TOKEN]!' unless config.token
+      # end
 
 #       client = Slack::Web::Client.new
 
