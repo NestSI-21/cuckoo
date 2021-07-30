@@ -49,6 +49,7 @@ const CuckooForm = () => {
           value='Announcement'
           checked={data.type === 'Announcement'}
           onChange={handleChange}
+          required
         />
         <Radio
           id='Event'
@@ -57,6 +58,7 @@ const CuckooForm = () => {
           value='Event'
           checked={data.type === 'Event'}
           onChange={handleChange}
+          required
         />
       </div>
 
@@ -66,7 +68,7 @@ const CuckooForm = () => {
         value={data.title}
         onChange={handleChange}
         label='Give your Cuckoo a title'
-        mandatory
+        required
       />
       <div className={flexWrapper}>
         <Input
@@ -88,7 +90,7 @@ const CuckooForm = () => {
               : []
           }
           label='Category'
-          mandatory
+          required
         />
       </div>
       <Textarea
