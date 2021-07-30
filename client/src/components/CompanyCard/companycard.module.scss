@@ -16,6 +16,7 @@
       img {
         position: absolute;
         margin: auto;
+        max-width: 80%;
         top: 0;
         left: 0;
         right: 0;
@@ -27,6 +28,25 @@
       padding-right: 3rem;
       p {
         margin-top: 1rem;
+      }
+    }
+    @include tablet-breakpoint {
+      .logoBox {
+        min-width: 12rem;
+        height: 12rem;
+      }
+      img {
+        max-width: 80%;
+      }
+    }
+    @include mobile-breakpoint {
+      .logoBox {
+        min-width: 9rem;
+        height: 9rem;
+        position: relative;
+        img {
+          max-width: 80%;
+        }
       }
     }
   }
