@@ -1,4 +1,5 @@
 @import './variables.scss';
+@import './responsiveness.scss';
 
 * {
   margin: 0;
@@ -19,22 +20,34 @@ h1 {
   font-family: $sora;
   font-size: $title;
   font-weight: 600;
+  @include mobile-breakpoint {
+    font-size: 2rem;
+  }
 }
 
 h3 {
   font-family: $sora;
   font-size: $subtitle;
   font-weight: 600;
+  @include mobile-breakpoint {
+    font-size: 1.6rem;
+  }
 }
 
 p {
   font-size: $text;
   font-weight: 300;
   line-height: 150%;
+  @include mobile-breakpoint {
+    font-size: 1.4rem;
+  }
 }
 
 span {
   font-size: $text;
+  @include mobile-breakpoint {
+    font-size: 1.4rem;
+  }
 }
 
 a,
@@ -44,6 +57,9 @@ button {
   font-weight: 400;
   border: none;
   cursor: pointer;
+  @include mobile-breakpoint {
+    font-size: 1.4rem;
+  }
 
   &:focus {
     outline: none;
@@ -60,6 +76,9 @@ select,
 option {
   font-family: $rubik;
   font-size: $text-small;
+  @include mobile-breakpoint {
+    font-size: 1.2rem;
+  }
 }
 input,
 textarea,
@@ -86,6 +105,9 @@ label {
   color: $light-gray;
   font-family: $rubik;
   font-size: $text-small;
+  @include mobile-breakpoint {
+    font-size: 1.2rem;
+  }
 }
 
 input:focus ~ label,

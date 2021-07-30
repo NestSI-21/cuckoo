@@ -4,14 +4,18 @@ import cuckoosIcon from '../../assets/icons/cuckoos.svg';
 import companiesIcon from '../../assets/icons/companies.svg';
 import profileIcon from '../../assets/icons/profile.svg';
 import horizontalLogo from '../../assets/logos/logo-green.svg';
-import { sidebar } from './sidebar.module.scss';
+import cuckooIcon from '../../assets/logos/logo-icon.svg';
+import { sidebar, desktopMenu, mobileMenu, logo, icon } from './sidebar.module.scss';
+import { Link } from 'react-router-dom';
+import CircularButton from '../../elements/CircularButton';
 
 const Sidebar = () => {
   return (
     <div className={sidebar}>
-      <img src={horizontalLogo} alt='Cuckoo horizontal logo' />
+      <img className={logo} src={horizontalLogo} alt='Cuckoo horizontal logo' />
+      <img className={icon} src={cuckooIcon} alt='Cuckoo icon' />
 
-      <ul>
+      <ul className={desktopMenu}>
         <li>
           <a href='/dashboard'>
             <img src={dashboardIcon} alt='dashboard icon' />
@@ -34,6 +38,31 @@ const Sidebar = () => {
           </a>
         </li>
       </ul>
+      <div className={mobileMenu}>
+        <ul>
+          <li>
+            <a href='/dashboard'>
+              <img src={dashboardIcon} alt='dashboard icon' />
+            </a>
+
+            <a href='/cuckoos'>
+              <img src={cuckoosIcon} alt='cuckoos icon' />
+            </a>
+
+            <Link to='/Create'>
+              <CircularButton />
+            </Link>
+
+            <a href='/companies'>
+              <img src={companiesIcon} alt='companies icon' />
+            </a>
+
+            <a href='/profile'>
+              <img src={profileIcon} alt='profile icon' />
+            </a>
+          </li>
+        </ul>
+      </div>
     </div>
   );
 };
