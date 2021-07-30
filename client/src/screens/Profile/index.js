@@ -2,7 +2,6 @@ import React from 'react';
 import axios from 'axios';
 import Layout from '../../components/Layout';
 import Avatar from '../../elements/Avatar';
-// import dog from '../../assets/icons/dog.jpeg';
 import { contentContainer, edit, logout, profileSection } from './profile.module.scss';
 
 const Profile = () => {
