@@ -16,4 +16,13 @@ class CompleteProfileController < ActionController::API
   def profile_params
     params.require(:user).permit(:company_role, :company_id, :birthday)
   end
+
+  def logout
+    sign_out current_user 
+    if !current_user
+      render json: { message: 'User successfully logged out!'}, status: :ok
+    else 
+      render json: { message: 'There was an error!' }, status: :unauthorized
+    end
+  end
 end

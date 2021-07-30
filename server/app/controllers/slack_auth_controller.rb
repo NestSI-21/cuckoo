@@ -52,4 +52,6 @@ class SlackAuthController < ActionController::API
   rescue StandardError
     render json: { message: 'There was an error with the Slack API' }, status: :unauthorized
   end
+
+  
 end
