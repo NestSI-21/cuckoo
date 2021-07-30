@@ -3,7 +3,7 @@
 .contentContainer {
   @include main();
   @include tablet-breakpoint {
-    @include main($mainWidth: calc(100vw - 15rem));
+    @include main($mainWidth: calc(100vw - 12rem));
   }
   @include mobile-breakpoint {
     @include main($mainWidth: 100vw);

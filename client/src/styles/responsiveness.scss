@@ -4,7 +4,7 @@
   }
 }
 @mixin tablet-breakpoint {
-  @media (max-width: 1000px) {
+  @media (max-width: 1024px) {
     @content;
   }
 }
