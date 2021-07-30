@@ -6,7 +6,7 @@ const Select = ({ name, options, onChange, label, mandatory }) => {
   return (
     <div className={select}>
       <select name={name} onChange={onChange} required={mandatory}>
-        <option defaultValue></option>
+        <option defaultValue disabled></option>
         {options.map((option, i) => {
           return (
             <option key={i} value={option}>

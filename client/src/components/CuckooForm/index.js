@@ -14,6 +14,7 @@ const CuckooForm = () => {
     location: '',
     category: '',
     description: '',
+    images: [],
     startDate: {},
     startTime: {},
     endDate: {},
@@ -27,6 +28,10 @@ const CuckooForm = () => {
   const handleChange = (e) => {
     const { name, value } = e.target;
     setData((prevData) => ({ ...prevData, [name]: value }));
+  };
+
+  const handleAddImage = (newImages) => {
+    setData((prevData) => ({ ...prevData, images: newImages }));
   };
 
   const handleSubmit = (e) => {
@@ -80,7 +85,7 @@ const CuckooForm = () => {
               ? announcementOptions
               : data.type === 'Event'
               ? eventOptions
-              : ['']
+              : []
           }
           label='Category'
           mandatory
@@ -92,7 +97,7 @@ const CuckooForm = () => {
         onChange={handleChange}
         label='Tell us more about what you want to share'
       />
-      <ImageUpload />
+      <ImageUpload images={data.images} onChange={handleAddImage} />
       <div className={gridWrapper}>
         <Input
           type='date'
