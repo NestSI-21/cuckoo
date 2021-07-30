@@ -1,7 +1,6 @@
 import React, { useRef } from 'react';
 import PropTypes from 'prop-types';
-import plusIcon from '../../assets/icons/plus.svg';
-// import placeholderIcon from '../../assets/icons/placeholder_icon.svg';
+import addIcon from '../../assets/icons/add-icon.svg';
 import {
   imageUpload,
   imageInnerWrapper,
@@ -74,22 +73,15 @@ const ImageUpload = ({ images, onChange, maxFileSize = defaultMaxFileSize }) => 
           onClick={addImageClick}
         >
           <img
-            style={{ display: images >= 0 ? '' : 'inline-block' }}
-            src={plusIcon}
-            alt='Add Photos Button'
+            style={{ display: images >= 0 ? 'none' : 'inline-block' }}
+            src={addIcon}
+            alt='Upload images test'
           />
-
-          {/* <img
-            style={{
-              display: images >= 0 ? '' : 'none',
-            }}
-            src={placeholderIcon}
-            alt='Add Photos Button'
-          /> */}
-          <p style={{ display: images >= 0 ? '' : 'none' }}>Upload images</p>
-          <p style={{ display: images >= 0 ? '' : 'none' }}>
-            Max upload: 4 images. Max file size: 10MB.
-          </p>
+          <div style={{ display: images >= 0 ? '' : 'none' }}>
+            <img src={addIcon} alt='Upload images' />
+            <p>Upload images</p>
+          </div>
+          <p style={{ display: images >= 0 ? '' : 'none' }}>Max: {`${maxImages}`} images (10MB)</p>
           <input
             type='file'
             accept='image/*'

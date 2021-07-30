@@ -30,7 +30,7 @@ const CuckooForm = () => {
     setData((prevData) => ({ ...prevData, [name]: value }));
   };
 
-  const handleAddImage = (newImages) => {
+  const handleImageChange = (newImages) => {
     setData((prevData) => ({ ...prevData, images: newImages }));
   };
 
@@ -97,7 +97,7 @@ const CuckooForm = () => {
         onChange={handleChange}
         label='Tell us more about what you want to share'
       />
-      <ImageUpload images={data.images} onChange={handleAddImage} />
+      <ImageUpload images={data.images} onChange={handleImageChange} />
       <div className={gridWrapper}>
         <Input
           type='date'
