@@ -1,13 +1,18 @@
-import React from 'react';
+import React, { useState } from 'react';
 import CompaniesList from '../../components/CompaniesList';
 import Layout from '../../components/Layout';
-import { contentContainer } from './companies.module.scss';
+import SearchBar from '../../elements/SearchBar';
+import { contentContainer, searchbar } from './companies.module.scss';
 
 const Companies = () => {
+  const [searchTerm, setSearchTerm] = useState('');
   return (
-    <Layout pageTitle='Companies'>
+    <Layout pageTitle='Companies' hideCreateBtn>
       <div className={contentContainer}>
-        <CompaniesList />
+        <div className={searchbar}>
+          <SearchBar setSearchTerm={setSearchTerm} />
+        </div>
+        <CompaniesList searchTerm={searchTerm} />
       </div>
     </Layout>
   );

@@ -3,7 +3,7 @@
 .companyMain {
   .company {
     @include flex($align: center, $justify: flex-start);
-    padding: 5rem 0;
+    padding: 3rem 0;
     border-bottom: 0.2rem solid #d8d8d8;
 
     .logoBox {

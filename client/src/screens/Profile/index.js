@@ -6,7 +6,7 @@ import { contentContainer, edit, logout, profileSection } from './profile.module
 
 const Profile = () => {
   return (
-    <Layout pageTitle='Profile'>
+    <Layout pageTitle='Profile' hideCreateBtn>
       <div className={contentContainer}>
         <Avatar userImage={dog} />
         <h3>UserName</h3>
