@@ -1,3 +1,9 @@
+@import '../../styles/applications.scss';
+
 .appWrapper {
   display: flex;
+
+  @include mobile-breakpoint {
+    flex-direction: column-reverse;
+  }
 }

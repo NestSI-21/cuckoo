@@ -5,7 +5,7 @@ import companiesIcon from '../../assets/icons/companies.svg';
 import profileIcon from '../../assets/icons/profile.svg';
 import horizontalLogo from '../../assets/logos/logo-green.svg';
 import cuckooIcon from '../../assets/logos/logo-icon.svg';
-import { sidebar, desktopMenu, mobileMenu, logo, icon } from './sidebar.module.scss';
+import { sidebar, sideNav, logo, icon, createBtn } from './sidebar.module.scss';
 import { Link } from 'react-router-dom';
 import CircularButton from '../../elements/CircularButton';
 
@@ -15,7 +15,7 @@ const Sidebar = () => {
       <img className={logo} src={horizontalLogo} alt='Cuckoo horizontal logo' />
       <img className={icon} src={cuckooIcon} alt='Cuckoo icon' />
 
-      <ul className={desktopMenu}>
+      <ul className={sideNav}>
         <li>
           <a href='/dashboard'>
             <img src={dashboardIcon} alt='dashboard icon' />
@@ -26,6 +26,12 @@ const Sidebar = () => {
             <img src={cuckoosIcon} alt='cuckoos icon' />
             <span>Cuckoos</span>
           </a>
+
+          <div className={createBtn}>
+            <Link to='/Create' className={createBtn}>
+              <CircularButton />
+            </Link>
+          </div>
 
           <a href='/companies'>
             <img src={companiesIcon} alt='companies icon' />
@@ -38,31 +44,6 @@ const Sidebar = () => {
           </a>
         </li>
       </ul>
-      <div className={mobileMenu}>
-        <ul>
-          <li>
-            <a href='/dashboard'>
-              <img src={dashboardIcon} alt='dashboard icon' />
-            </a>
-
-            <a href='/cuckoos'>
-              <img src={cuckoosIcon} alt='cuckoos icon' />
-            </a>
-
-            <Link to='/Create'>
-              <CircularButton />
-            </Link>
-
-            <a href='/companies'>
-              <img src={companiesIcon} alt='companies icon' />
-            </a>
-
-            <a href='/profile'>
-              <img src={profileIcon} alt='profile icon' />
-            </a>
-          </li>
-        </ul>
-      </div>
     </div>
   );
 };
