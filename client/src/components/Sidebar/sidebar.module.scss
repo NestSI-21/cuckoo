@@ -22,6 +22,7 @@
     li {
       padding: 0 0.5rem;
       .createBtn {
+        @include flex();
         display: none;
       }
       a {
@@ -114,28 +115,3 @@
     }
   }
 }
-
-/* .mobileMenu {
-  display: none;
-  position: fixed;
-  bottom: 0;
-  padding-bottom: 0.7rem;
-  background: $gray;
-  width: 100vw;
-  z-index: 1;
-  ul {
-    margin-top: 0;
-    li {
-      @include flex($direction: row, $align: center, $justify: center);
-      a {
-        padding: 1.5rem 1.8rem;
-        img {
-          width: 3rem;
-        }
-        span {
-          display: none;
-        }
-      }
-    }
-  }
-} */
