@@ -16,10 +16,7 @@ const CompaniesList = ({ searchTerm }) => {
         .filter((company) => {
           if (searchTerm === '') {
             return company;
-          } else if (
-            company.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
-            company.description.toLowerCase().includes(searchTerm.toLowerCase())
-          ) {
+          } else if (company.name.toLowerCase().includes(searchTerm.toLowerCase())) {
             return company;
           } else {
             return false;
