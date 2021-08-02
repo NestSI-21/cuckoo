@@ -9,8 +9,8 @@
     @include main($mainWidth: 100vw);
   }
   @include grid(0, 2rem, 1fr 2fr);
-
   .filters {
     @include container($height: fit-content);
+    margin-top: 2rem;
   }
 }

@@ -1,0 +1,19 @@
+@import '../../styles/applications.scss';
+.search {
+  position: relative;
+
+  input {
+    padding: 1rem 1.5rem;
+    border-radius: 5rem;
+    background-color: #fff;
+  }
+  i {
+    position: absolute;
+    right: 1.5rem;
+    font-size: 1.4rem;
+    top: 50%;
+    transform: translateY(-50%);
+    background-color: #fff;
+    color: $green;
+  }
+}
