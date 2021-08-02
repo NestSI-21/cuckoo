@@ -5,9 +5,15 @@
   @include flex($direction: column);
 
   .logo {
-    width: 50%;
-    // ONLY IF BIGGER THAN PHONE SIZE
-    // min-width: 30rem;
+    width: 75rem;
+    @include tablet-breakpoint {
+      width: 47rem;
+      height: 7.4rem;
+    }
+    @include mobile-breakpoint {
+      width: 35rem;
+      height: 5.6rem;
+    }
   }
 
   h1 {

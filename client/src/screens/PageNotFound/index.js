@@ -10,7 +10,7 @@ const PageNotFound = () => {
       <div>
         <img src={cuckoo404} alt='Cuckoo404' />
         <h1>{'Cuck-OOPS'}</h1>
-        <h2>{'Something went wrong'}</h2>
+        <p>{'Something went wrong'}</p>
         <Link to='/Dashboard'>
           <Button text='Back to Dashboard' style='grey' />
         </Link>
