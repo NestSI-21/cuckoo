@@ -9,8 +9,8 @@
     .logoBox {
       border: 0.1rem solid #21c49c;
       border-radius: 100%;
-      height: 15rem;
       min-width: 15rem;
+      height: 15rem;
       background: #fff;
       position: relative;
       img {
@@ -30,7 +30,11 @@
         margin-top: 1rem;
       }
     }
-    @include tablet-breakpoint {
+  }
+}
+@include tablet-breakpoint {
+  .companyMain {
+    .company {
       .logoBox {
         min-width: 12rem;
         height: 12rem;
@@ -39,17 +43,26 @@
         max-width: 80%;
       }
     }
-    @include mobile-breakpoint {
-      .companyMain {
-        .company {
-          display: block;
-          .logoBox {
-            min-width: 7rem;
-            height: 7rem;
-            img {
-              max-width: 90%;
-            }
-          }
+  }
+}
+@include mobile-breakpoint {
+  .companyMain {
+    .company {
+      align-items: flex-start;
+      .logoBox {
+        max-height: 4.5rem;
+        max-width: 4.5rem;
+        min-height: 4.5rem;
+        min-width: 4.5rem;
+        img {
+          max-width: 90%;
+        }
+      }
+      .companyInfo {
+        margin-left: 1rem;
+        padding-right: 0;
+        p {
+          margin-top: 0rem;
         }
       }
     }
