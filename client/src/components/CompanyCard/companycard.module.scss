@@ -40,12 +40,16 @@
       }
     }
     @include mobile-breakpoint {
-      .logoBox {
-        min-width: 9rem;
-        height: 9rem;
-        position: relative;
-        img {
-          max-width: 80%;
+      .companyMain {
+        .company {
+          display: block;
+          .logoBox {
+            min-width: 7rem;
+            height: 7rem;
+            img {
+              max-width: 90%;
+            }
+          }
         }
       }
     }
