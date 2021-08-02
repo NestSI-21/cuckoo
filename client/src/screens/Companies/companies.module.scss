@@ -9,4 +9,18 @@
     @include main($mainWidth: 100vw);
   }
   overflow-y: scroll;
+  .searchbar {
+    width: 30rem;
+    position: absolute;
+    top: 4rem;
+    right: 3rem;
+    @include tablet-breakpoint {
+      top: 2rem;
+      width: 20rem;
+    }
+    @include mobile-breakpoint {
+      width: 100%;
+      position: initial;
+    }
+  }
 }

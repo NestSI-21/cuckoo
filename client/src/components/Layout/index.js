@@ -4,12 +4,12 @@ import Header from '../Header';
 import Sidebar from '../Sidebar';
 import { appWrapper } from './layout.module.scss';
 
-const Layout = ({ hideSidebar, pageTitle, children }) => {
+const Layout = ({ hideSidebar, pageTitle, hideCreateBtn, children }) => {
   return (
     <div className={appWrapper}>
       {!hideSidebar && <Sidebar />}
       <div>
-        {!hideSidebar && <Header pageTitle={pageTitle} />}
+        {!hideSidebar && <Header pageTitle={pageTitle} hideCreateBtn={hideCreateBtn} />}
         {children}
       </div>
     </div>
@@ -19,6 +19,7 @@ const Layout = ({ hideSidebar, pageTitle, children }) => {
 Layout.propTypes = {
   hideSidebar: PropTypes.bool,
   pageTitle: PropTypes.string,
+  hideCreateBtn: PropTypes.bool,
   children: PropTypes.node,
 };
 
