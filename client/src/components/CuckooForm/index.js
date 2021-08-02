@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import axios from 'axios';
 import Radio from '../../elements/Radio';
 import Input from '../../elements/Input';
 import Select from '../../elements/Select';
@@ -16,8 +17,8 @@ const CuckooForm = () => {
     description: '',
     images: [],
     startDate: {},
-    startTime: {},
     endDate: {},
+    startTime: {},
     endTime: {},
   });
 
@@ -41,10 +42,53 @@ const CuckooForm = () => {
     setData((prevData) => ({ ...prevData, category: '' }));
   };
 
+  // POST Cuckoo
+  const postCuckoo = async ({
+    type,
+    title,
+    location,
+    category,
+    description,
+    images,
+    startDate,
+    endDate,
+    startTime,
+    endTime,
+  }) => {
+    const formData = new FormData();
+    formData.append('type', type);
+    formData.append('title', title);
+    formData.append('location', location);
+    formData.append('category', category);
+    formData.append('description', description);
+    formData.append('images', images);
+    formData.append('startDate', startDate);
+    formData.append('endDate', endDate);
+    formData.append('startTime', startTime);
+    formData.append('endTime', endTime);
+
+    // FOR TESTING REMOVE
+    for (let pair of formData.entries()) {
+      console.log(pair[0] + ', ' + pair[1]);
+    }
+
+    try {
+      await axios.post('ENTER POST URL FROM HERMINIO', formData, {
+        headers: { 'Content-Type': 'multipart/form-data' },
+      });
+      // const result = await axios.post('ENTER POST URL FROM HERMINIO', formData, {
+      //   headers: { 'Content-Type': 'multipart/form-data' },
+      // });
+      // setCuckoos((prevCuckoos) => [...prevCuckoos, result.data.data]);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
   // Handler for form submit
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log(data);
+    await postCuckoo(data);
   };
 
   return (
