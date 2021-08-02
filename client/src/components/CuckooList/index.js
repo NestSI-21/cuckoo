@@ -15,7 +15,9 @@ const CuckooList = ({ searchTerm }) => {
     <div className={container}>
       {cuckoos
         .filter((cuckoo) => {
-          if (searchTerm === '') {
+          if (!searchTerm) {
+            return cuckoo;
+          } else if (searchTerm === '') {
             return cuckoo;
           } else if (
             cuckoo.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
