@@ -7,6 +7,7 @@
   }
   @include mobile-breakpoint {
     @include main($mainWidth: 100vw);
+    height: 80vh;
   }
   @include flex($direction: column);
 
