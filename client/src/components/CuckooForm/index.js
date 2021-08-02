@@ -1,3 +1,4 @@
+/* eslint-disable react/jsx-key */
 import React, { useState } from 'react';
 import ImageUpload from '../ImageUpload';
 import Input from '../../elements/Input';
@@ -21,6 +22,7 @@ const CuckooForm = () => {
   });
 
   //Select dropdown options - announcements/events
+  const typeOptions = ['Announcement', 'Event'];
   const announcementOptions = ['Alert', 'New Company', 'New Employee', 'Other'];
   const eventOptions = ['Education', 'Social', 'Other'];
 
@@ -37,22 +39,16 @@ const CuckooForm = () => {
   return (
     <form className={form} onSubmit={handleSubmit}>
       <div>
-        <Radio
-          id='Announcement'
-          name='type'
-          label='Announcement'
-          value='Announcement'
-          checked={data.type === 'Announcement'}
-          onChange={handleChange}
-        />
-        <Radio
-          id='Event'
-          name='type'
-          label='Event'
-          value='Event'
-          checked={data.type === 'Event'}
-          onChange={handleChange}
-        />
+        {typeOptions.map((type) => (
+          <Radio
+            id={type}
+            name='type'
+            label={type}
+            value={type}
+            checked={data.type === type}
+            onChange={handleChange}
+          />
+        ))}
       </div>
 
       <Input

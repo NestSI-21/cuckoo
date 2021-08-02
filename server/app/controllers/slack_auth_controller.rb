@@ -39,11 +39,12 @@ class SlackAuthController < ActionController::API
       user.password = Devise.friendly_token[0, 20]
     end
 
-    @companies = Company.all
-    if @user && (@user.profile_flag == false)
+    
+    if @user && (@user.profile_completed == false)
+      @companies = Company.all
       sign_in @user
       render json: { user: @user, companies: @companies }, status: :ok
-    elsif @user && (@user.profile_flag == true)
+    elsif @user && (@user.profile_completed == true)
       sign_in @user
       render json: { user: @user }, status: :ok
     else

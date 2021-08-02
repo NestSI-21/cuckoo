@@ -14,15 +14,9 @@ const Profile = () => {
       authorization: localStorage.getItem('token'),
     };
     axios
-      .post(
-        `${process.env.REACT_APP_API_BASE_URL}/users/logout`,
-        {
-          data: '',
-        },
-        {
-          headers: headers,
-        },
-      )
+      .get(`${process.env.REACT_APP_API_BASE_URL}/users/sign_out`, {
+        headers: headers,
+      })
       .then((resp) => {
         console.log(resp);
         if (resp.status === 200) {

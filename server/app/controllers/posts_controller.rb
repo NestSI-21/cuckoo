@@ -2,7 +2,7 @@
 
 require 'rest-client'
 
-class PostController < ActionController::API
+class PostsController < ActionController::API
   before_action :authenticate_user!
 
   def index
@@ -48,8 +48,8 @@ class PostController < ActionController::API
 # client.chat_postMessage(channel: '#nestsi-21-equipa', text: 'Hello World', as_user: true)
   end
 
-  def delete
-    @post = Post.find(params[:id])
+  def destroy
+    @post = current_user.posts.find(params[:id])
     @post.destroy
     render json: { message: 'A post was deleted successfully' }, status: :ok
   end
