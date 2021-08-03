@@ -25,5 +25,11 @@
     top: 3rem;
     right: 3rem;
     transform: rotate(45deg);
+    @include mobile-breakpoint {
+      width: 3.8rem;
+      height: 3.8rem;
+      right: 2.2rem;
+      top: 2.3rem;
+    }
   }
 }
