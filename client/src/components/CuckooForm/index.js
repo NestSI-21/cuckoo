@@ -1,3 +1,4 @@
+/* eslint-disable react/jsx-key */
 import React, { useState } from 'react';
 import axios from 'axios';
 import Radio from '../../elements/Radio';
@@ -22,7 +23,8 @@ const CuckooForm = () => {
     endTime: {},
   });
 
-  // Select dropdown options - announcements/events
+  //Select dropdown options - announcements/events
+  const typeOptions = ['Announcement', 'Event'];
   const announcementOptions = ['Alert', 'New Company', 'New Employee', 'Other'];
   const eventOptions = ['Education', 'Social', 'Other'];
 
@@ -94,26 +96,18 @@ const CuckooForm = () => {
   return (
     <form className={form} onSubmit={handleSubmit}>
       <div className={radioWrapper}>
-        <Radio
-          id='Announcement'
-          name='type'
-          label='Announcement'
-          value='Announcement'
-          checked={data.type === 'Announcement'}
-          onClick={resetCategory}
-          onChange={handleChange}
-          required
-        />
-        <Radio
-          id='Event'
-          name='type'
-          label='Event'
-          value='Event'
-          checked={data.type === 'Event'}
-          onClick={resetCategory}
-          onChange={handleChange}
-          required
-        />
+        {typeOptions.map((type) => (
+          <Radio
+            id={type}
+            name='type'
+            label={type}
+            value={type}
+            checked={data.type === type}
+            onClick={resetCategory}
+            onChange={handleChange}
+            required
+          />
+        ))}
       </div>
 
       <Input

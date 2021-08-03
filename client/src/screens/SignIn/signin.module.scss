@@ -7,6 +7,10 @@
   img {
     width: 25rem;
     min-height: 25rem;
+    @include mobile-breakpoint {
+      width: 17rem;
+      min-height: 17rem;
+    }
   }
   h1 {
     padding: 2rem 0 4rem 0;
