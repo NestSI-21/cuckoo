@@ -2,6 +2,9 @@
 
 .form {
   width: 40rem;
+  @include mobile-breakpoint {
+    width: 28rem;
+  }
   div {
     margin-bottom: 2rem;
   }
