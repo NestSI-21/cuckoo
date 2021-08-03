@@ -12,10 +12,10 @@ const Radio = ({ id, label, ...rest }) => (
 export default Radio;
 
 Radio.propTypes = {
-  id: PropTypes.string,
+  id: PropTypes.number,
   name: PropTypes.string,
   label: PropTypes.string,
-  value: PropTypes.string,
+  value: PropTypes.number,
   checked: PropTypes.bool,
   onChange: PropTypes.func,
 };

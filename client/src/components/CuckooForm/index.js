@@ -11,7 +11,7 @@ import { form, radioWrapper, flexWrapper, gridWrapper, btnWrapper } from './cuck
 
 const CuckooForm = () => {
   const [data, setData] = useState({
-    type: '',
+    type: undefined,
     title: '',
     location: '',
     category: '',
@@ -23,8 +23,16 @@ const CuckooForm = () => {
     endTime: {},
   });
 
+  console.log(typeof data.type);
+
+  // let user = localStorage.getItem('data');
+  // user = user.id;
+
   //Select dropdown options - announcements/events
-  const typeOptions = ['Announcement', 'Event'];
+  const typeOptions = [
+    { id: 1, type: 'Announcement' },
+    { id: 2, type: 'Event' },
+  ];
   const announcementOptions = ['Alert', 'New Company', 'New Employee', 'Other'];
   const eventOptions = ['Education', 'Social', 'Other'];
 
@@ -40,7 +48,8 @@ const CuckooForm = () => {
   };
 
   // Resets category when cuckoo type is selected
-  const resetCategory = () => {
+  const resetCategory = (type) => {
+    console.log(typeof type.id);
     setData((prevData) => ({ ...prevData, category: '' }));
   };
 
@@ -57,31 +66,50 @@ const CuckooForm = () => {
     startTime,
     endTime,
   }) => {
-    const formData = new FormData();
-    formData.append('type', type);
-    formData.append('title', title);
-    formData.append('location', location);
-    formData.append('category', category);
-    formData.append('description', description);
-    formData.append('images', images);
-    formData.append('startDate', startDate);
-    formData.append('endDate', endDate);
-    formData.append('startTime', startTime);
-    formData.append('endTime', endTime);
+    //   const formData = new FormData();
+    //   formData.append('type', type);
+    //   formData.append('title', title);
+    //   formData.append('location', location);
+    //   formData.append('category', category);
+    //   formData.append('description', description);
+    //   formData.append('images', images);
+    //   formData.append('startDate', startDate);
+    //   formData.append('endDate', endDate);
+    //   formData.append('startTime', startTime);
+    //   formData.append('endTime', endTime);
+
+    const headers = {
+      authorization: localStorage.getItem('token'),
+    };
 
     // FOR TESTING REMOVE
-    for (let pair of formData.entries()) {
-      console.log(pair[0] + ', ' + pair[1]);
-    }
+    // for (let pair of formData.entries()) {
+    //   console.log(pair[0] + ', ' + pair[1]);
+    // }
 
     try {
-      await axios.post('ENTER POST URL FROM HERMINIO', formData, {
-        headers: { 'Content-Type': 'multipart/form-data' },
-      });
-      // const result = await axios.post('ENTER POST URL FROM HERMINIO', formData, {
-      //   headers: { 'Content-Type': 'multipart/form-data' },
-      // });
-      // setCuckoos((prevCuckoos) => [...prevCuckoos, result.data.data]);
+      await axios
+        .post(
+          `${process.env.REACT_APP_API_BASE_URL}/posts`,
+          {
+            post: {
+              type_id: type,
+              title: title,
+              location: location,
+              category: category,
+              description: description,
+              img_url: '',
+              start_date: startDate,
+              end_date: endDate,
+              start_time: startTime,
+              end_time: endTime,
+            },
+          },
+          {
+            headers: headers,
+          },
+        )
+        .then((resp) => console.log(resp));
     } catch (error) {
       console.log(error);
     }
@@ -96,14 +124,15 @@ const CuckooForm = () => {
   return (
     <form className={form} onSubmit={handleSubmit}>
       <div className={radioWrapper}>
-        {typeOptions.map((type) => (
+        {typeOptions.map((type, i) => (
           <Radio
-            id={type}
+            key={i}
+            id={type.id}
             name='type'
-            label={type}
-            value={type}
-            checked={data.type === type}
-            onClick={resetCategory}
+            label={type.type}
+            value={type.id}
+            checked={data.type == type.id}
+            onClick={() => resetCategory(type)}
             onChange={handleChange}
             required
           />
@@ -130,13 +159,7 @@ const CuckooForm = () => {
           name='category'
           value={data.category}
           onChange={handleChange}
-          options={
-            data.type === 'Announcement'
-              ? announcementOptions
-              : data.type === 'Event'
-              ? eventOptions
-              : []
-          }
+          options={data.type === '1' ? announcementOptions : data.type === '2' ? eventOptions : []}
           label='Category'
           required
         />

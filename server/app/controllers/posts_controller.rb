@@ -19,6 +19,7 @@ class PostsController < ActionController::API
   def create
     @post = Post.new(post_params)
     @post.user = current_user
+    puts "hello"
 
     if @post
       render json: { message: 'A new post was created' }, status: :ok
@@ -56,7 +57,7 @@ class PostsController < ActionController::API
   private
 
   def post_params
-    params.require(:post).permit(:user_id, :type_id, :category, :title, :location, :description, :img_url,
+    params.require(:post).permit(:type_id, :category, :title, :location, :description, :img_url,
                                  :start_date, :end_date, :start_time, :end_time)
   end
 end
