@@ -1,6 +1,5 @@
 # frozen_string_literal: true
 
-require 'rest-client'
 
 class PostsController < ActionController::API
   before_action :authenticate_user!
@@ -54,6 +53,7 @@ class PostsController < ActionController::API
     render json: { message: 'A post was deleted successfully' }, status: :ok
   end
 
+  private
 
   def post_params
     params.require(:post).permit(:user_id, :type_id, :category, :title, :location, :description, :img_url,

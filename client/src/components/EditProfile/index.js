@@ -26,7 +26,7 @@ const EditProfile = () => {
         `${process.env.REACT_APP_API_BASE_URL}/users/complete_profile`,
         {
           // im passing the same company id because we dont have the select yet
-          user: { company_id: 1, company_role: data.role, birthday: data.birthdate },
+          user: { company_id: 2, company_role: data.role, birthday: data.birthdate },
         },
         {
           headers: headers,
