@@ -19,9 +19,8 @@ class PostsController < ActionController::API
   def create
     @post = Post.new(post_params)
     @post.user = current_user
-    puts "hello"
-
-    if @post
+    
+    if @post.save
       render json: { message: 'A new post was created' }, status: :ok
     else
       render json: { message: 'There was an error!' }, status: :unauthorized

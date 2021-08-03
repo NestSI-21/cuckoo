@@ -60,7 +60,7 @@ const CuckooForm = () => {
     location,
     category,
     description,
-    images,
+    // images,
     startDate,
     endDate,
     startTime,
@@ -93,7 +93,7 @@ const CuckooForm = () => {
           `${process.env.REACT_APP_API_BASE_URL}/posts`,
           {
             post: {
-              type_id: type,
+              type_id: parseInt(type),
               title: title,
               location: location,
               category: category,
