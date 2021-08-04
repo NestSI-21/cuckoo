@@ -19,7 +19,7 @@
   }
 
   .gridWrapper {
-    @include grid(0, 2rem, 1fr 1fr 1fr 1fr);
+    @include grid(grid, 0, 2rem, 1fr 1fr 1fr 1fr);
   }
 
   .btnWrapper {

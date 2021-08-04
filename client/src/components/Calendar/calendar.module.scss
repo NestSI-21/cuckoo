@@ -4,6 +4,14 @@
   @include container();
   max-height: 100vh;
   overflow-y: hidden;
+  @include tablet-breakpoint {
+    @include flex($direction: row, $align: center, $justify: flex-start);
+  }
+  @include mobile-breakpoint {
+    @include flex($direction: column, $align: center, $justify: flex-start);
+    overflow-y: visible;
+    max-height: 75vh;
+  }
 
   .calendar {
     width: 100%;
@@ -11,5 +19,16 @@
     font-weight: lighter;
     padding-bottom: 1rem;
     border-bottom: 0.2rem solid #eef1f0;
+    @include tablet-breakpoint {
+      width: 80%;
+      padding-right: 1.5rem;
+      border-bottom: none;
+      border-right: 0.2rem solid #eef1f0;
+    }
+    @include mobile-breakpoint {
+      padding-right: 0;
+      border-right: none;
+      border-bottom: 0.2rem solid #eef1f0;
+    }
   }
 }

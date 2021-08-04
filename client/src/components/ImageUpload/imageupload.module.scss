@@ -33,7 +33,7 @@
   }
 
   .previewImagesContainer {
-    @include grid(0, 1rem, 1fr 1fr 1fr 1fr);
+    @include grid(grid, 0, 1rem, 1fr 1fr 1fr 1fr);
   }
 
   .imageUploadButton {

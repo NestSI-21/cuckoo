@@ -4,13 +4,21 @@
   height: 58%;
   overflow-x: hidden;
   overflow-y: scroll;
+  @include tablet-breakpoint {
+    padding-left: 1.5rem;
+    height: 100%;
+  }
+  @include mobile-breakpoint {
+    padding-left: 0;
+  }
 
   h3 {
     color: $green;
   }
   .upcomingCard {
-    @include flex($direction: row, $align: center, $justify: flex-start);
     padding: 2rem 0;
+    @include flex($direction: row, $align: center, $justify: flex-start);
+
     .upcomingDay {
       @include flex($direction: column, $align: center, $justify: flex-start);
       width: max-content;

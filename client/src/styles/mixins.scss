@@ -1,7 +1,7 @@
-@mixin main($mainWidth: calc(100vw - 20rem), $mainHeight: 90vh, $mainBackgorund: $background) {
+@mixin main($mainWidth: calc(100vw - 20rem), $mainHeight: 90vh, $mainBackground: $background) {
   width: $mainWidth;
   height: $mainHeight;
-  background-color: $mainBackgorund;
+  background-color: $mainBackground;
   padding: 3rem;
 }
 
@@ -24,8 +24,8 @@
   position: relative;
 }
 
-@mixin grid($gap-row, $gap-column, $template-column) {
-  display: grid;
+@mixin grid($display, $gap-row, $gap-column, $template-column) {
+  display: $display;
   gap: $gap-row $gap-column;
   grid-template-columns: $template-column;
 }
