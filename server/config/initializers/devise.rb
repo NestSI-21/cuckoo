@@ -266,8 +266,7 @@ Devise.setup do |config|
   # config.navigational_formats = ['*/*', :html]
 
   # The default HTTP method used to sign out a resource. Default is :delete.
-  config.sign_out_via = :delete
-
+  config.sign_out_via = [:delete, :get]
   # ==> OmniAuth
   # Add a new OmniAuth provider. Check the wiki for more information on setting
   # up on your models and hooks.
@@ -311,15 +310,15 @@ Devise.setup do |config|
   # config.sign_in_after_change_password = true
 
   config.jwt do |jwt|
-    jwt.secret = ENV["DEVISE_JWT_SECRET_KEY"] || "my_random_dev_key"
+    jwt.secret = ENV['DEVISE_JWT_SECRET_KEY'] || 'my_random_dev_key'
     jwt.dispatch_requests = [
-      ["POST", %r{^/slack/login$}],
+      ['POST', %r{^/slack/login$}]
     ]
     jwt.revocation_requests = [
-      ["DELETE", %r{^/users/sign_out$}],
+      ['DELETE', %r{^/users/sign_out$}]
     ]
     jwt.request_formats = {
-      user: [:json],
+      user: [:json]
     }
   end
 end
