@@ -3,14 +3,14 @@
 .contentContainer {
   @include main();
   @include tablet-breakpoint {
-    @include main($mainWidth: calc(100vw - 12rem));
+    @include main(calc(100vw - 12rem));
   }
   @include mobile-breakpoint {
-    @include main($mainWidth: 100vw);
+    @include main(100vw);
   }
   @include grid(0, 2rem, 1fr 2fr);
   .filters {
-    @include container($height: fit-content);
+    @include container(fit-content);
     margin-top: 2rem;
   }
 }

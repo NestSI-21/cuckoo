@@ -98,7 +98,7 @@
     ul {
       margin-top: 0;
       li {
-        @include flex($direction: row, $align: center, $justify: space-around);
+        @include flex(row, center, space-around);
         .createBtn {
           display: block;
         }
