@@ -14,10 +14,10 @@ const Calendar = () => {
 
   const modifiers = {
     events: [
-      new Date(2021, 6, 8),
-      new Date(2021, 6, 12),
-      new Date(2021, 6, 28),
-      new Date(2021, 6, 31),
+      new Date(2021, 7, 8),
+      new Date(2021, 7, 12),
+      new Date(2021, 7, 28),
+      new Date(2021, 7, 31),
     ],
   };
 
@@ -25,6 +25,14 @@ const Calendar = () => {
     <div className={container}>
       <Helmet>
         <style>{`
+          .DayPicker-Month{
+            width:100%;
+          }
+          .DayPicker-Caption{
+            color: #21c49c;
+            font-weight:400;
+            font-size: 20px;
+          }
           .DayPicker-Day{
             pointer-events: none;
             box-sizing: border-box;
@@ -32,8 +40,7 @@ const Calendar = () => {
             border-radius:0.5rem;
           }
           .DayPicker-Day--today {
-            border:1px solid #21c49c;
-            font-weight:lighter;
+            color: #21c49c;
           }
           .DayPicker-Day--events {
             color: white;

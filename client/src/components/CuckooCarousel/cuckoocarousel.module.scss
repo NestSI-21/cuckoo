@@ -1,0 +1,33 @@
+@import '../../styles/applications.scss';
+
+.carousel {
+  width: 100vw;
+  position: relative;
+  margin-left: -3rem;
+
+  .carouselContainer {
+    position: relative;
+    .cuckooCard {
+      display: flex;
+      align-items: center;
+      background-color: $background;
+      padding: 0 3rem;
+      margin: 0 1.5;
+      .cardHolder {
+        @include container(fit-content);
+      }
+    }
+  }
+  .dotsContainer {
+    position: initial;
+    margin-top: 0.5rem;
+    li {
+      button {
+        border-style: none;
+        outline: none;
+        background-color: $green;
+        border-radius: 50%;
+      }
+    }
+  }
+}

@@ -8,3 +8,8 @@
     @content;
   }
 }
+@mixin desktop-breakpoint {
+  @media (min-width: 1024px) {
+    @content;
+  }
+}
