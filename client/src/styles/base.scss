@@ -99,7 +99,7 @@ select {
   outline: none;
   transition: 0.1s ease all;
   @include mobile-breakpoint {
-    padding: 1.8rem 1rem 0.8rem 1rem;
+    padding: 1.8rem 0.3rem 0.8rem 0.9rem;
   }
 }
 textarea {
@@ -110,7 +110,7 @@ label {
   position: absolute;
   pointer-events: none;
   left: 2rem;
-  top: 0.1rem;
+  top: 0.2rem;
   padding-top: 1.8rem;
   transition: 0.1s ease all;
   color: $light-gray;
@@ -129,7 +129,7 @@ textarea:focus ~ label,
 textarea:not(:placeholder-shown) ~ label,
 select:focus ~ label,
 select:valid ~ label {
-  padding-top: 1.2rem;
+  padding-top: 0.9rem;
   transform: none;
   font-size: 1.2rem;
   @include mobile-breakpoint {
