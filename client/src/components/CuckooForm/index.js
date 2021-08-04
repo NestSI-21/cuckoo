@@ -54,20 +54,19 @@ const CuckooForm = () => {
     event.preventDefault();
 
     const formData = new FormData();
-    formData.append('type_id', data.type);
-    formData.append('title', data.title);
-    formData.append('location', data.location);
-    formData.append('category', data.category);
-    formData.append('description', data.description);
-    formData.append('images', data.images);
-    formData.append('start_date', data.startDate);
-    formData.append('end_date', data.endDate);
-    formData.append('start_time', data.startTime);
-    formData.append('end_time', data.endTime);
+    formData.append('post[type_id]', data.type);
+    formData.append('post[title]', data.title);
+    formData.append('post[location]', data.location);
+    formData.append('post[category]', data.category);
+    formData.append('post[description]', data.description);
+    formData.append('post[images]', data.images);
+    formData.append('post[start_date]', data.startDate);
+    formData.append('post[end_date]', data.endDate);
+    formData.append('post[start_time]', data.startTime);
+    formData.append('post[end_time]', data.endTime);
 
     post(formData, '/posts', function (response) {
-      console.log(response);
-      // console.log(JSON.parse(response.config.data));
+      alert(response.data);
     });
   };
 
@@ -82,7 +81,7 @@ const CuckooForm = () => {
             label={type.type}
             value={type.id}
             checked={data.type === type.id}
-            onClick={() => resetCategory(type)}
+            onClick={resetCategory}
             onChange={handleChange}
             required
           />
