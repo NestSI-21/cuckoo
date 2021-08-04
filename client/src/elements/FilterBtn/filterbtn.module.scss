@@ -1,5 +1,10 @@
 @import '../../styles/applications.scss';
 
+.selected,
+.unselected {
+  margin: 0.75rem 0.75rem 0.75rem 0;
+}
+
 .selected {
   border: 0.1rem solid $green;
   border-radius: 5rem;

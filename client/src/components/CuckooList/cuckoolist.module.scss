@@ -24,6 +24,6 @@
   }
 
   @include mobile-breakpoint {
-    @include container(50vh);
+    @include container(fit-content);
   }
 }
