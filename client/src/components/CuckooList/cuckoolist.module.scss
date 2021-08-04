@@ -24,6 +24,6 @@
   }
 
   @include mobile-breakpoint {
-    @include container($height: 50vh);
+    @include container(50vh);
   }
 }

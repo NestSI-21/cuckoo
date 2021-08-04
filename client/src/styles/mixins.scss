@@ -24,8 +24,8 @@
   position: relative;
 }
 
-@mixin grid($display, $gap-row, $gap-column, $template-column) {
-  display: $display;
+@mixin grid($gap-row, $gap-column, $template-column) {
+  display: grid;
   gap: $gap-row $gap-column;
   grid-template-columns: $template-column;
 }

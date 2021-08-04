@@ -17,10 +17,10 @@
   }
   .upcomingCard {
     padding: 2rem 0;
-    @include flex($direction: row, $align: center, $justify: flex-start);
+    @include flex(row, center, flex-start);
 
     .upcomingDay {
-      @include flex($direction: column, $align: center, $justify: flex-start);
+      @include flex(column, center, flex-start);
       width: max-content;
       h3 {
         color: $gray;

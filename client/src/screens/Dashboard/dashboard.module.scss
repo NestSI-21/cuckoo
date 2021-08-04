@@ -2,15 +2,15 @@
 
 .contentContainer {
   @include main();
-  @include grid(grid, 0, 2rem, 2fr 1fr);
+  @include grid(0, 2rem, 2fr 1fr);
   @include tablet-breakpoint {
-    @include main($mainWidth: calc(100vw - 12rem));
-    @include grid(grid, 2rem, 0, 1fr);
+    @include main(calc(100vw - 12rem));
+    @include grid(2rem, 0, 1fr);
   }
   @include mobile-breakpoint {
-    @include main($mainWidth: 100vw, $mainHeight: fit-content);
+    @include main(100vw, fit-content);
     padding-bottom: 15rem;
     position: relative;
-    @include grid(block, 0, 0, 0);
+    display: block;
   }
 }

@@ -1,8 +1,8 @@
 @import '../../styles/applications.scss';
 
 .contentContainer {
-  @include main($mainWidth: 100vw, $mainHeight: 100vh);
-  @include flex($direction: column);
+  @include main(100vw, 100vh);
+  @include flex(column);
 
   img {
     width: 25rem;
