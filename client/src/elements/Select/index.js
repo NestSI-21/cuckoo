@@ -2,11 +2,11 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { select } from './select.module.scss';
 
-const Select = ({ name, options, onChange, label, mandatory }) => {
+const Select = ({ options, label, ...rest }) => {
   return (
     <div className={select}>
-      <select name={name} onChange={onChange} required={mandatory}>
-        <option defaultValue></option>
+      <select {...rest}>
+        <option defaultValue disabled></option>
         {options.map((option, i) => {
           return (
             <option key={i} value={option}>
@@ -25,7 +25,7 @@ Select.propTypes = {
   options: PropTypes.array,
   onChange: PropTypes.func,
   label: PropTypes.string,
-  mandatory: PropTypes.bool,
+  required: PropTypes.bool,
 };
 
 export default Select;

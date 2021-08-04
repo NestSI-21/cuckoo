@@ -1,52 +1,89 @@
 /* eslint-disable react/jsx-key */
 import React, { useState } from 'react';
-import ImageUpload from '../ImageUpload';
-import Input from '../../elements/Input';
-import Textarea from '../../elements/Textarea';
-import Select from '../../elements/Select';
-import Button from '../../elements/Button';
-import { form, flexWrapper, gridWrapper, btnWrapper } from './cuckooform.module.scss';
 import Radio from '../../elements/Radio';
+import Input from '../../elements/Input';
+import Select from '../../elements/Select';
+import Textarea from '../../elements/Textarea';
+import ImageUpload from '../ImageUpload';
+import Button from '../../elements/Button';
+import { form, radioWrapper, flexWrapper, gridWrapper, btnWrapper } from './cuckooform.module.scss';
+import { post } from '../../helpers/Networking';
 
 const CuckooForm = () => {
   const [data, setData] = useState({
-    type: '',
+    type: 0,
     title: '',
     location: '',
     category: '',
     description: '',
+    images: [],
     startDate: {},
-    startTime: {},
     endDate: {},
+    startTime: {},
     endTime: {},
   });
 
   //Select dropdown options - announcements/events
-  const typeOptions = ['Announcement', 'Event'];
+  const typeOptions = [
+    { id: 1, type: 'Announcement' },
+    { id: 2, type: 'Event' },
+  ];
   const announcementOptions = ['Alert', 'New Company', 'New Employee', 'Other'];
   const eventOptions = ['Education', 'Social', 'Other'];
 
+  // Handler for inputs
   const handleChange = (e) => {
     const { name, value } = e.target;
-    setData((prevData) => ({ ...prevData, [name]: value }));
+    setData((prevData) => ({
+      ...prevData,
+      [name]: e.target.type === 'radio' ? parseInt(value) : value,
+    }));
   };
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    console.log(data);
+  // Handler for image upload
+  const handleImageChange = (newImages) => {
+    setData((prevData) => ({ ...prevData, images: newImages }));
+  };
+
+  // Resets category when cuckoo type is selected
+  const resetCategory = () => {
+    setData((prevData) => ({ ...prevData, category: '' }));
+  };
+
+  const handleSubmit = (event) => {
+    event.preventDefault();
+
+    const formData = new FormData();
+    formData.append('post[type_id]', data.type);
+    formData.append('post[title]', data.title);
+    formData.append('post[location]', data.location);
+    formData.append('post[category]', data.category);
+    formData.append('post[description]', data.description);
+    formData.append('post[images]', data.images);
+    formData.append('post[start_date]', data.startDate);
+    formData.append('post[end_date]', data.endDate);
+    formData.append('post[start_time]', data.startTime);
+    formData.append('post[end_time]', data.endTime);
+
+    post(formData, '/posts', function (response) {
+      alert(response.data);
+    });
   };
 
   return (
     <form className={form} onSubmit={handleSubmit}>
-      <div>
-        {typeOptions.map((type) => (
+      <div className={radioWrapper}>
+        {typeOptions.map((type, i) => (
           <Radio
-            id={type}
+            key={i}
+            id={type.id}
             name='type'
-            label={type}
-            value={type}
-            checked={data.type === type}
+            label={type.type}
+            value={type.id}
+            checked={data.type === type.id}
+            onClick={resetCategory}
             onChange={handleChange}
+            required
           />
         ))}
       </div>
@@ -57,7 +94,7 @@ const CuckooForm = () => {
         value={data.title}
         onChange={handleChange}
         label='Give your Cuckoo a title'
-        mandatory
+        required
       />
       <div className={flexWrapper}>
         <Input
@@ -71,15 +108,9 @@ const CuckooForm = () => {
           name='category'
           value={data.category}
           onChange={handleChange}
-          options={
-            data.type === 'Announcement'
-              ? announcementOptions
-              : data.type === 'Event'
-              ? eventOptions
-              : ['']
-          }
+          options={data.type === 1 ? announcementOptions : data.type === 2 ? eventOptions : []}
           label='Category'
-          mandatory
+          required
         />
       </div>
       <Textarea
@@ -88,7 +119,7 @@ const CuckooForm = () => {
         onChange={handleChange}
         label='Tell us more about what you want to share'
       />
-      <ImageUpload />
+      <ImageUpload images={data.images} onChange={handleImageChange} />
       <div className={gridWrapper}>
         <Input
           type='date'
