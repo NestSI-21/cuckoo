@@ -7,6 +7,8 @@
   }
   @include mobile-breakpoint {
     @include main(100vw);
+    height: 80vh;
+    @include main(100vw);
   }
   overflow-y: scroll;
   .searchbar {

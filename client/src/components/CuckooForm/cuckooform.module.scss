@@ -65,6 +65,8 @@
     }
     .gridWrapper {
       @include grid(0, 0.7rem, 1fr 1fr);
+      div:nth-child(-n + 4) {
+        width: 13.65rem;
       div:first-child {
         width: 16rem;
       }
