@@ -98,21 +98,28 @@ select {
   padding: 2.8rem 2rem 0.8rem 2rem;
   outline: none;
   transition: 0.1s ease all;
+  @include mobile-breakpoint {
+    padding: 1.8rem 1rem 0.8rem 1rem;
+  }
 }
 textarea {
   resize: none;
 }
 label {
+  background-color: $background;
   position: absolute;
   pointer-events: none;
   left: 2rem;
-  top: 2rem;
+  top: 0.1rem;
+  padding-top: 1.8rem;
   transition: 0.1s ease all;
   color: $light-gray;
   font-family: $rubik;
   font-size: $text-small;
   @include mobile-breakpoint {
     font-size: 1.2rem;
+    left: 1rem;
+    padding-top: 1.3rem;
   }
 }
 
@@ -122,7 +129,11 @@ textarea:focus ~ label,
 textarea:not(:placeholder-shown) ~ label,
 select:focus ~ label,
 select:valid ~ label {
-  top: 1.2rem;
+  padding-top: 1.2rem;
   transform: none;
   font-size: 1.2rem;
+  @include mobile-breakpoint {
+    font-size: 1rem;
+    padding-top: 0.7rem;
+  }
 }
