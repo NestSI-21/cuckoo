@@ -1,8 +1,8 @@
 @import '../../styles/applications.scss';
 
 .content {
-  @include main($mainWidth: 100vw, $mainHeight: 100vh, $mainBackgorund: $green);
-  @include flex($direction: column);
+  @include main(100vw, 100vh, $green);
+  @include flex(column);
 
   .logo {
     width: 75rem;

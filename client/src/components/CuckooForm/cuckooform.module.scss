@@ -35,3 +35,44 @@
     }
   }
 }
+
+@include tablet-breakpoint {
+  .form {
+    width: 45rem;
+    div {
+      margin-bottom: 1.2rem;
+    }
+    .gridWrapper {
+      @include grid(2, 1.2rem, 1fr 1fr);
+      width: 450px;
+    }
+  }
+}
+
+@include mobile-breakpoint {
+  .form {
+    width: 28rem;
+    div {
+      margin-bottom: 0.6rem;
+    }
+    .flexWrapper {
+      display: block;
+      div {
+        &:first-child {
+          width: 28rem;
+          margin-bottom: 0.7rem;
+        }
+        &:last-child {
+          width: 28rem;
+        }
+      }
+    }
+    .gridWrapper {
+      @include grid(0, 0.7rem, 1fr 1fr);
+      width: 280px;
+      div:nth-child(-n + 4) {
+        width: 13.65rem;
+      }
+    }
+  }
+}

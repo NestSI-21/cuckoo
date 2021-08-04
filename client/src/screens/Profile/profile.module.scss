@@ -3,13 +3,13 @@
 .contentContainer {
   @include main();
   @include tablet-breakpoint {
-    @include main($mainWidth: calc(100vw - 12rem));
+    @include main(calc(100vw - 12rem));
   }
   @include mobile-breakpoint {
-    @include main($mainWidth: 100vw);
+    @include main(100vw);
     height: 80vh;
   }
-  @include flex($direction: column);
+  @include flex(column);
 
   img {
     height: 20rem;
