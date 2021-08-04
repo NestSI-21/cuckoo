@@ -1,6 +1,5 @@
 /* eslint-disable react/jsx-key */
 import React, { useState } from 'react';
-import axios from 'axios';
 import Radio from '../../elements/Radio';
 import Input from '../../elements/Input';
 import Select from '../../elements/Select';
@@ -8,10 +7,11 @@ import Textarea from '../../elements/Textarea';
 import ImageUpload from '../ImageUpload';
 import Button from '../../elements/Button';
 import { form, radioWrapper, flexWrapper, gridWrapper, btnWrapper } from './cuckooform.module.scss';
+import { post } from '../../helpers/Networking';
 
 const CuckooForm = () => {
   const [data, setData] = useState({
-    type: undefined,
+    type: 0,
     title: '',
     location: '',
     category: '',
@@ -22,11 +22,6 @@ const CuckooForm = () => {
     startTime: {},
     endTime: {},
   });
-
-  console.log(typeof data.type);
-
-  // let user = localStorage.getItem('data');
-  // user = user.id;
 
   //Select dropdown options - announcements/events
   const typeOptions = [
@@ -39,7 +34,10 @@ const CuckooForm = () => {
   // Handler for inputs
   const handleChange = (e) => {
     const { name, value } = e.target;
-    setData((prevData) => ({ ...prevData, [name]: value }));
+    setData((prevData) => ({
+      ...prevData,
+      [name]: e.target.type === 'radio' ? parseInt(value) : value,
+    }));
   };
 
   // Handler for image upload
@@ -48,77 +46,29 @@ const CuckooForm = () => {
   };
 
   // Resets category when cuckoo type is selected
-  const resetCategory = (type) => {
-    console.log(typeof type.id);
+  const resetCategory = () => {
     setData((prevData) => ({ ...prevData, category: '' }));
   };
 
-  // POST Cuckoo
-  const postCuckoo = async ({
-    type,
-    title,
-    location,
-    category,
-    description,
-    // images,
-    startDate,
-    endDate,
-    startTime,
-    endTime,
-  }) => {
-    //   const formData = new FormData();
-    //   formData.append('type', type);
-    //   formData.append('title', title);
-    //   formData.append('location', location);
-    //   formData.append('category', category);
-    //   formData.append('description', description);
-    //   formData.append('images', images);
-    //   formData.append('startDate', startDate);
-    //   formData.append('endDate', endDate);
-    //   formData.append('startTime', startTime);
-    //   formData.append('endTime', endTime);
+  const handleSubmit = (event) => {
+    event.preventDefault();
 
-    const headers = {
-      authorization: localStorage.getItem('token'),
-    };
+    const formData = new FormData();
+    formData.append('type_id', data.type);
+    formData.append('title', data.title);
+    formData.append('location', data.location);
+    formData.append('category', data.category);
+    formData.append('description', data.description);
+    formData.append('images', data.images);
+    formData.append('start_date', data.startDate);
+    formData.append('end_date', data.endDate);
+    formData.append('start_time', data.startTime);
+    formData.append('end_time', data.endTime);
 
-    // FOR TESTING REMOVE
-    // for (let pair of formData.entries()) {
-    //   console.log(pair[0] + ', ' + pair[1]);
-    // }
-
-    try {
-      await axios
-        .post(
-          `${process.env.REACT_APP_API_BASE_URL}/posts`,
-          {
-            post: {
-              type_id: parseInt(type),
-              title: title,
-              location: location,
-              category: category,
-              description: description,
-              img_url: '',
-              start_date: startDate,
-              end_date: endDate,
-              start_time: startTime,
-              end_time: endTime,
-            },
-          },
-          {
-            headers: headers,
-          },
-        )
-        .then((resp) => console.log(resp));
-    } catch (error) {
-      console.log(error);
-    }
-  };
-
-  // Handler for form submit
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-    await postCuckoo(data);
+    post(formData, '/posts', function (response) {
+      console.log(response);
+      // console.log(JSON.parse(response.config.data));
+    });
   };
 
   return (
@@ -131,7 +81,7 @@ const CuckooForm = () => {
             name='type'
             label={type.type}
             value={type.id}
-            checked={data.type == type.id}
+            checked={data.type === type.id}
             onClick={() => resetCategory(type)}
             onChange={handleChange}
             required
@@ -159,7 +109,7 @@ const CuckooForm = () => {
           name='category'
           value={data.category}
           onChange={handleChange}
-          options={data.type === '1' ? announcementOptions : data.type === '2' ? eventOptions : []}
+          options={data.type === 1 ? announcementOptions : data.type === 2 ? eventOptions : []}
           label='Category'
           required
         />

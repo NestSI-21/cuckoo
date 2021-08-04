@@ -33,9 +33,7 @@ const ImageUpload = ({ images, onChange, maxFileSize = defaultMaxFileSize }) => 
       return;
     }
 
-    const acceptedImages = Array.from(newImages)
-      .filter((file) => file.size <= maxFileSize)
-      .map((file) => URL.createObjectURL(file));
+    const acceptedImages = Array.from(newImages).filter((file) => file.size <= maxFileSize);
 
     const rejectedImagesNum = newImages.length - acceptedImages.length;
     if (rejectedImagesNum > 0) {
@@ -48,10 +46,10 @@ const ImageUpload = ({ images, onChange, maxFileSize = defaultMaxFileSize }) => 
   };
 
   const renderImages = (images) => {
-    return images.map((image) => {
+    return images.map((image, i) => {
       return (
-        <div className={imageInnerWrapper} key={image}>
-          <img src={image} alt='user upload' />
+        <div className={imageInnerWrapper} key={i}>
+          <img src={URL.createObjectURL(image)} alt='user upload' />
           <button
             onClick={() => {
               removeImageClick(image);
