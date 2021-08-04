@@ -30,6 +30,9 @@
       font-family: $rubik;
       font-size: $text-small;
       color: $light-gray;
+      @include mobile-breakpoint {
+        font-size: 1.2rem;
+      }
     }
   }
 
@@ -53,7 +56,6 @@
     }
 
     img {
-      // display: none;
       width: 1.7rem;
       height: 1.7rem;
     }

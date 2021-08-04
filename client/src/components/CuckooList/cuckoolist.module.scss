@@ -22,4 +22,8 @@
   &::-webkit-scrollbar-thumb:hover {
     background-color: $light-gray;
   }
+
+  @include mobile-breakpoint {
+    @include container(fit-content);
+  }
 }

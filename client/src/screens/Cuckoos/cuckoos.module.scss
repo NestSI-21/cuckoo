@@ -2,15 +2,93 @@
 
 .contentContainer {
   @include main();
+  @include grid(0, 2rem, 1fr 2fr);
+
   @include tablet-breakpoint {
-    @include main($mainWidth: calc(100vw - 12rem));
+    @include main(calc(100vw - 12rem));
+    @include grid(0, 2rem, 1fr);
   }
   @include mobile-breakpoint {
-    @include main($mainWidth: 100vw);
+    @include main(100vw, fit-content);
+    padding-bottom: 12rem;
   }
-  @include grid(0, 2rem, 1fr 2fr);
+
+  .search {
+    @include flex($justify: flex-start);
+    margin-bottom: 2rem;
+    & > * {
+      width: 100%;
+    }
+    button {
+      width: 10%;
+      padding: 0;
+      background: transparent;
+      margin-left: 2%;
+      display: none;
+      i {
+        color: $green;
+        font-size: 3.2rem;
+        transition: 0.2s;
+        &:hover {
+          color: $gray;
+        }
+      }
+      @include tablet-breakpoint {
+        display: block;
+      }
+    }
+  }
   .filters {
-    @include container($height: fit-content);
-    margin-top: 2rem;
+    @include container(fit-content);
+    div {
+      margin-bottom: 1rem;
+    }
+
+    .dateLabels {
+      @include grid(0, 1rem, 1fr 1fr);
+      label {
+        background: #fff;
+        top: 0.1;
+        left: 1rem;
+        padding-top: 0.65rem;
+      }
+      input {
+        padding: 2rem 0.5rem 0.5rem 1rem;
+        background-color: #fff;
+      }
+      @include tablet-breakpoint {
+        @include grid(0, 1rem, 1fr);
+      }
+    }
+
+    @include tablet-breakpoint {
+      @include grid(0, 2rem, 1fr 1fr);
+      margin-bottom: 2rem;
+      .typeFilters {
+        margin-top: 2rem;
+      }
+      .typeFilters,
+      .dateFilters {
+        padding-right: 2rem;
+      }
+      .categoryFilters {
+        padding-left: 2rem;
+        border-left: 0.2rem solid #eef1f0;
+      }
+    }
+    @include mobile-breakpoint {
+      display: block;
+      .typeFilters {
+        margin-top: 0;
+      }
+      .typeFilters,
+      .dateFilters {
+        padding-right: 0;
+      }
+      .categoryFilters {
+        padding-left: 0;
+        border-style: none;
+      }
+    }
   }
 }
