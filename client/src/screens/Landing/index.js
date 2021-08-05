@@ -18,6 +18,7 @@ const Landing = () => {
       .then((resp) => {
         localStorage.setItem('token', resp.headers.authorization);
         localStorage.setItem('data', JSON.stringify(resp.data.user));
+        localStorage.setItem('companies', JSON.stringify(resp.data.companies));
         console.log(resp);
         if (resp.data.user.profile_completed) {
           history.push('/dashboard');

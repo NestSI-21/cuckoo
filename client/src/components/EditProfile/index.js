@@ -1,15 +1,30 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
+// import Select from '../../elements/Select';
 import Input from '../../elements/Input';
 import Button from '../../elements/Button';
 import { form } from './editprofile.module.scss';
 import axios from 'axios';
 
 const EditProfile = () => {
+  // const [companies, setCompanies] = useState([]);
   const [data, setData] = useState({
     company: '',
     role: '',
     birthdate: '',
   });
+
+  useEffect(() => {
+    getCompanies();
+  });
+
+  const getCompanies = () => {
+    const companyData = localStorage.getItem('companies');
+    console.log(companyData);
+    console.log(companyData[name]);
+    console.log(companyData[0].name);
+    // const companyNames = companyData.map((company) => company.name);
+    // setCompanies(companyNames);
+  };
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -37,6 +52,14 @@ const EditProfile = () => {
 
   return (
     <form className={form} onSubmit={handleSubmit}>
+      {/* <Select
+        name='category'
+        value={data.company}
+        onChange={handleChange}
+        // options={companies}
+        label='Category'
+        required
+      /> */}
       <Input
         type='text'
         name='company'

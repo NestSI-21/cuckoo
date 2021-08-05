@@ -6,8 +6,8 @@ import Select from '../../elements/Select';
 import Textarea from '../../elements/Textarea';
 import ImageUpload from '../ImageUpload';
 import Button from '../../elements/Button';
-import { form, radioWrapper, flexWrapper, gridWrapper, btnWrapper } from './cuckooform.module.scss';
 import { post } from '../../helpers/Networking';
+import { form, radioWrapper, flexWrapper, gridWrapper, btnWrapper } from './cuckooform.module.scss';
 
 const CuckooForm = () => {
   const [data, setData] = useState({
