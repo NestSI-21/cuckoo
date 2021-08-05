@@ -9,6 +9,7 @@
   }
   @include mobile-breakpoint {
     @include main(100vw, fit-content);
+    height: 80vh;
     padding-bottom: 15rem;
     position: relative;
     display: block;

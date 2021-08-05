@@ -1,8 +1,16 @@
+@import './responsiveness.scss';
+
 @mixin main($mainWidth: calc(100vw - 20rem), $mainHeight: 90vh, $mainBackground: $background) {
   width: $mainWidth;
   height: $mainHeight;
   background-color: $mainBackground;
   padding: 3rem;
+  @include tablet-breakpoint {
+    padding: 1rem 3rem;
+  }
+  @include mobile-breakpoint {
+    padding: 0.7rem 2.7rem;
+  }
 }
 
 @mixin container($height: initial) {
