@@ -20,7 +20,7 @@
       top: 2rem;
       width: 20rem;
     }
-    @include mobile-breakpoint {
+    @include smallTablet-breakpoint {
       width: 100%;
       position: initial;
     }
