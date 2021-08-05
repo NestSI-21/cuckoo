@@ -7,7 +7,6 @@ class CreatePosts < ActiveRecord::Migration[6.1]
       t.string :title, null: false 
       t.string :location
       t.string :description
-      t.string :img_url 
       t.date   :start_date
       t.date   :end_date 
       t.time   :start_time

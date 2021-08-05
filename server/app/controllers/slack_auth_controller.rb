@@ -41,9 +41,8 @@ class SlackAuthController < ActionController::API
 
     
     if @user && (@user.profile_completed == false)
-      @companies = Company.all
       sign_in @user
-      render json: { user: @user, companies: @companies }, status: :ok
+      render json: { user: @user,}, status: :ok
     elsif @user && (@user.profile_completed == true)
       sign_in @user
       render json: { user: @user }, status: :ok
