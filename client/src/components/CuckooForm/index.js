@@ -59,7 +59,7 @@ const CuckooForm = () => {
     formData.append('post[location]', data.location);
     formData.append('post[category]', data.category);
     formData.append('post[description]', data.description);
-    formData.append('post[images]', data.images);
+    formData.append('post[images][]', data.images);
     formData.append('post[start_date]', data.startDate);
     formData.append('post[end_date]', data.endDate);
     formData.append('post[start_time]', data.startTime);
