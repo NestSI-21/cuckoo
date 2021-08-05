@@ -12,5 +12,23 @@
     padding-bottom: 15rem;
     position: relative;
     display: block;
+
+    .cuckooList {
+      display: none;
+    }
+
+    .carousel {
+      display: block;
+    }
+  }
+
+  @include desktop-breakpoint {
+    .carousel {
+      display: none;
+    }
+
+    .cuckooList {
+      display: block;
+    }
   }
 }
