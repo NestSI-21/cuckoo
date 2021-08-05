@@ -3,6 +3,7 @@
   height: $mainHeight;
   background-color: $mainBackground;
   padding: 3rem;
+  position: relative;
 }
 
 @mixin container($height: initial) {

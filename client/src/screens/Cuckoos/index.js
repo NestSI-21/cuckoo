@@ -13,6 +13,7 @@ import {
   dateLabels,
   typeFilters,
   categoryFilters,
+  cuckooList,
 } from './cuckoos.module.scss';
 
 const Cuckoos = () => {
@@ -68,7 +69,9 @@ const Cuckoos = () => {
             </div>
           ) : null}
         </div>
-        <CuckooList searchTerm={searchTerm} />
+        <div className={cuckooList}>
+          <CuckooList searchTerm={searchTerm} />
+        </div>
       </div>
     </Layout>
   );
