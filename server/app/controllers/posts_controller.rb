@@ -6,7 +6,6 @@ class PostsController < ActionController::API
 
   def index
     @posts = Post.order(created_at: :desc).all
-
     render json: { posts: @posts }, status: :ok
   end
 
