@@ -45,7 +45,8 @@ class SlackAuthController < ActionController::API
       render json: { user: @user }, status: :ok
     elsif @user && (@user.profile_completed == true)
       sign_in @user
-      render json: { user: @user }, status: :ok
+      @company = Company.find(current_user.company_id)
+      render json: { user: @user, company_name:@company.name}, status: :ok
     else
       render json: { message: 'There was an error!' }, status: :unauthorized
     end
