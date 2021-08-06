@@ -1,5 +1,5 @@
 # frozen_string_literal: true
 
-Type.create(name: 'Announcement', slack_channel: '#test')
-Type.create(name: 'Event', slack_channel: '#test')
-Company.create(name: 'Deemaze', description: 'This is a description', status: 'a ver', logo: 'kappa')
+Type.find_or_create_by(name: 'Announcement', slack_channel: '#test')
+Type.find_or_create_by(name: 'Event', slack_channel: '#test')
+Company.find_or_create_by(name: 'Deemaze', description: 'This is a description', status: 'a ver', logo: 'kappa')

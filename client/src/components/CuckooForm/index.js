@@ -66,7 +66,6 @@ const CuckooForm = () => {
     formData.append('post[end_date]', data.endDate);
     formData.append('post[start_time]', data.startTime);
     formData.append('post[end_time]', data.endTime);
-    console.log({ data, formData });
     post(formData, '/posts', function (response) {
       console.log(response.data);
     });
