@@ -7,9 +7,7 @@ class PostsController < ActionController::API
   def index
     @posts = Post.order(created_at: :desc).all
 
-    respond_to do |format|
-      format.json { render json: @posts }
-    end
+    render json: { posts: @posts }, status: :ok
   end
 
   def new
