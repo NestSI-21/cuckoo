@@ -12,12 +12,10 @@ class PostsController < ActionController::API
     end
   end
 
-  def new
-    @post = Post.new
-  end
 
   def create
     @post = Post.new(post_params)
+    # @post.images.attach(params[:images])
     @post.user = current_user
     
     if @post.save
@@ -56,7 +54,9 @@ class PostsController < ActionController::API
   private
 
   def post_params
+    
     params.require(:post).permit(:type_id, :category, :title, :location, :description,
                                  :start_date, :end_date, :start_time, :end_time, images: [])
+    
   end
 end
