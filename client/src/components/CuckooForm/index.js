@@ -50,8 +50,8 @@ const CuckooForm = () => {
     setData((prevData) => ({ ...prevData, category: '' }));
   };
 
-  const handleSubmit = (event) => {
-    event.preventDefault();
+  const handleSubmit = (e) => {
+    e.preventDefault();
 
     const formData = new FormData();
     formData.append('post[type_id]', data.type);

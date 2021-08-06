@@ -1,37 +1,31 @@
 import React from 'react';
-import axios from 'axios';
 import Layout from '../../components/Layout';
 import Avatar from '../../elements/Avatar';
+import { get } from '../../helpers/Networking';
 import { contentContainer, edit, logout, profileSection } from './profile.module.scss';
 
 const Profile = () => {
-  var user = localStorage.getItem('data');
-  user = JSON.parse(user);
-  console.log(user);
-  const handleClick = (event) => {
-    event.preventDefault();
-    const headers = {
-      authorization: localStorage.getItem('token'),
-    };
-    axios
-      .get(`${process.env.REACT_APP_API_BASE_URL}/users/sign_out`, {
-        headers: headers,
-      })
-      .then((resp) => {
-        console.log(resp);
-        if (resp.status === 200) {
-          localStorage.clear();
-          window.location.href = '/';
-        }
-      });
+  // let user = localStorage.getItem('data');
+  // user = JSON.parse(user);
+  const user = JSON.parse(localStorage.getItem('data'));
+
+  const handleClick = (e) => {
+    e.preventDefault();
+
+    get('/users/sign_out', function (resp) {
+      if (resp.status === 200) {
+        localStorage.clear();
+        window.location.href = '/';
+      }
+    });
   };
 
   return (
-    <Layout pageTitle='Profile' hideCreateBtn>
+    <Layout pageTitle='Profile' hideHeader hideCreateBtn>
       <div className={contentContainer}>
         <Avatar userImage={user.image_url} />
         <h3>{user.name}</h3>
-        <a href='/signin' className={edit}>
+        <a href='/profile/edit' className={edit}>
           Edit Profile
         </a>
         <div className={profileSection}>
@@ -44,7 +38,7 @@ const Profile = () => {
           <p>
             <span>Company</span>
           </p>
-          <p>RedLight</p>
+          <p></p>
         </div>
         <div className={profileSection}>
           <p>
