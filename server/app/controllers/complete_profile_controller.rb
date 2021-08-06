@@ -10,8 +10,9 @@ class CompleteProfileController < ActionController::API
       render json: { message: 'An error has occurred, the information was not updated!' }, status: :unprocessable_entity
     end
   end
-  
+
   private
+
   def profile_params
     params
       .require(:user)
@@ -20,5 +21,4 @@ class CompleteProfileController < ActionController::API
         p[:profile_completed] = true
       end
   end
-
 end
