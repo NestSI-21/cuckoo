@@ -19,10 +19,8 @@ gem 'puma', '~> 5.0'
 # gem 'bcrypt', '~> 3.1.7'
 
 # Use Active Storage variant
+gem 'aws-sdk-s3', require: false
 gem 'image_processing', '~> 1.2'
-gem "aws-sdk-s3", require: false
-
-
 
 # Reduces boot times through caching; required in config/boot.rb
 gem 'bootsnap', '>= 1.4.4', require: false
@@ -34,8 +32,8 @@ gem 'rest-client', '~> 2.1.0'
 
 gem 'slack-notifier'
 
-gem 'slack-ruby-client'
 gem 'async-websocket', '~> 0.8.0'
+gem 'slack-ruby-client'
 
 gem 'dotenv-rails', groups: %i[development test]
 
