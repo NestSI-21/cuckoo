@@ -2,15 +2,15 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { select } from './select.module.scss';
 
-const Select = ({ options, label, ...rest }) => {
+const Select = ({ name, value, onChange, options, label, required }) => {
   return (
     <div className={select}>
-      <select {...rest}>
-        <option defaultValue disabled></option>
+      <select name={name} value={value} onChange={onChange} required={required}>
+        <option defaultValue hidden></option>
         {options.map((option, i) => {
           return (
-            <option key={i} value={option}>
-              {option}
+            <option key={i} value={option.id}>
+              {option.name}
             </option>
           );
         })}
@@ -22,6 +22,7 @@ const Select = ({ options, label, ...rest }) => {
 
 Select.propTypes = {
   name: PropTypes.string,
+  value: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
   options: PropTypes.array,
   onChange: PropTypes.func,
   label: PropTypes.string,
