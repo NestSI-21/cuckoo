@@ -1,4 +1,5 @@
 # frozen_string_literal: true
+require 'date'
 
 class PostsController < ActionController::API
   before_action :authenticate_user!
@@ -13,34 +14,46 @@ class PostsController < ActionController::API
 
   def create
     @post = Post.new(post_params)
-    # @post.images.attach(params[:images])
     @post.user = current_user
 
     if @post.save
+      Slack.configure do |config|
+        config.token = ENV['SLACK_OAUTH_TOKEN']
+        raise 'Missing ENV[SLACK_OAUTH_TOKEN]!' unless config.token
+      end
+  
+            client = Slack::Web::Client.new
+  
+      client.auth_test
+
+      @slack_cuckoo = @post.title + "\n\n" + @post.description + "\n\n"
+
+      if(@post.location != "")
+        @slack_cuckoo += "At: " + @post.location + "\n"
+      end 
+
+      if(@post.start_date)
+        @slack_cuckoo += "From: " + @post.start_date.strftime("%d:%m:%Y")
+      end 
+
+      if(@post.start_time)
+        @slack_cuckoo += ", " + @post.start_time.strftime("%H:%M")
+      end 
+      if(@post.end_date)
+        @slack_cuckoo += +"\nTo: "+ @post.end_date.strftime("%d:%m:%Y")
+      end 
+      
+      if(@post.end_time)
+        @slack_cuckoo += ", " + @post.end_time.strftime("%H:%M")
+      end
+
+      client.chat_postMessage(channel: '#nestsi-21-equipa', text: @slack_cuckoo, as_user: true)
       render json: { message: 'A new post was created' }, status: :ok
     else
       render json: { message: 'There was an error!' }, status: :unauthorized
     end
 
-    # notifier = Slack::Notifier.new "#{ENV['SLACK_WEBHOOK']}" do
-    #     defaults channel: "#nestsi-21-equipa",
-    #              username: "cuckoo"
-    #   end
-
-    #   notifier.ping "Hello default"
-    # => will message "Hello default"
-    # => to the "#default" channel as 'notifier'
-
-    # Slack.configure do |config|
-    #   config.token = ENV['SLACK_OAUTH_TOKEN']
-    #   raise 'Missing ENV[SLACK_OAUTH_TOKEN]!' unless config.token
-    # end
-
-    #       client = Slack::Web::Client.new
-
-    # client.auth_test
-
-    # client.chat_postMessage(channel: '#nestsi-21-equipa', text: 'Hello World', as_user: true)
+    
   end
 
   def destroy
