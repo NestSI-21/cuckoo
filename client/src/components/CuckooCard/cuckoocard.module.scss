@@ -3,8 +3,17 @@
 
 .cuckooCard {
   @include grid(0, 1.5rem, 4.5rem 1fr);
-  border-bottom: 0.1rem solid #eef1f0;
+  border-bottom: 0.1rem solid $border-gray;
   padding: 1.5rem 0;
+
+  .titleSection {
+    display: flex;
+    justify-content: space-between;
+    .deleteButton {
+      margin-left: 2rem;
+      margin-top: 0.2rem;
+    }
+  }
 
   &:first-of-type {
     padding-top: 0;
@@ -14,11 +23,14 @@
     padding-bottom: 0;
     border-bottom: none;
   }
-
   .author {
     color: $light-gray;
     font-size: $text-small;
     margin-bottom: 1rem;
+    @include flex($justify: right);
+    img {
+      display: none;
+    }
 
     span {
       font-size: $text-small;
@@ -37,10 +49,53 @@
     margin-top: 1rem;
 
     div {
-      display: flex;
+      @include flex($align: flex-start);
       p {
         margin: 0 1.5rem 0 0.5rem;
         font-size: $text-small;
+      }
+    }
+  }
+}
+
+@include smallTablet-breakpoint {
+  .cuckooCard {
+    display: block;
+    .author {
+      img {
+        display: inline;
+        margin-top: 0.2rem;
+      }
+      span {
+        margin-left: 0.5rem;
+      }
+    }
+  }
+  .avatarContainer:first-child img:first-child {
+    display: none;
+  }
+}
+
+@include mobile-breakpoint {
+  .cuckooCard {
+    .author {
+      span {
+        font-size: 1.2rem;
+      }
+    }
+    .detailsWrapper {
+      display: block;
+      div {
+        @include flex($justify: left);
+        p {
+          font-size: 1.2rem;
+        }
+        &:last-child {
+          margin-top: 0.2rem;
+          img {
+            width: 16px;
+          }
+        }
       }
     }
   }

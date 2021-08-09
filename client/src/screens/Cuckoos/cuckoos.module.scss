@@ -73,7 +73,7 @@
       }
       .categoryFilters {
         padding-left: 2rem;
-        border-left: 0.2rem solid #eef1f0;
+        border-left: 0.2rem solid $border-gray;
       }
     }
     @include mobile-breakpoint {
