@@ -12,7 +12,7 @@ export function get(url, callback) {
 
 export function post(formData, url, callback) {
   const headers = {
-    'Content-Type': 'multipart/form-data',
+    // 'Content-Type': 'multipart/form-data',
     authorization: localStorage.getItem('token'),
   };
 

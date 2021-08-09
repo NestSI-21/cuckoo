@@ -8,6 +8,11 @@
     @content;
   }
 }
+@mixin smallTablet-breakpoint {
+  @media (max-width: 730px) {
+    @content;
+  }
+}
 @mixin desktop-breakpoint {
   @media (min-width: 1024px) {
     @content;

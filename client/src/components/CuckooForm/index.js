@@ -58,14 +58,15 @@ const CuckooForm = () => {
     formData.append('post[location]', data.location);
     formData.append('post[category]', data.category);
     formData.append('post[description]', data.description);
-    formData.append('post[images]', data.images);
+    data.images.forEach((image) => {
+      formData.append('post[images][]', image);
+    });
     formData.append('post[start_date]', data.startDate);
     formData.append('post[end_date]', data.endDate);
     formData.append('post[start_time]', data.startTime);
     formData.append('post[end_time]', data.endTime);
-
     post(formData, '/posts', function (response) {
-      alert(response.data);
+      console.log(response.data);
     });
   };
 

@@ -3,12 +3,11 @@
 .contentContainer {
   @include main();
   @include tablet-breakpoint {
-    @include main(calc(100vw - 12rem));
+    @include main(calc(100vw - 12rem), $mainPadding: 1rem 3rem);
   }
   @include mobile-breakpoint {
-    @include main(100vw);
-    height: 80vh;
-    @include main(100vw);
+    @include main(100vw, fit-content, $mainPadding: 10rem 3rem);
+    overflow-y: hidden;
   }
   overflow-y: scroll;
   .searchbar {
@@ -20,7 +19,7 @@
       top: 2rem;
       width: 20rem;
     }
-    @include mobile-breakpoint {
+    @include smallTablet-breakpoint {
       width: 100%;
       position: initial;
     }
