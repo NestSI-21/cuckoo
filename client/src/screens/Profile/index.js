@@ -5,9 +5,8 @@ import { get } from '../../helpers/Networking';
 import { contentContainer, edit, logout, profileSection } from './profile.module.scss';
 
 const Profile = () => {
-  // let user = localStorage.getItem('data');
-  // user = JSON.parse(user);
   const user = JSON.parse(localStorage.getItem('data'));
+  const companyName = JSON.parse(localStorage.getItem('companyName'));
 
   const handleClick = (e) => {
     e.preventDefault();
@@ -38,7 +37,7 @@ const Profile = () => {
           <p>
             <span>Company</span>
           </p>
-          <p></p>
+          <p>{companyName}</p>
         </div>
         <div className={profileSection}>
           <p>

@@ -1,29 +1,39 @@
 import React, { useState, useEffect } from 'react';
 import { useHistory } from 'react-router-dom';
-import axios from 'axios';
+import { get, post } from '../../helpers/Networking';
 import Avatar from '../../elements/Avatar';
 import Select from '../../elements/Select';
 import Input from '../../elements/Input';
 import Button from '../../elements/Button';
 import { form } from './profileform.module.scss';
-import { get } from '../../helpers/Networking';
 
 const ProfileForm = () => {
   const [companies, setCompanies] = useState([]);
   const [data, setData] = useState({
     company: '',
     role: '',
-    birthdate: {},
+    birthday: {},
   });
 
   let history = useHistory();
-  let user = localStorage.getItem('data');
-  user = JSON.parse(user);
+  const user = JSON.parse(localStorage.getItem('data'));
 
   useEffect(() => {
     getCompanies();
   }, []);
 
+  useEffect(() => {
+    if (user.profile_completed) {
+      setData((prevData) => ({
+        ...prevData,
+        company: user.company_id,
+        role: user.company_role,
+        birthday: user.birthday,
+      }));
+    }
+  }, []);
+
+  // Get companies
   const getCompanies = () => {
     get('/companies', function (resp) {
       const companies = resp.data.companies.map(({ id, name }) => ({ id, name }));
@@ -31,46 +41,36 @@ const ProfileForm = () => {
     });
   };
 
+  // Handler for input
   const handleChange = (e) => {
     const { name, value } = e.target;
     setData((prevData) => ({ ...prevData, [name]: value }));
   };
 
+  // Submit Handler for user profile
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    // const formData = new FormData();
-    // formData.append('user[company_id]', data.comapany);
-    // formData.append('user[company_role]', data.role);
-    // formData.append('user[company_id]', data.birthdate);
+    const formData = new FormData();
+    formData.append('user[company_id]', data.company);
+    formData.append('user[company_role]', data.role);
+    formData.append('user[birthday]', data.birthday);
 
-    // post(formData, '/users/complete_profile', function (response) {
-    //   console.log(response);
-    // });
-
-    const headers = {
-      authorization: localStorage.getItem('token'),
-    };
-    axios
-      .post(
-        `${process.env.REACT_APP_API_BASE_URL}/users/complete_profile`,
-        {
-          user: { company_id: data.company, company_role: data.role, birthday: data.birthdate },
-        },
-        {
-          headers: headers,
-        },
-      )
-      .then((resp) => {
-        console.log(resp);
-        resp.status === 200 ? history.push('/dashboard') : history.push('/profile/edit');
-      });
+    post(formData, '/users/complete_profile', function (resp) {
+      if (resp.status === 200) {
+        localStorage.setItem('data', JSON.stringify(resp.data.user));
+        localStorage.setItem('companyName', JSON.stringify(resp.data.user_company_name));
+        history.push('/dashboard');
+      } else {
+        history.push('/profile/edit');
+      }
+    });
   };
 
   return (
     <>
       <Avatar userImage={user.image_url} />
-      <h1>Almost there</h1>
+      <h1>Enter your details</h1>
       <form className={form} onSubmit={handleSubmit}>
         <Select
           name='company'
@@ -90,12 +90,12 @@ const ProfileForm = () => {
         />
         <Input
           type='date'
-          name='birthdate'
-          value={data.birthdate}
+          name='birthday'
+          value={data.birthday}
           onChange={handleChange}
           label='Please enter your date of birth'
         />
-        <Button text='Get Started' type='submit' />
+        <Button text='Continue' type='submit' />
       </form>
     </>
   );

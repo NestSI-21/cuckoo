@@ -22,7 +22,7 @@ const Select = ({ name, value, onChange, options, label, required }) => {
 
 Select.propTypes = {
   name: PropTypes.string,
-  value: PropTypes.string,
+  value: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
   options: PropTypes.array,
   onChange: PropTypes.func,
   label: PropTypes.string,

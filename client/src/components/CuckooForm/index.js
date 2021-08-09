@@ -1,4 +1,3 @@
-/* eslint-disable react/jsx-key */
 import React, { useState } from 'react';
 import Radio from '../../elements/Radio';
 import Input from '../../elements/Input';
