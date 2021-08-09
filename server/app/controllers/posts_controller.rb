@@ -1,6 +1,5 @@
 # frozen_string_literal: true
 
-
 class PostsController < ActionController::API
   before_action :authenticate_user!
 
@@ -9,14 +8,11 @@ class PostsController < ActionController::API
     render json: { posts: @posts }, status: :ok
   end
 
-  def new
-    @post = Post.new
-  end
-
   def create
     @post = Post.new(post_params)
+    # @post.images.attach(params[:images])
     @post.user = current_user
-    
+
     if @post.save
       render json: { message: 'A new post was created' }, status: :ok
     else
@@ -27,21 +23,21 @@ class PostsController < ActionController::API
     #     defaults channel: "#nestsi-21-equipa",
     #              username: "cuckoo"
     #   end
-      
+
     #   notifier.ping "Hello default"
-      # => will message "Hello default"
-      # => to the "#default" channel as 'notifier'
+    # => will message "Hello default"
+    # => to the "#default" channel as 'notifier'
 
-      # Slack.configure do |config|
-      #   config.token = ENV['SLACK_OAUTH_TOKEN']
-      #   raise 'Missing ENV[SLACK_OAUTH_TOKEN]!' unless config.token
-      # end
+    # Slack.configure do |config|
+    #   config.token = ENV['SLACK_OAUTH_TOKEN']
+    #   raise 'Missing ENV[SLACK_OAUTH_TOKEN]!' unless config.token
+    # end
 
-#       client = Slack::Web::Client.new
+    #       client = Slack::Web::Client.new
 
-# client.auth_test
+    # client.auth_test
 
-# client.chat_postMessage(channel: '#nestsi-21-equipa', text: 'Hello World', as_user: true)
+    # client.chat_postMessage(channel: '#nestsi-21-equipa', text: 'Hello World', as_user: true)
   end
 
   def destroy
@@ -53,7 +49,7 @@ class PostsController < ActionController::API
   private
 
   def post_params
-    params.require(:post).permit(:type_id, :category, :title, :location, :description, :img_url,
-                                 :start_date, :end_date, :start_time, :end_time)
+    params.require(:post).permit(:type_id, :category, :title, :location, :description,
+                                 :start_date, :end_date, :start_time, :end_time, images: [])
   end
 end

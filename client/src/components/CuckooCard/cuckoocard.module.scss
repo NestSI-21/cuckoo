@@ -5,6 +5,7 @@
   @include grid(0, 1.5rem, 4.5rem 1fr);
   border-bottom: 0.1rem solid #eef1f0;
   padding: 1.5rem 0;
+  position: relative;
 
   &:first-of-type {
     padding-top: 0;
