@@ -8,7 +8,7 @@ class CompleteProfileController < ActionController::API
       render(
       json: UserSerializer.new(
         current_user,
-        { include: [:user, :"user.company"] }
+        { include: [:company] }
       )
     )
     else
