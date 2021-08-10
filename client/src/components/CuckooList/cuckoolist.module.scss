@@ -4,6 +4,9 @@
   @include container();
   overflow-x: hidden;
   overflow-y: scroll;
+  @include smallTablet-breakpoint {
+    height: 45rem;
+  }
 
   &::-webkit-scrollbar {
     width: 2.5rem;

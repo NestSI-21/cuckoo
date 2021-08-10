@@ -3,9 +3,18 @@ import PropTypes from 'prop-types';
 import Avatar from '../../elements/Avatar';
 import CuckooImages from '../CuckooImages';
 import locationPin from '../../assets/icons/location-pin.svg';
+import deleteBtn from '../../assets/icons/deleteBtn.svg';
 import clock from '../../assets/icons/clock.svg';
 import dog from '../../assets/icons/dog.jpeg';
-import { cuckooCard, author, seeMore, detailsWrapper } from './cuckoocard.module.scss';
+import {
+  cuckooCard,
+  avatarContainer,
+  titleSection,
+  deleteButton,
+  author,
+  seeMore,
+  detailsWrapper,
+} from './cuckoocard.module.scss';
 
 const CuckooCard = ({
   cuckoo: {
@@ -33,12 +42,26 @@ const CuckooCard = ({
 
   return (
     <div className={cuckooCard}>
-      <Avatar userImage={dog} />
+      <div className={avatarContainer}>
+        <Avatar userImage={dog} />
+      </div>
+
       <div>
-        <h3>{title}</h3>
+        <div>
+          <div className={titleSection}>
+            <h3>{title} </h3>
+            <div className={deleteButton}>
+              <img src={deleteBtn} />
+            </div>
+          </div>
+        </div>
         <p className={author}>
-          <span>{type}</span> • @{username}, {company} • {datePosted}
+          <Avatar userImage={dog} />
+          <span>
+            @{username}, {company} • {datePosted} • {type}
+          </span>
         </p>
+
         <p>{cuckooDescription}</p>
         {description.length >= maxPreview ? (
           <span className={seeMore} onClick={togglePreview}>
