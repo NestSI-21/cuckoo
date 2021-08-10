@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_08_10_131540) do
+ActiveRecord::Schema.define(version: 2021_08_10_141606) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -76,7 +76,6 @@ ActiveRecord::Schema.define(version: 2021_08_10_131540) do
   create_table "posts", force: :cascade do |t|
     t.bigint "user_id", null: false
     t.bigint "type_id", null: false
-    t.string "category", null: false
     t.string "title", null: false
     t.string "location"
     t.string "description"
@@ -86,6 +85,8 @@ ActiveRecord::Schema.define(version: 2021_08_10_131540) do
     t.time "end_time"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.bigint "category_id"
+    t.index ["category_id"], name: "index_posts_on_category_id"
     t.index ["type_id"], name: "index_posts_on_type_id"
     t.index ["user_id"], name: "index_posts_on_user_id"
   end
@@ -121,6 +122,7 @@ ActiveRecord::Schema.define(version: 2021_08_10_131540) do
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
   add_foreign_key "categories", "types"
+  add_foreign_key "posts", "categories"
   add_foreign_key "posts", "types"
   add_foreign_key "posts", "users"
   add_foreign_key "users", "companies"
