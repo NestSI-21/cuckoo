@@ -3,7 +3,7 @@
 class CategoriesController < ActionController::API
   before_action :authenticate_user!
 
-  def send_categories
+  def index
     @categories = Category.all
     render(
       json: CategorySerializer.new(
