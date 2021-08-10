@@ -1,4 +1,3 @@
-/* eslint-disable react/jsx-key */
 import React, { useState } from 'react';
 import Radio from '../../elements/Radio';
 import Input from '../../elements/Input';
@@ -6,8 +5,8 @@ import Select from '../../elements/Select';
 import Textarea from '../../elements/Textarea';
 import ImageUpload from '../ImageUpload';
 import Button from '../../elements/Button';
-import { form, radioWrapper, flexWrapper, gridWrapper, btnWrapper } from './cuckooform.module.scss';
 import { post } from '../../helpers/Networking';
+import { form, radioWrapper, flexWrapper, gridWrapper, btnWrapper } from './cuckooform.module.scss';
 
 const CuckooForm = () => {
   const [data, setData] = useState({
@@ -50,8 +49,8 @@ const CuckooForm = () => {
     setData((prevData) => ({ ...prevData, category: '' }));
   };
 
-  const handleSubmit = (event) => {
-    event.preventDefault();
+  const handleSubmit = (e) => {
+    e.preventDefault();
 
     const formData = new FormData();
     formData.append('post[type_id]', data.type);

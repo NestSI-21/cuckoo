@@ -4,13 +4,11 @@
   @include main();
   @include grid(0, 2rem, 2fr 1fr);
   @include tablet-breakpoint {
-    @include main(calc(100vw - 12rem));
+    @include main(calc(100vw - 12rem), $mainPadding: 1rem 3rem);
     @include grid(2rem, 0, 1fr);
   }
   @include mobile-breakpoint {
-    @include main(100vw, fit-content);
-    height: 80vh;
-    padding-bottom: 15rem;
+    @include main(100vw, fit-content, $mainPadding: 10rem 3rem);
     position: relative;
     display: block;
   }
