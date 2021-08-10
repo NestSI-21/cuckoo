@@ -1,38 +1,52 @@
 @import '../../styles/applications.scss';
 .upcoming {
   padding: 2rem 0;
-  height: 58%;
-  overflow-x: hidden;
-  overflow-y: scroll;
+  height: 100%;
+  position: relative;
   @include tablet-breakpoint {
-    padding-left: 1.5rem;
-    height: 100%;
+    padding: 0 1.5rem;
   }
   @include mobile-breakpoint {
+    padding: 1.5rem 0;
     padding-left: 0;
   }
 
-  h3 {
+  .upcomingTitle {
+    position: sticky;
+    top: 0;
+    background: #fff;
     color: $green;
   }
-  .upcomingCard {
-    padding: 2rem 0;
-    @include flex(row, center, flex-start);
-
-    .upcomingDay {
-      @include flex(column, center, flex-start);
-      width: max-content;
-      h3 {
-        color: $gray;
-      }
-      p {
-        text-transform: uppercase;
-      }
+  .eventsScroll {
+    overflow-y: scroll;
+    height: 30rem;
+    padding-bottom: 4rem;
+    @include tablet-breakpoint {
+      height: 25rem;
+      padding-bottom: 0;
     }
-    .upcomingDescription {
-      margin-left: 2rem;
-      p {
-        color: $light-gray;
+    @include smallTablet-breakpoint {
+      height: 30rem;
+    }
+    .upcomingCard {
+      padding: 2rem 0;
+      @include flex(row, flex-start);
+
+      .upcomingDay {
+        @include flex(column, center, flex-start);
+        width: max-content;
+        h3 {
+          color: $gray;
+        }
+        p {
+          text-transform: uppercase;
+        }
+      }
+      .upcomingDescription {
+        margin-left: 2rem;
+        p {
+          color: $light-gray;
+        }
       }
     }
   }
