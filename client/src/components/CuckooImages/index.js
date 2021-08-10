@@ -10,21 +10,14 @@ import {
 
 const CuckooImages = () => {
   const [imgZoom, setImgZoom] = useState({
-    masterZoom: {
-      id: 0,
-      zoom: false,
-    },
+    id: 0,
+    zoom: false,
   });
 
   const openModal = (index) => (e) => {
-    setImgZoom({
-      ...imgZoom,
-      masterZoom: {
-        id: index,
-        zoom: !imgZoom.masterZoom.zoom,
-      },
-    });
+    setImgZoom({ ...imgZoom, id: index, zoom: !imgZoom.zoom });
     console.log(index);
+    console.log(imgZoom.zoom);
     console.log(e.target.src);
   };
 
@@ -65,7 +58,9 @@ const CuckooImages = () => {
       {imgSrc.map((cuckooImage, index) => {
         return (
           <div
-            className={imgZoom.masterZoom.zooom ? imagePlaceHolderZoomed : imagePlaceHolder}
+            className={
+              imgZoom.zoom && imgZoom.id === index ? imagePlaceHolderZoomed : imagePlaceHolder
+            }
             key={cuckooImage.id}
             onClick={openModal(index)}
           >
