@@ -27,8 +27,17 @@ const CuckooForm = () => {
     { id: 1, type: 'Announcement' },
     { id: 2, type: 'Event' },
   ];
-  const announcementOptions = ['Alert', 'New Company', 'New Employee', 'Other'];
-  const eventOptions = ['Education', 'Social', 'Other'];
+  const announcementOptions = [
+    { id: 1, name: 'Alert' },
+    { id: 2, name: 'New Company' },
+    { id: 3, name: 'New Employee' },
+    { id: 4, name: 'Other' },
+  ];
+  const eventOptions = [
+    { id: 1, name: 'Education' },
+    { id: 2, name: 'Social' },
+    { id: 3, name: 'Other' },
+  ];
 
   // Handler for inputs
   const handleChange = (e) => {
