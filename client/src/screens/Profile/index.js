@@ -1,4 +1,5 @@
 import React from 'react';
+import { format } from 'date-fns';
 import Layout from '../../components/Layout';
 import Avatar from '../../elements/Avatar';
 import { get } from '../../helpers/Networking';
@@ -43,7 +44,7 @@ const Profile = () => {
           <p>
             <span>Date of Birth</span>
           </p>
-          <p>{user.birthday}</p>
+          <p>{format(new Date(user.birthday), 'dd-MM-yyyy')}</p>
         </div>
         <a href='#' className={logout} onClick={handleClick}>
           Log out

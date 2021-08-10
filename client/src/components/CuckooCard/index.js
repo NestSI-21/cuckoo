@@ -1,75 +1,50 @@
-import React, { useState } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 import Avatar from '../../elements/Avatar';
-import CuckooImages from '../CuckooImages';
-import locationPin from '../../assets/icons/location-pin.svg';
-import clock from '../../assets/icons/clock.svg';
+import CuckooAuthor from '../../elements/CuckooAuthor';
+import CuckooDescription from '../../elements/CuckooDescription';
+import CuckooImages from '../../elements/CuckooImages';
+import CuckooLocation from '../../elements/CuckooLocation';
+import CuckooDate from '../../elements/CuckooDate';
+import CuckooTime from '../CuckooTime';
 import dog from '../../assets/icons/dog.jpeg';
-import { cuckooCard, author, seeMore, detailsWrapper } from './cuckoocard.module.scss';
+import { cuckooCard, authorWrapper, detailsWrapper } from './cuckoocard.module.scss';
 
 const CuckooCard = ({
   cuckoo: {
-    type,
+    type_id,
     title,
-    username,
+    user_id,
     company,
-    datePosted,
+    created_at,
     description,
     location,
-    startDate,
-    endDate,
-    startTime,
-    endTime,
+    start_date,
+    end_date,
+    start_time,
+    end_time,
   },
 }) => {
-  const [isPreview, setIsPreview] = useState(true);
-
-  const maxPreview = 160;
-  const cuckooDescription = isPreview ? description.slice(0, maxPreview) : description;
-
-  const togglePreview = () => {
-    setIsPreview(!isPreview);
-  };
-
   return (
     <div className={cuckooCard}>
       <Avatar userImage={dog} />
       <div>
         <h3>{title}</h3>
-        <p className={author}>
-          <span>{type}</span> • @{username}, {company} • {datePosted}
+        <p className={authorWrapper}>
+          <CuckooAuthor
+            type={type_id}
+            username={user_id}
+            company={company}
+            createdAt={created_at}
+          />
         </p>
-        <p>{cuckooDescription}</p>
-        {description.length >= maxPreview ? (
-          <span className={seeMore} onClick={togglePreview}>
-            {isPreview ? 'see more' : 'see less'}
-          </span>
-        ) : null}
+        <CuckooDescription description={description} />
         <CuckooImages image={dog} />
-        {location || startDate || endDate || startTime || endTime ? (
-          <div className={detailsWrapper}>
-            {location ? (
-              <div>
-                <img src={locationPin} alt='location' />
-                <p>{location}</p>
-              </div>
-            ) : null}
-            {startDate || endDate || startTime || endTime ? (
-              <div>
-                <img src={clock} alt='time' />
-                <p>
-                  {startDate ? startDate : null}
-                  {startDate && endDate ? ' - ' : null}
-                  {endDate ? endDate : null}
-                  {(startDate || endDate) && (startTime || endTime) ? ' • ' : null}
-                  {startTime ? startTime : null}
-                  {startTime && endTime ? ' - ' : null}
-                  {endTime ? endTime : null}
-                </p>
-              </div>
-            ) : null}
-          </div>
-        ) : null}
+        <div className={detailsWrapper}>
+          {location ? <CuckooLocation location={location} /> : null}
+          {start_date || end_date ? <CuckooDate startDate={start_date} endDate={end_date} /> : null}
+          {start_time || end_time ? <CuckooTime startTime={start_time} endTime={end_time} /> : null}
+        </div>
       </div>
     </div>
   );
