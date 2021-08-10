@@ -6,7 +6,8 @@ class CompleteProfileController < ActionController::API
   def update
     if current_user.update(profile_params)
       @company = Company.find(current_user.company_id)
-      render json: { message: 'The request was successful',user: current_user, user_company_name: @company.name }, status: :ok
+      render json: { message: 'The request was successful', user: current_user, user_company_name: @company.name },
+             status: :ok
     else
       render json: { message: 'An error has occurred, the information was not updated!' }, status: :unprocessable_entity
     end
