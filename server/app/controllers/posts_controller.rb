@@ -23,6 +23,8 @@ class PostsController < ActionController::API
   
       client.auth_test
 
+      @category = Category.find(@post.category_id)
+
 
       @slack_cuckoo = @post.title + "\n\n" + @post.description + "\n\n"
 
@@ -45,7 +47,7 @@ class PostsController < ActionController::API
         @slack_cuckoo += ", " + @post.end_time.strftime("%H:%M")
       end
 
-      client.chat_postMessage(channel: , text: @slack_cuckoo, as_user: true)
+      client.chat_postMessage(channel: @category.slack_channel, text: @slack_cuckoo, as_user: true)
       render json: { message: 'A new post was created' }, status: :ok
     else
       render json: { message: 'There was an error!' }, status: :unauthorized
@@ -63,7 +65,7 @@ class PostsController < ActionController::API
   private
 
   def post_params
-    params.require(:post).permit(:type_id, :category, :title, :location, :description,
+    params.require(:post).permit(:type_id, :category_id, :title, :location, :description,
                                  :start_date, :end_date, :start_time, :end_time, images: [])
   end
 end
