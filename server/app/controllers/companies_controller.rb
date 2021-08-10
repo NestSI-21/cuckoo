@@ -5,6 +5,9 @@ class CompaniesController < ActionController::API
 
   def index
     @companies = Company.all
-    render json: { companies: @companies }, status: :ok
+    render(
+      json: CompanySerializer.new(
+         @companies
+      )
   end
 end
