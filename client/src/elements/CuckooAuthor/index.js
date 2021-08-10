@@ -5,7 +5,9 @@ import PropTypes from 'prop-types';
 const CuckooAuthor = ({ type, user, company, createdAt }) => {
   return (
     <>
-      <span>{type}</span> • @{user}, {company} • {format(new Date(createdAt), 'dd-MM-yyyy')}
+      <span>
+        @{user}, {company} • {format(new Date(createdAt), 'dd-MM-yyyy')} • {type}
+      </span>
     </>
   );
 };
