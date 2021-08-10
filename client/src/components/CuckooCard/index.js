@@ -6,9 +6,16 @@ import CuckooDescription from '../../elements/CuckooDescription';
 import CuckooImages from '../../elements/CuckooImages';
 import CuckooLocation from '../../elements/CuckooLocation';
 import CuckooDate from '../../elements/CuckooDate';
-import CuckooTime from '../CuckooTime';
+import CuckooTime from '../../elements/CuckooTime';
 import dog from '../../assets/icons/dog.jpeg';
-import { cuckooCard, authorWrapper, detailsWrapper } from './cuckoocard.module.scss';
+import deleteBtn from '../../assets/icons/deleteBtn.svg';
+import {
+  cuckooCard,
+  titleSection,
+  deleteButton,
+  authorWrapper,
+  detailsWrapper,
+} from './cuckoocard.module.scss';
 
 const CuckooCard = ({
   cuckoo: {
@@ -27,10 +34,13 @@ const CuckooCard = ({
 }) => {
   return (
     <div className={cuckooCard}>
-      <Avatar userImage={dog} />
-      <div>
-        <h3>{title}</h3>
+      <div className={titleSection}>
+        <h3>{title} </h3>
+        <div className={deleteButton}>
+          <img src={deleteBtn} />
+        </div>
         <p className={authorWrapper}>
+          <Avatar userImage={dog} />
           <CuckooAuthor
             type={type_id}
             username={user_id}

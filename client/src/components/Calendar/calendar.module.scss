@@ -5,9 +5,9 @@
   max-height: 100vh;
   overflow-y: hidden;
   @include tablet-breakpoint {
-    @include flex(row, center, flex-start);
+    @include flex(row, flex-start);
   }
-  @include mobile-breakpoint {
+  @include smallTablet-breakpoint {
     @include flex(column, center, flex-start);
     overflow-y: visible;
     max-height: 75vh;
@@ -18,17 +18,17 @@
     font-size: 1.6rem;
     font-weight: lighter;
     padding-bottom: 1rem;
-    border-bottom: 0.2rem solid #eef1f0;
+    border-bottom: 0.2rem solid $border-gray;
     @include tablet-breakpoint {
       width: 80%;
       padding-right: 1.5rem;
       border-bottom: none;
-      border-right: 0.2rem solid #eef1f0;
+      border-right: 0.2rem solid $border-gray;
     }
     @include mobile-breakpoint {
       padding-right: 0;
       border-right: none;
-      border-bottom: 0.2rem solid #eef1f0;
+      border-bottom: 0.2rem solid $border-gray;
     }
   }
 }
