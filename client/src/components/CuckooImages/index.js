@@ -9,10 +9,21 @@ import {
 } from './cuckooimages.module.scss';
 
 const CuckooImages = () => {
-  const [imgZoom, setImgZoom] = useState(false);
+  const [imgZoom, setImgZoom] = useState({
+    masterZoom: {
+      id: 0,
+      zoom: false,
+    },
+  });
 
   const openModal = (index) => (e) => {
-    setImgZoom(!imgZoom);
+    setImgZoom({
+      ...imgZoom,
+      masterZoom: {
+        id: index,
+        zoom: !imgZoom.masterZoom.zoom,
+      },
+    });
     console.log(index);
     console.log(e.target.src);
   };
@@ -54,7 +65,7 @@ const CuckooImages = () => {
       {imgSrc.map((cuckooImage, index) => {
         return (
           <div
-            className={imgZoom ? imagePlaceHolderZoomed : imagePlaceHolder}
+            className={imgZoom.masterZoom.zooom ? imagePlaceHolderZoomed : imagePlaceHolder}
             key={cuckooImage.id}
             onClick={openModal(index)}
           >
