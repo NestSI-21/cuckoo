@@ -5,7 +5,21 @@ class PostsController < ActionController::API
 
   def index
     @posts = Post.order(created_at: :desc).all
-    render json: { posts: @posts }, status: :ok
+    # @users = []
+    # @companies = []
+    # @posts.each do |post|
+    #   @users.push(User.find(post.user_id))
+    # end
+    # @users.each do |user|
+    #   @companies.push(Company.find(user.company_id))
+    # end
+    # users: @users, companies: @companies
+    render(
+      json: PostSerializer.new(
+        @posts,
+        { include: [:user, :"user.company"] }
+      )
+    )
   end
 
   def create
