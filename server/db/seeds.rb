@@ -26,7 +26,7 @@ Company.find_or_create_by(name: 'srgsoftware.io',
                           description: '"No-shore" custom software development - on-shore quality with off-shore discounted rates with 30+ years of experience!', status: 'a ver', logo: 'kappa')
 Company.find_or_create_by(name: 'Versatil', description: 'A tua equipa de IT personalizada.', status: 'a ver',
                           logo: 'kappa')
-Category.find_or_create_by(type_id: 1, name: 'Alert', slack_channel: '#alert')
+Category.find_or_create_by(type_id: 1, name: 'Alert', slack_channel: '#alerts')
 Category.find_or_create_by(type_id: 1, name: 'New Company', slack_channel: '#alerts')
 Category.find_or_create_by(type_id: 1, name: 'New Employee', slack_channel: '#alerts')
 Category.find_or_create_by(type_id: 1, name: 'Other', slack_channel: '#alerts')
