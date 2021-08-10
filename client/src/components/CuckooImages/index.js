@@ -1,15 +1,22 @@
-import React from 'react';
-import PropTypes from 'prop-types';
-//import dog from '../../assets/icons/dog.jpeg';
+import React, { useState } from 'react';
 import {
   imageGrid1,
   imageGrid2,
   imageGrid3,
   imageGrid4,
   imagePlaceHolder,
+  imagePlaceHolderZoomed,
 } from './cuckooimages.module.scss';
 
 const CuckooImages = () => {
+  const [imgZoom, setImgZoom] = useState(false);
+
+  const openModal = (index) => (e) => {
+    setImgZoom(!imgZoom);
+    console.log(index);
+    console.log(e.target.src);
+  };
+
   const imgSrc = [
     {
       id: '1',
@@ -28,6 +35,7 @@ const CuckooImages = () => {
     //   src: 'https://picsum.photos/id/620/600/400',
     // },
   ];
+
   const imgCounter = imgSrc.length;
   return (
     <div
@@ -43,19 +51,19 @@ const CuckooImages = () => {
           : null
       }
     >
-      {imgSrc.map((cuckooImage) => {
+      {imgSrc.map((cuckooImage, index) => {
         return (
-          <div className={imagePlaceHolder} key={cuckooImage.id}>
+          <div
+            className={imgZoom ? imagePlaceHolderZoomed : imagePlaceHolder}
+            key={cuckooImage.id}
+            onClick={openModal(index)}
+          >
             <img src={cuckooImage.src} alt='' />
           </div>
         );
       })}
     </div>
   );
-};
-
-CuckooImages.propTypes = {
-  image: PropTypes.string,
 };
 
 export default CuckooImages;
