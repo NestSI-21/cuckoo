@@ -23,6 +23,7 @@ class PostsController < ActionController::API
   
       client.auth_test
 
+
       @slack_cuckoo = @post.title + "\n\n" + @post.description + "\n\n"
 
       if(@post.location != "")
@@ -44,7 +45,7 @@ class PostsController < ActionController::API
         @slack_cuckoo += ", " + @post.end_time.strftime("%H:%M")
       end
 
-      client.chat_postMessage(channel: '#nestsi-21-equipa', text: @slack_cuckoo, as_user: true)
+      client.chat_postMessage(channel: , text: @slack_cuckoo, as_user: true)
       render json: { message: 'A new post was created' }, status: :ok
     else
       render json: { message: 'There was an error!' }, status: :unauthorized
