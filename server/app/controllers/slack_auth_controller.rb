@@ -15,6 +15,7 @@ class SlackAuthController < ActionController::API
     response = RestClient.post('https://slack.com/api/oauth.v2.access', payload)
     body = JSON.parse(response.body)
 
+
     unless body['ok']
       render json: { message: 'The slack temporary OAuth verifier code was invalid' }, status: :unauthorized
       return
