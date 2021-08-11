@@ -1,9 +1,9 @@
 # frozen_string_literal: true
-
-class CompleteProfileController < ActionController::API
+module Users
+class ProfileController < ActionController::API
   before_action :authenticate_user!
 
-  def index
+  def show
     render(
       json: UserSerializer.new(
         current_user,
