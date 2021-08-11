@@ -6,9 +6,7 @@ class Post < ApplicationRecord
 
   def images_url
     images.map do |image|
-      Rails.application.routes.url_helpers.url_for(image)    
+      Rails.application.routes.url_helpers.url_for(image)
     end
   end
-
-
 end
