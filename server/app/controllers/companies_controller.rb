@@ -9,5 +9,6 @@ class CompaniesController < ActionController::API
       json: CompanySerializer.new(
          @companies
       )
+    )
   end
 end

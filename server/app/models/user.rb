@@ -7,5 +7,5 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable,
          :jwt_authenticatable, jwt_revocation_strategy:
          Devise::JWT::RevocationStrategies::Null
-  belongs_to :company
+  belongs_to :company, optional: true
 end

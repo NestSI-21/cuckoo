@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useHistory } from 'react-router-dom';
+import denormalize from '@weareredlight/denormalize_json_api';
 import { get, post } from '../../helpers/Networking';
 import Avatar from '../../elements/Avatar';
 import Select from '../../elements/Select';
@@ -36,7 +37,9 @@ const ProfileForm = () => {
   // Get companies
   const getCompanies = () => {
     get('/companies', function (resp) {
-      const companies = resp.data.companies.map(({ id, name }) => ({ id, name }));
+      const companies = denormalize(
+        resp.data.data.map(({ id, attributes: { name } }) => ({ id, name })),
+      );
       setCompanies(companies);
     });
   };
@@ -56,10 +59,11 @@ const ProfileForm = () => {
     formData.append('user[company_role]', data.role);
     formData.append('user[birthday]', data.birthday);
 
-    post(formData, '/users/complete_profile', function (resp) {
+    post(formData, '/users/profile', function (resp) {
       if (resp.status === 200) {
-        localStorage.setItem('data', JSON.stringify(resp.data.user));
-        localStorage.setItem('companyName', JSON.stringify(resp.data.user_company_name));
+        console.log(resp);
+        // localStorage.setItem('data', JSON.stringify(resp.data.user));
+        // localStorage.setItem('companyName', JSON.stringify(resp.data.user_company_name));
         history.push('/dashboard');
       } else {
         history.push('/profile/edit');
