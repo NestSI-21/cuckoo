@@ -1,13 +1,13 @@
 @import '../../styles/applications.scss';
 
 .form {
-  margin-top: 5rem;
+  margin-top: 1rem;
   max-width: 75rem;
 
   .radioWrapper {
     @include grid(0, 1.6rem, 1fr 1fr);
-    width: 41.6rem;
-    margin: 0 auto;
+    width: 80%;
+    margin: 0 auto 3rem auto;
   }
 
   div {
@@ -52,6 +52,11 @@
 @include mobile-breakpoint {
   .form {
     width: 28rem;
+    .radioWrapper {
+      @include grid(0, 0.6rem, 1fr 1fr);
+      width: 100%;
+      margin: 0 auto 2.3rem auto;
+    }
     div {
       margin-bottom: 0.6rem;
     }

@@ -17,6 +17,19 @@
     background: #fff;
     color: $green;
   }
+  .upcomingCard {
+    padding: 2rem 0;
+    @include flex(row, flex-start);
+    .upcomingDescription {
+      margin-left: 1.2rem;
+      p {
+        color: $light-gray;
+      }
+    }
+    h3 {
+      text-align: center;
+    }
+  }
   .eventsScroll {
     overflow-y: scroll;
     height: 30rem;
@@ -29,9 +42,6 @@
       height: 30rem;
     }
     .upcomingCard {
-      padding: 2rem 0;
-      @include flex(row, flex-start);
-
       .upcomingDay {
         @include flex(column, center, flex-start);
         width: max-content;
@@ -40,12 +50,6 @@
         }
         p {
           text-transform: uppercase;
-        }
-      }
-      .upcomingDescription {
-        margin-left: 2rem;
-        p {
-          color: $light-gray;
         }
       }
     }
