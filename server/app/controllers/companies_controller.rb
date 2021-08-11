@@ -7,7 +7,7 @@ class CompaniesController < ActionController::API
     @companies = Company.all
     render(
       json: CompanySerializer.new(
-         @companies
+        @companies
       )
     )
   end

@@ -3,14 +3,18 @@
 class CompleteProfileController < ActionController::API
   before_action :authenticate_user!
 
-  def update
-    if current_user.update(profile_params)
-      render(
+  def index
+    render(
       json: UserSerializer.new(
         current_user,
         { include: [:company] }
       )
     )
+  end
+
+  def update
+    if current_user.update(profile_params)
+      render json: { message: 'The profile information was updated' }, status: :ok
     else
       render json: { message: 'An error has occurred, the information was not updated!' }, status: :unprocessable_entity
     end

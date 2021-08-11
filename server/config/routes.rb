@@ -8,6 +8,7 @@ Rails.application.routes.draw do
   resources :categories, only: :index
   resources :companies, only: :index
   resources :posts, only: %I[index create destroy]
+  resources :complete_profile, only: :index
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
   root to: 'home#index'
 end
