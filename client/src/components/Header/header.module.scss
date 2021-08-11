@@ -15,9 +15,6 @@
     width: calc(100vw - 12rem);
     padding: 4rem 3rem;
   }
-  @include smallTablet-breakpoint {
-    margin-left: 12rem;
-  }
   @include mobile-breakpoint {
     @include flex($align: flex-end, $justify: flex-start);
     width: 100vw;

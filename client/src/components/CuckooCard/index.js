@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import Avatar from '../../elements/Avatar';
+import Modal from '../Modal';
 import CuckooImages from '../CuckooImages';
 import locationPin from '../../assets/icons/location-pin.svg';
 import deleteBtn from '../../assets/icons/deleteBtn.svg';
@@ -31,8 +32,13 @@ const CuckooCard = ({
     endTime,
   },
 }) => {
-  const [isPreview, setIsPreview] = useState(true);
+  const [confirmDelete, setConfirmDelete] = useState(false);
+  const cuckooDelete = () => {
+    setConfirmDelete(!confirmDelete);
+    console.log(confirmDelete);
+  };
 
+  const [isPreview, setIsPreview] = useState(true);
   const maxPreview = 160;
   const cuckooDescription = isPreview ? description.slice(0, maxPreview) : description;
 
@@ -50,9 +56,11 @@ const CuckooCard = ({
         <div>
           <div className={titleSection}>
             <h3>{title} </h3>
-            <div className={deleteButton}>
+
+            <button className={deleteButton} onClick={cuckooDelete}>
               <img src={deleteBtn} />
-            </div>
+            </button>
+            {confirmDelete ? <Modal /> : null}
           </div>
         </div>
         <p className={author}>

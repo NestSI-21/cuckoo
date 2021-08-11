@@ -79,13 +79,6 @@
   }
 }
 
-@include smallTablet-breakpoint {
-  .sidebar {
-    position: fixed;
-    left: 0px;
-  }
-}
-
 @include mobile-breakpoint {
   .sidebar {
     position: fixed;

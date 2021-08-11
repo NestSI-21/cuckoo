@@ -4,8 +4,11 @@
   @include container();
   overflow-x: hidden;
   overflow-y: scroll;
+  @include smallTablet-breakpoint {
+    height: 60vh;
+  }
   @include mobile-breakpoint {
-    height: 45rem;
+    @include container(fit-content);
     overflow-y: hidden;
   }
 
@@ -25,9 +28,5 @@
   }
   &::-webkit-scrollbar-thumb:hover {
     background-color: $light-gray;
-  }
-
-  @include mobile-breakpoint {
-    @include container(fit-content);
   }
 }
