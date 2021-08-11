@@ -5,8 +5,8 @@
     z-index: 2;
     cursor: pointer;
 
-    width: 5rem;
-    height: 5rem;
+    width: 4.5rem;
+    height: 4.5rem;
     background: $green;
     border-radius: 50%;
     border-style: none;
@@ -26,10 +26,10 @@
     right: 3rem;
     transform: rotate(45deg);
     @include mobile-breakpoint {
-      width: 3.8rem;
-      height: 3.8rem;
-      right: 2.2rem;
-      top: 2.3rem;
+      width: 3.2rem;
+      height: 3.2rem;
+      right: 1.5rem;
+      top: 1.3rem;
     }
   }
 }

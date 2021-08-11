@@ -1,6 +1,12 @@
+@import '../../styles/responsiveness.scss';
+
 .avatar {
   width: 4.5rem;
   height: 4.5rem;
   border-radius: 50%;
   object-fit: cover;
+  @include smallTablet-breakpoint {
+    width: 2.4rem;
+    height: 2.4rem;
+  }
 }

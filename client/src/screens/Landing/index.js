@@ -22,7 +22,7 @@ const Landing = () => {
         if (resp.data.user.profile_completed) {
           history.push('/dashboard');
         } else {
-          history.push('/signin');
+          history.push('/profile/edit');
         }
       });
   };

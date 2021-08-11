@@ -4,6 +4,10 @@
   @include container();
   overflow-x: hidden;
   overflow-y: scroll;
+  @include mobile-breakpoint {
+    height: 45rem;
+    overflow-y: hidden;
+  }
 
   &::-webkit-scrollbar {
     width: 2.5rem;

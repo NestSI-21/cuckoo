@@ -5,7 +5,7 @@
   width: 20rem;
   height: 100vh;
   box-sizing: border-box;
-  padding: 5rem 0;
+  padding: 3rem 0;
 
   .logo {
     width: 20rem;
@@ -76,6 +76,13 @@
         }
       }
     }
+  }
+}
+
+@include smallTablet-breakpoint {
+  .sidebar {
+    position: fixed;
+    left: 0px;
   }
 }
 
