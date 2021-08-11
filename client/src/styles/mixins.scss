@@ -4,7 +4,7 @@
   $mainWidth: calc(100vw - 20rem),
   $mainHeight: 90vh,
   $mainBackground: $background,
-  $mainPadding: 3rem
+  $mainPadding: 1rem 3rem
 ) {
   width: $mainWidth;
   height: $mainHeight;
@@ -16,7 +16,7 @@
   background-color: #fff;
   box-shadow: 0 0 2.4rem -1.5rem rgba(0, 16, 12, 0.57);
   border-radius: 1.5rem;
-  padding: 3rem 3rem;
+  padding: 2rem 2rem;
   height: $height;
 }
 
