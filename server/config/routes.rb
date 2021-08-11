@@ -8,8 +8,8 @@ Rails.application.routes.draw do
   resources :companies, only: :index
   resources :posts, only: %I[index create destroy]
   namespace :users do
-    resource :profile, only: [:show, :update]
-  end  
+    resource :profile, only: %i[show update]
+  end
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
   root to: 'home#index'
 end
