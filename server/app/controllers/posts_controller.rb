@@ -17,7 +17,7 @@ class PostsController < ActionController::API
     render(
       json: PostSerializer.new(
         @posts,
-        { include: [:user, :"user.company"] }
+        { include: %i[user user.company] }
       )
     )
   end
