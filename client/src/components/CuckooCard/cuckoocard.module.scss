@@ -11,6 +11,8 @@
     display: flex;
     justify-content: space-between;
     .deleteButton {
+      background: transparent;
+      border-style: none;
       margin-left: 2rem;
       margin-top: 0.2rem;
     }
