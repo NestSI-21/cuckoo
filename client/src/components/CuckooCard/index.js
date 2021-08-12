@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import Avatar from '../../elements/Avatar';
-import Modal from '../Modal';
+// import Modal from '../Modal';
 import CuckooAuthor from '../../elements/CuckooAuthor';
 import CuckooDescription from '../../elements/CuckooDescription';
 import CuckooImages from '../../elements/CuckooImages';
