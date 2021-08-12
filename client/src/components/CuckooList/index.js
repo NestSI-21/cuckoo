@@ -8,8 +8,6 @@ import { container } from './cuckoolist.module.scss';
 const CuckooList = ({ searchTerm }) => {
   const [cuckoos, setCuckoos] = useState([]);
 
-  console.log(cuckoos);
-
   useEffect(() => {
     getCuckoos();
   }, []);

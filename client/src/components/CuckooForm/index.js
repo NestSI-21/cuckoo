@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { useHistory } from 'react-router-dom';
 import denormalize from '@weareredlight/denormalize_json_api';
 import Radio from '../../elements/Radio';
 import Input from '../../elements/Input';
@@ -20,21 +21,19 @@ const CuckooForm = () => {
     category: 0,
     description: '',
     images: [],
-    startDate: {},
-    endDate: {},
-    startTime: {},
-    endTime: {},
+    startDate: '',
+    endDate: '',
+    startTime: '',
+    endTime: '',
   });
+
+  let history = useHistory();
 
   useEffect(() => {
     getCuckooTypes();
     getAnnouncementOptions();
     getEventOptions();
   }, []);
-
-  console.log(cuckooType);
-  console.log(announcementOptions);
-  console.log(eventOptions);
 
   const getCuckooTypes = () => {
     get('/categories', function (resp) {
@@ -98,8 +97,12 @@ const CuckooForm = () => {
     formData.append('post[end_date]', data.endDate);
     formData.append('post[start_time]', data.startTime);
     formData.append('post[end_time]', data.endTime);
-    post(formData, '/posts', function (response) {
-      console.log(response.data);
+    post(formData, '/posts', function (resp) {
+      if (resp.status === 200) {
+        history.push('/cuckoos');
+      } else {
+        history.push('/create');
+      }
     });
   };
 

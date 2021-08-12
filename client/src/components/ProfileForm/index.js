@@ -13,7 +13,7 @@ const ProfileForm = () => {
   const [data, setData] = useState({
     company: '',
     role: '',
-    birthday: {},
+    birthday: '',
   });
 
   let history = useHistory();
@@ -61,7 +61,6 @@ const ProfileForm = () => {
 
     put(formData, '/users/profiles', function (resp) {
       if (resp.status === 200) {
-        console.log(resp);
         let userLocal = localStorage.getItem('data');
         userLocal = JSON.parse(userLocal);
         userLocal.profile_completed = true;

@@ -19,7 +19,6 @@ import {
 
 const CuckooCard = ({
   cuckoo: {
-    type_id,
     title,
     created_at: createdAt,
     description,
@@ -29,6 +28,7 @@ const CuckooCard = ({
     end_date: endDate,
     start_time: startTime,
     end_time: endTime,
+    type: { name: cuckooType },
     user: {
       name: username,
       image_url: userImage,
@@ -50,7 +50,7 @@ const CuckooCard = ({
         </div>
         <p className={authorWrapper}>
           <CuckooAuthor
-            type={type_id}
+            type={cuckooType}
             username={username}
             companyName={companyName}
             createdAt={createdAt}

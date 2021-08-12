@@ -10,7 +10,7 @@ const Input = ({ type, name, onChange, label, value, required }) => {
         name={name}
         onChange={onChange}
         placeholder=' '
-        value={value ?? ''}
+        value={value ?? undefined}
         required={required}
       />
       <label>{label}</label>
