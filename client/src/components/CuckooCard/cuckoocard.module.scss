@@ -11,6 +11,8 @@
     display: flex;
     justify-content: space-between;
     .deleteButton {
+      background: transparent;
+      border-style: none;
       margin-left: 2rem;
       margin-top: 0.2rem;
     }
@@ -41,16 +43,12 @@
   }
 
   .detailsWrapper {
-    @include flex($align: flex-start);
+    @include flex($justify: flex-start);
     margin-top: 1rem;
-
-    div {
-      @include flex($align: flex-start);
-      p {
-        color: $light-gray;
-        font-size: $text-small;
-        margin: 0 1.5rem 0 0.5rem;
-      }
+    p {
+      color: $light-gray;
+      margin: 0 1.5rem 0 0.5rem;
+      font-size: $text-small;
     }
   }
 }

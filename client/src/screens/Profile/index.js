@@ -14,10 +14,9 @@ const Profile = () => {
   }, []);
 
   const getUser = () => {
-    get('/users/profile', function (resp) {
-      const user = denormalize(resp);
-      console.log(user);
-      //setUser(...);
+    get('/users/profiles', function (resp) {
+      const user = denormalize(resp.data).data;
+      setUser(user);
     });
   };
 
@@ -35,32 +34,36 @@ const Profile = () => {
   return (
     <Layout pageTitle='Profile' hideHeader hideCreateBtn>
       <div className={contentContainer}>
-        <Avatar userImage={user.image_url} />
-        <h3>{user.name}</h3>
-        <a href='/profile/edit' className={edit}>
-          Edit Profile
-        </a>
-        <div className={profileSection}>
-          <p>
-            <span>Role</span>
-          </p>
-          <p>{user.company_role}</p>
-        </div>
-        <div className={profileSection}>
-          <p>
-            <span>Company</span>
-          </p>
-          <p>{companyName}</p>
-        </div>
-        <div className={profileSection}>
-          <p>
-            <span>Date of Birth</span>
-          </p>
-          <p>{format(new Date(user.birthday), 'dd-MM-yyyy')}</p>
-        </div>
-        <a href='#' className={logout} onClick={handleSignOutClick}>
-          Log out
-        </a>
+        {user && (
+          <>
+            <Avatar userImage={user.image_url} />
+            <h3>{user.name}</h3>
+            <a href='/profile/edit' className={edit}>
+              Edit Profile
+            </a>
+            <div className={profileSection}>
+              <p>
+                <span>Role</span>
+              </p>
+              <p>{user.company_role}</p>
+            </div>
+            <div className={profileSection}>
+              <p>
+                <span>Company</span>
+              </p>
+              <p>{user.company.name}</p>
+            </div>
+            <div className={profileSection}>
+              <p>
+                <span>Date of Birth</span>
+              </p>
+              <p>{format(new Date(user.birthday), 'dd-MM-yyyy')}</p>
+            </div>
+            <a href='#' className={logout} onClick={handleSignOutClick}>
+              Log out
+            </a>
+          </>
+        )}
       </div>
     </Layout>
   );

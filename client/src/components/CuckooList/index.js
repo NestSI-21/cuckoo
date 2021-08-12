@@ -1,17 +1,14 @@
 import React, { useState, useEffect, Fragment } from 'react';
-import { get } from '../../helpers/Networking';
+import denormalize from '@weareredlight/denormalize_json_api';
 import PropTypes from 'prop-types';
+import { get } from '../../helpers/Networking';
 import CuckooCard from '../CuckooCard';
-// import jsondata from '../../mockdata.json';
 import { container } from './cuckoolist.module.scss';
 
 const CuckooList = ({ searchTerm }) => {
   const [cuckoos, setCuckoos] = useState([]);
 
-  // useEffect(() => {
-  //   const data = jsondata.map((value) => value);
-  //   setCuckoos(data);
-  // }, []);
+  console.log(cuckoos);
 
   useEffect(() => {
     getCuckoos();
@@ -19,11 +16,10 @@ const CuckooList = ({ searchTerm }) => {
 
   const getCuckoos = () => {
     get('/posts', function (resp) {
-      setCuckoos(resp.data.posts);
+      const cuckoos = denormalize(resp.data).data;
+      setCuckoos(cuckoos);
     });
   };
-
-  console.log(cuckoos);
 
   return (
     <div className={container}>

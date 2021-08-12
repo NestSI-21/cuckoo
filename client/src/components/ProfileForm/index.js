@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useHistory } from 'react-router-dom';
 import denormalize from '@weareredlight/denormalize_json_api';
-import { get, post } from '../../helpers/Networking';
+import { get, put } from '../../helpers/Networking';
 import Avatar from '../../elements/Avatar';
 import Select from '../../elements/Select';
 import Input from '../../elements/Input';
@@ -59,10 +59,13 @@ const ProfileForm = () => {
     formData.append('user[company_role]', data.role);
     formData.append('user[birthday]', data.birthday);
 
-    post(formData, '/users/profile', function (resp) {
+    put(formData, '/users/profiles', function (resp) {
       if (resp.status === 200) {
         console.log(resp);
-        // localStorage.setItem('data', JSON.stringify(resp.data.user));
+        let userLocal = localStorage.getItem('data');
+        userLocal = JSON.parse(userLocal);
+        userLocal.profile_completed = true;
+        localStorage.setItem('data', JSON.stringify(userLocal));
         // localStorage.setItem('companyName', JSON.stringify(resp.data.user_company_name));
         history.push('/dashboard');
       } else {

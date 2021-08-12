@@ -2,11 +2,11 @@ import React from 'react';
 import { format } from 'date-fns';
 import PropTypes from 'prop-types';
 
-const CuckooAuthor = ({ type, user, company, createdAt }) => {
+const CuckooAuthor = ({ type, username, companyName, createdAt }) => {
   return (
     <>
       <span>
-        @{user}, {company} • {format(new Date(createdAt), 'dd-MM-yyyy')} • {type}
+        @{username}, {companyName} • {format(new Date(createdAt), 'dd MMM')} • {type}
       </span>
     </>
   );
@@ -14,8 +14,8 @@ const CuckooAuthor = ({ type, user, company, createdAt }) => {
 
 CuckooAuthor.propTypes = {
   type: PropTypes.string,
-  user: PropTypes.string,
-  company: PropTypes.string,
+  username: PropTypes.string,
+  companyName: PropTypes.string,
   createdAt: PropTypes.string,
 };
 

@@ -1,6 +1,5 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-//import dog from '../../assets/icons/dog.jpeg';
 import {
   imageGrid1,
   imageGrid2,
@@ -9,26 +8,8 @@ import {
   imagePlaceHolder,
 } from './cuckooimages.module.scss';
 
-const CuckooImages = () => {
-  const imgSrc = [
-    {
-      id: '1',
-      src: 'https://picsum.photos/id/420/600/400',
-    },
-    {
-      id: '2',
-      src: 'https://picsum.photos/id/320/600/400',
-    },
-    {
-      id: '3',
-      src: 'https://picsum.photos/id/520/600/400',
-    },
-    // {
-    //   id: '4',
-    //   src: 'https://picsum.photos/id/620/600/400',
-    // },
-  ];
-  const imgCounter = imgSrc.length;
+const CuckooImages = ({ images }) => {
+  const imgCounter = images.length;
   return (
     <div
       className={
@@ -43,10 +24,11 @@ const CuckooImages = () => {
           : null
       }
     >
-      {imgSrc.map((cuckooImage) => {
+      {images.map((image, i) => {
+        console.log(image);
         return (
-          <div className={imagePlaceHolder} key={cuckooImage.id}>
-            <img src={cuckooImage.src} alt='' />
+          <div className={imagePlaceHolder} key={i}>
+            <img src={image} alt='' />
           </div>
         );
       })}
@@ -55,7 +37,7 @@ const CuckooImages = () => {
 };
 
 CuckooImages.propTypes = {
-  image: PropTypes.string,
+  images: PropTypes.array,
 };
 
 export default CuckooImages;
