@@ -10,7 +10,6 @@ const Header = ({ pageTitle, hideCreateBtn }) => {
   const [scrollPos, setScrollPos] = useState(0);
 
   const handleScroll = () => {
-    console.log(showHeader);
     setScrollPos(document.body.getBoundingClientRect().top);
     setShowHeader(document.body.getBoundingClientRect().top > scrollPos);
   };

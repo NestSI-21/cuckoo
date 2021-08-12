@@ -17,7 +17,7 @@ class PostsController < ActionController::API
     render(
       json: PostSerializer.new(
         @posts,
-        { include: %i[user user.company] }
+        { include: %i[user user.company type] }
       )
     )
   end
@@ -63,7 +63,7 @@ class PostsController < ActionController::API
   private
 
   def post_params
-    params.require(:post).permit(:type_id, :category, :title, :location, :description,
+    params.require(:post).permit(:type_id, :category_id, :title, :location, :description,
                                  :start_date, :end_date, :start_time, :end_time, images: [])
   end
 end
