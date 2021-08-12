@@ -6,15 +6,6 @@ class PostsController < ActionController::API
 
   def index
     @posts = Post.order(created_at: :desc).all
-    # @users = []
-    # @companies = []
-    # @posts.each do |post|
-    #   @users.push(User.find(post.user_id))
-    # end
-    # @users.each do |user|
-    #   @companies.push(Company.find(user.company_id))
-    # end
-    # users: @users, companies: @companies
     render(
       json: PostSerializer.new(
         @posts,
@@ -43,23 +34,24 @@ class PostsController < ActionController::API
       @slack_cuckoo = @post.title + "\n\n" + @post.description + "\n\n"
 
       if(@post.location != "")
-        @slack_cuckoo += "At: " + @post.location + "\n"
+        @slack_cuckoo += "📍 At: " + @post.location + "\n"
       end 
 
       if(@post.start_date)
-        @slack_cuckoo += "From: " + @post.start_date.strftime("%d:%m:%Y")
+        @slack_cuckoo += "🗓 From: " + @post.start_date.strftime("%d:%m:%Y")
       end 
 
       if(@post.start_time)
         @slack_cuckoo += ", " + @post.start_time.strftime("%H:%M")
       end 
       if(@post.end_date)
-        @slack_cuckoo += +"\nTo: "+ @post.end_date.strftime("%d:%m:%Y")
+        @slack_cuckoo += +"\n🔚 To: "+ @post.end_date.strftime("%d:%m:%Y")
       end 
       
       if(@post.end_time)
         @slack_cuckoo += ", " + @post.end_time.strftime("%H:%M")
       end
+
 
       client.chat_postMessage(channel: @category.slack_channel, text: @slack_cuckoo, as_user: true)
       render json: { message: 'A new post was created' }, status: :ok
