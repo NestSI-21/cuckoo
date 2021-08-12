@@ -1,75 +1,68 @@
-import React, { useState } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 import Avatar from '../../elements/Avatar';
-import CuckooImages from '../CuckooImages';
-import locationPin from '../../assets/icons/location-pin.svg';
-import clock from '../../assets/icons/clock.svg';
-import dog from '../../assets/icons/dog.jpeg';
-import { cuckooCard, author, seeMore, detailsWrapper } from './cuckoocard.module.scss';
+import CuckooAuthor from '../../elements/CuckooAuthor';
+import CuckooDescription from '../../elements/CuckooDescription';
+import CuckooImages from '../../elements/CuckooImages';
+import CuckooLocation from '../../elements/CuckooLocation';
+import CuckooDate from '../../elements/CuckooDate';
+import CuckooTime from '../../elements/CuckooTime';
+// import deleteBtn from '../../assets/icons/deleteBtn.svg';
+import {
+  cuckooCard,
+  avatarContainer,
+  titleSection,
+  // deleteButton,
+  authorWrapper,
+  detailsWrapper,
+} from './cuckoocard.module.scss';
 
 const CuckooCard = ({
   cuckoo: {
-    type,
+    type_id,
     title,
-    username,
-    company,
-    datePosted,
+    created_at: createdAt,
     description,
+    images_url: images,
     location,
-    startDate,
-    endDate,
-    startTime,
-    endTime,
+    start_date: startDate,
+    end_date: endDate,
+    start_time: startTime,
+    end_time: endTime,
+    user: {
+      name: username,
+      image_url: userImage,
+      company: { name: companyName },
+    },
   },
 }) => {
-  const [isPreview, setIsPreview] = useState(true);
-
-  const maxPreview = 160;
-  const cuckooDescription = isPreview ? description.slice(0, maxPreview) : description;
-
-  const togglePreview = () => {
-    setIsPreview(!isPreview);
-  };
-
   return (
     <div className={cuckooCard}>
-      <Avatar userImage={dog} />
+      <div className={avatarContainer}>
+        <Avatar userImage={userImage} />
+      </div>
       <div>
-        <h3>{title}</h3>
-        <p className={author}>
-          <span>{type}</span> • @{username}, {company} • {datePosted}
+        <div className={titleSection}>
+          <h3>{title}</h3>
+          {/* <div className={deleteButton}>
+            <img src={deleteBtn} />
+          </div> */}
+        </div>
+        <p className={authorWrapper}>
+          <CuckooAuthor
+            type={type_id}
+            username={username}
+            companyName={companyName}
+            createdAt={createdAt}
+          />
         </p>
-        <p>{cuckooDescription}</p>
-        {description.length >= maxPreview ? (
-          <span className={seeMore} onClick={togglePreview}>
-            {isPreview ? 'see more' : 'see less'}
-          </span>
-        ) : null}
-        <CuckooImages image={dog} />
-        {location || startDate || endDate || startTime || endTime ? (
-          <div className={detailsWrapper}>
-            {location ? (
-              <div>
-                <img src={locationPin} alt='location' />
-                <p>{location}</p>
-              </div>
-            ) : null}
-            {startDate || endDate || startTime || endTime ? (
-              <div>
-                <img src={clock} alt='time' />
-                <p>
-                  {startDate ? startDate : null}
-                  {startDate && endDate ? ' - ' : null}
-                  {endDate ? endDate : null}
-                  {(startDate || endDate) && (startTime || endTime) ? ' • ' : null}
-                  {startTime ? startTime : null}
-                  {startTime && endTime ? ' - ' : null}
-                  {endTime ? endTime : null}
-                </p>
-              </div>
-            ) : null}
-          </div>
-        ) : null}
+        <CuckooDescription description={description} />
+        <CuckooImages images={images} />
+        <div className={detailsWrapper}>
+          {location ? <CuckooLocation location={location} /> : null}
+          {startDate || endDate ? <CuckooDate startDate={startDate} endDate={endDate} /> : null}
+          {startTime || endTime ? <CuckooTime startTime={startTime} endTime={endTime} /> : null}
+        </div>
       </div>
     </div>
   );
