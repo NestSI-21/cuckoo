@@ -26,7 +26,8 @@
     padding-bottom: 0;
     border-bottom: none;
   }
-  .author {
+
+  .authorWrapper {
     color: $light-gray;
     font-size: $text-small;
     margin-bottom: 1rem;
@@ -41,22 +42,13 @@
     }
   }
 
-  .seeMore {
-    color: $green;
-    font-size: $text-small;
-    cursor: pointer;
-  }
-
   .detailsWrapper {
-    display: flex;
+    @include flex($justify: flex-start);
     margin-top: 1rem;
-
-    div {
-      @include flex($align: flex-start);
-      p {
-        margin: 0 1.5rem 0 0.5rem;
-        font-size: $text-small;
-      }
+    p {
+      color: $light-gray;
+      margin: 0 1.5rem 0 0.5rem;
+      font-size: $text-small;
     }
   }
 }

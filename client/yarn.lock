@@ -1987,6 +1987,11 @@
     "@typescript-eslint/types" "4.15.2"
     eslint-visitor-keys "^2.0.0"
 
+"@weareredlight/denormalize_json_api@^0.2.2":
+  version "0.2.2"
+  resolved "https://registry.yarnpkg.com/@weareredlight/denormalize_json_api/-/denormalize_json_api-0.2.2.tgz#3fce95938006330eeca616b717e5e8603c850e2e"
+  integrity sha512-3QhkBPAmzlO+760fzw1Xr4XVQAmgxKHmmJgioecBxKrFf5UfZOwkNYR/uVo6cCu1VbVaXcOC0huBPoDb4gTe0w==
+
 "@webassemblyjs/ast@1.9.0":
   version "1.9.0"
   resolved "https://registry.yarnpkg.com/@webassemblyjs/ast/-/ast-1.9.0.tgz#bd850604b4042459a5a41cd7d338cbed695ed964"
@@ -3922,6 +3927,11 @@ data-urls@^2.0.0:
     abab "^2.0.3"
     whatwg-mimetype "^2.3.0"
     whatwg-url "^8.0.0"
+
+date-fns@^2.23.0:
+  version "2.23.0"
+  resolved "https://registry.yarnpkg.com/date-fns/-/date-fns-2.23.0.tgz#4e886c941659af0cf7b30fafdd1eaa37e88788a9"
+  integrity sha512-5ycpauovVyAk0kXNZz6ZoB9AYMZB4DObse7P3BPWmyEjXNORTI8EJ6X0uaSAq4sCHzM1uajzrkr6HnsLQpxGXA==
 
 debug@2.6.9, debug@^2.2.0, debug@^2.3.3, debug@^2.6.0, debug@^2.6.9:
   version "2.6.9"

@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 module Users
-  class ProfileController < ActionController::API
+  class ProfilesController < ActionController::API
     before_action :authenticate_user!
 
     def show

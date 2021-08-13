@@ -1,43 +1,66 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
+import { useHistory } from 'react-router-dom';
+import denormalize from '@weareredlight/denormalize_json_api';
 import Radio from '../../elements/Radio';
 import Input from '../../elements/Input';
 import Select from '../../elements/Select';
 import Textarea from '../../elements/Textarea';
 import ImageUpload from '../ImageUpload';
 import Button from '../../elements/Button';
-import { post } from '../../helpers/Networking';
+import { get, post } from '../../helpers/Networking';
 import { form, radioWrapper, flexWrapper, gridWrapper, btnWrapper } from './cuckooform.module.scss';
 
 const CuckooForm = () => {
+  const [cuckooType, setCuckooType] = useState();
+  const [announcementOptions, setAnnouncementOptions] = useState();
+  const [eventOptions, setEventOptions] = useState();
   const [data, setData] = useState({
     type: 0,
     title: '',
     location: '',
-    category: '',
+    category: 0,
     description: '',
     images: [],
-    startDate: {},
-    endDate: {},
-    startTime: {},
-    endTime: {},
+    startDate: '',
+    endDate: '',
+    startTime: '',
+    endTime: '',
   });
 
-  //Select dropdown options - announcements/events
-  const typeOptions = [
-    { id: 1, type: 'Announcement' },
-    { id: 2, type: 'Event' },
-  ];
-  const announcementOptions = [
-    { id: 1, name: 'Alert' },
-    { id: 2, name: 'New Company' },
-    { id: 3, name: 'New Employee' },
-    { id: 4, name: 'Other' },
-  ];
-  const eventOptions = [
-    { id: 1, name: 'Education' },
-    { id: 2, name: 'Social' },
-    { id: 3, name: 'Other' },
-  ];
+  let history = useHistory();
+
+  useEffect(() => {
+    getCuckooTypes();
+    getAnnouncementOptions();
+    getEventOptions();
+  }, []);
+
+  const getCuckooTypes = () => {
+    get('/categories', function (resp) {
+      const types = denormalize(
+        resp.data.included.map(({ id, attributes: { name } }) => ({ id, name })),
+      );
+      setCuckooType(types);
+    });
+  };
+
+  const getAnnouncementOptions = () => {
+    get('/categories', function (resp) {
+      const options = denormalize(resp.data)
+        .data.filter((option) => option.type.id === '1')
+        .map(({ id, name }) => ({ id, name }));
+      setAnnouncementOptions(options);
+    });
+  };
+
+  const getEventOptions = () => {
+    get('/categories', function (resp) {
+      const options = denormalize(resp.data)
+        .data.filter((option) => option.type.id === '2')
+        .map(({ id, name }) => ({ id, name }));
+      setEventOptions(options);
+    });
+  };
 
   // Handler for inputs
   const handleChange = (e) => {
@@ -65,7 +88,7 @@ const CuckooForm = () => {
     formData.append('post[type_id]', data.type);
     formData.append('post[title]', data.title);
     formData.append('post[location]', data.location);
-    formData.append('post[category]', data.category);
+    formData.append('post[category_id]', data.category);
     formData.append('post[description]', data.description);
     data.images.forEach((image) => {
       formData.append('post[images][]', image);
@@ -74,27 +97,32 @@ const CuckooForm = () => {
     formData.append('post[end_date]', data.endDate);
     formData.append('post[start_time]', data.startTime);
     formData.append('post[end_time]', data.endTime);
-    post(formData, '/posts', function (response) {
-      console.log(response.data);
+    post(formData, '/posts', function (resp) {
+      if (resp.status === 200) {
+        history.push('/cuckoos');
+      } else {
+        history.push('/create');
+      }
     });
   };
 
   return (
     <form className={form} onSubmit={handleSubmit}>
       <div className={radioWrapper}>
-        {typeOptions.map((type, i) => (
-          <Radio
-            key={i}
-            id={type.id}
-            name='type'
-            label={type.type}
-            value={type.id}
-            checked={data.type === type.id}
-            onClick={resetCategory}
-            onChange={handleChange}
-            required
-          />
-        ))}
+        {cuckooType &&
+          cuckooType.map((type, i) => (
+            <Radio
+              key={i}
+              id={type.id}
+              name='type'
+              label={type.name}
+              value={type.id}
+              checked={parseInt(data.type) === parseInt(type.id)}
+              onClick={resetCategory}
+              onChange={handleChange}
+              required
+            />
+          ))}
       </div>
 
       <Input
