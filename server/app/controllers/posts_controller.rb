@@ -40,11 +40,14 @@ class PostsController < ActionController::API
 
       if(@post.start_date)
         @slack_cuckoo += "🗓 From: " + @post.start_date.strftime("%d:%m:%Y")
-        @reminder_day = @post.start_date - 1.day # The reminder is currently set to one day before the start date
-        @reminder_time = '3:10pm' # The reminder will always be at this hour - Server runs on a different time zone 1 hour earlier
-        @reminder_date_time = DateTime.parse([ @reminder_day, @reminder_time ].join(' '))
-        @reminder_date_time = @reminder_date_time.to_time.to_i
-        @flag = 1
+        #Posts that are created on the current day or before wont have a reminder
+        if(@post.start_date > DateTime.current.to_date)
+          @reminder_day = @post.start_date - 1.day # The reminder is currently set to one day before the start date
+          @reminder_time = ENV['SLACK_SCHEDULED_TIME'] # The reminder will always be at this hour - Server runs on a different time zone 1 hour earlier
+          @reminder_date_time = DateTime.parse([ @reminder_day, @reminder_time ].join(' '))
+          @reminder_date_time = @reminder_date_time.to_time.to_i
+          @flag = 1
+        end 
       end 
 
       if(@post.start_time)
