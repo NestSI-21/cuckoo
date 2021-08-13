@@ -5,7 +5,7 @@ import { select } from './select.module.scss';
 const Select = ({ name, value, onChange, options, label, required }) => {
   return (
     <div className={select}>
-      <select name={name} value={value} onChange={onChange} required={required}>
+      <select name={name} value={value ?? ''} onChange={onChange} required={required}>
         <option defaultValue hidden></option>
         {options.map((option, i) => {
           return (

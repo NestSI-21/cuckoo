@@ -65,7 +65,6 @@ const ProfileForm = () => {
         userLocal = JSON.parse(userLocal);
         userLocal.profile_completed = true;
         localStorage.setItem('data', JSON.stringify(userLocal));
-        // localStorage.setItem('companyName', JSON.stringify(resp.data.user_company_name));
         history.push('/dashboard');
       } else {
         history.push('/profile/edit');
