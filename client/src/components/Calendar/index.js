@@ -9,15 +9,23 @@ import { calendar, container } from './calendar.module.scss';
 
 const Calendar = () => {
   const [cuckoos, setCuckoos] = useState([]);
-  const [modifiers, setModifiers] = useState({ events: [] });
-  const [selectedCuckoo, setSelectedCuckoo] = useState({ selectedDay: null });
+  const [modifiers, setModifiers] = useState([]);
+  //const [selectedCuckoo, setSelectedCuckoo] = useState({ selectedDay: null });
+  const [interval, setInterval] = useState({
+    start: new Date(new Date().setHours(0)),
+    end: new Date(new Date().setHours(23, 59)),
+    isMonth: false,
+  });
 
-  const handleCuckooClick = (day, { selected }) => {
-    setSelectedCuckoo({ selectedDay: selected ? undefined : day });
+  const handleCuckooClick = (day) => {
+    setInterval({
+      start: new Date(day.setHours(0)),
+      end: new Date(day.setHours(23, 59, 59)),
+      isMonth: false,
+    });
+
+    //setSelectedCuckoo({ selectedDay: selected ? undefined : day });
   };
-
-  console.log(cuckoos);
-  console.log(modifiers);
 
   useEffect(() => {
     getCuckoos();
@@ -34,24 +42,34 @@ const Calendar = () => {
     });
   };
 
-  const showCalendarDates = (cuckoos) => {
-    cuckoos.map(({ start_date }) =>
-      setModifiers((prevData) => ({
-        ...prevData,
-        events: [...prevData.events, new Date(start_date)],
-      })),
-    );
+  console.log(interval);
+
+  const handleMonthChange = (date) => {
+    date.setDate(1);
+    date.setHours(0, 0, 0);
+    const startDate = new Date(date);
+    date.setHours(23, 59, 59);
+    date.setMonth(date.getMonth() + 1);
+    date.setDate(0);
+    const endDate = new Date(date);
+
+    setInterval({
+      start: startDate,
+      end: endDate,
+      isMonth: true,
+    });
   };
 
-  // const modifiers = ({
-  //   events: [
-  //     new Date(2021, 7, 8),
-  //     new Date(2021, 7, 12),
-  //     new Date(2021, 7, 28),
-  //     new Date(2021, 7, 31),
-  //   ],
-  // });
+  const showCalendarDates = (cuckoos) => {
+    let selectableDates = cuckoos.map(({ start_date, end_date }) => ({
+      from: new Date(start_date),
+      to: new Date(end_date),
+    }));
+    setModifiers(selectableDates);
+  };
 
+  console.log(cuckoos);
+  console.log(modifiers);
   return (
     <div className={container}>
       <Helmet>
@@ -87,11 +105,19 @@ const Calendar = () => {
       <DayPicker
         className={calendar}
         showOutsideDays
-        selectedDays={selectedCuckoo.selectedDay}
+        selectedDays={interval.isMonth ? null : interval.start}
+        month={interval.start}
         onDayClick={handleCuckooClick}
-        modifiers={modifiers}
+        onMonthChange={handleMonthChange}
+        modifiers={{ events: modifiers }}
       />
-      <CuckoosUpcoming selectedCuckoo={selectedCuckoo} />
+      <CuckoosUpcoming
+        cuckoos={cuckoos.filter(
+          (cuckoo) =>
+            new Date(cuckoo.start_date) <= interval.end &&
+            interval.start <= new Date(cuckoo.end_date),
+        )}
+      />
     </div>
   );
 };
