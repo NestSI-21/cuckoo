@@ -23,7 +23,6 @@ class PostsController < ActionController::API
 
   def send_message(post)
     @post = post
-    @flag = 0
 
     if @post.save
       Slack.configure do |config|
@@ -50,7 +49,6 @@ class PostsController < ActionController::API
           @reminder_time = ENV['SLACK_SCHEDULED_TIME'] # The reminder will always be at this hour - Server runs on a different time zone 1 hour earlier
           @reminder_date_time = DateTime.parse([@reminder_day, @reminder_time].join(' '))
           @reminder_date_time = @reminder_date_time.to_time.to_i
-          @flag = 1
         end
       end
 
@@ -60,7 +58,7 @@ class PostsController < ActionController::API
       @slack_cuckoo += ", #{@post.end_time.strftime('%H:%M')}" if @post.end_time
 
       # Sends the schedule message if there is a start date
-      if @flag == 1
+      if @post.start_date > DateTime.current.to_date
         client.chat_scheduleMessage(channel: @category.slack_channel, text: @slack_cuckoo, post_at: @reminder_date_time)
       end
       # Normal slack message sent when a post is created
