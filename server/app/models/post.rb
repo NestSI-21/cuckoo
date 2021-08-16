@@ -6,6 +6,7 @@ class Post < ApplicationRecord
   belongs_to :category
   has_many_attached :images
 
+
   def send_message
     Slack.configure do |config|
       config.token = ENV['SLACK_OAUTH_TOKEN']
@@ -46,6 +47,7 @@ class Post < ApplicationRecord
     # Normal slack message sent when a post is created
     client.chat_postMessage(channel: category.slack_channel, text: slack_cuckoo, as_user: true)
   end
+
 
   def images_url
     Rails.application.routes.default_url_options = { host: 'localhost:3000', protocol: 'http' }
