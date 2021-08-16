@@ -45,8 +45,9 @@ const CuckooCard = ({
         <div>
           <div className={titleSection}>
             <h3>{title} </h3>
-
-            {/* <button className={deleteButton} onClick={cuckooDelete}>
+            {/* TODO: Implement delete post
+            
+            <button className={deleteButton} onClick={cuckooDelete}>
               <img src={deleteBtn} />
             </button>
             {confirmDelete ? <Modal /> : null} */}
