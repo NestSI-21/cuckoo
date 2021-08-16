@@ -28,8 +28,6 @@ const CuckooCard = ({
     location,
     start_date: startDate,
     end_date: endDate,
-    start_time: startTime,
-    end_time: endTime,
     type: { name: cuckooType },
     user: {
       name: username,
@@ -65,6 +63,11 @@ const CuckooCard = ({
         <CuckooDescription description={description} />
         <CuckooImages images={images} />
         <div className={detailsWrapper}>
+          {console.log(
+            title,
+            new Date(startDate).setHours(0, 0, 0, 0),
+            new Date(endDate).setHours(0, 0, 0, 0),
+          )}
           {location ? <CuckooLocation location={location} /> : null}
           {startDate || endDate ? <CuckooDate startDate={startDate} endDate={endDate} /> : null}
           {startDate || endDate ? <CuckooTime startTime={startDate} endTime={endDate} /> : null}
