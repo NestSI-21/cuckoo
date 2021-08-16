@@ -81,6 +81,6 @@ class PostsController < ActionController::API
 
   def post_params
     params.require(:post).permit(:type_id, :category_id, :title, :location, :description,
-                                 :start_date, :end_date, :start_time, :end_time, images: [])
+                                 :start_date, :end_date, images: [])
   end
 end

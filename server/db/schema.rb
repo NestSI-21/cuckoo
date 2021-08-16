@@ -93,10 +93,8 @@ ActiveRecord::Schema.define(version: 2021_08_13_175534) do
     t.string "title", null: false
     t.string "location"
     t.string "description"
-    t.date "start_date"
-    t.date "end_date"
-    t.time "start_time"
-    t.time "end_time"
+    t.datetime "start_date"
+    t.datetime "end_date"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.bigint "category_id"

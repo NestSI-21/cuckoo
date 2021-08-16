@@ -84,6 +84,12 @@ const CuckooForm = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
 
+    const startDate = data.startDate ? new Date(data.startDate) : undefined;
+    const startTime = data.startTime;
+
+    const endDate = data.endDate ? new Date(data.endDate) : undefined;
+    const endTime = data.endTime;
+
     const formData = new FormData();
     formData.append('post[type_id]', data.type);
     formData.append('post[title]', data.title);
@@ -93,10 +99,30 @@ const CuckooForm = () => {
     data.images.forEach((image) => {
       formData.append('post[images][]', image);
     });
-    formData.append('post[start_date]', data.startDate);
-    formData.append('post[end_date]', data.endDate);
-    formData.append('post[start_time]', data.startTime);
-    formData.append('post[end_time]', data.endTime);
+    if (startDate || startTime) {
+      formData.append(
+        'post[start_date]',
+        new Date(
+          startDate?.getFullYear() ?? 0,
+          startDate?.getMonth() ?? 0,
+          startDate?.getDate() ?? 0,
+          startTime.split(':')?.[0] ?? 0,
+          startTime.split(':')?.[1] ?? 0,
+        ).toISOString(),
+      );
+    }
+    if (endDate || endTime) {
+      formData.append(
+        'post[end_date]',
+        new Date(
+          endDate?.getFullYear() ?? 0,
+          endDate?.getMonth() ?? 0,
+          endDate?.getDate() ?? 0,
+          endTime.split(':')?.[0] ?? 0,
+          endTime.split(':')?.[1] ?? 0,
+        ).toISOString(),
+      );
+    }
     post(formData, '/posts', function (resp) {
       if (resp.status === 200) {
         history.push('/cuckoos');

@@ -28,8 +28,6 @@ const CuckooCard = ({
     location,
     start_date: startDate,
     end_date: endDate,
-    start_time: startTime,
-    end_time: endTime,
     type: { name: cuckooType },
     user: {
       name: username,
@@ -68,7 +66,7 @@ const CuckooCard = ({
         <div className={detailsWrapper}>
           {location ? <CuckooLocation location={location} /> : null}
           {startDate || endDate ? <CuckooDate startDate={startDate} endDate={endDate} /> : null}
-          {startTime || endTime ? <CuckooTime startTime={startTime} endTime={endTime} /> : null}
+          {startDate || endDate ? <CuckooTime startTime={startDate} endTime={endDate} /> : null}
         </div>
       </div>
     </div>
