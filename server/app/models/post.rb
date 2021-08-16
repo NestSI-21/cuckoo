@@ -35,10 +35,10 @@ class Post < ApplicationRecord
       end
     end
 
-    slack_cuckoo += ", #{start_time.strftime('%H:%M')}" if start_time
+    slack_cuckoo += ", #{start_date.strftime('%H:%M')}" if start_date
     slack_cuckoo += +"\n🔚 To: " + end_date.strftime('%d:%m:%Y') if end_date
 
-    slack_cuckoo += ", #{end_time.strftime('%H:%M')}" if end_time
+    slack_cuckoo += ", #{end_date.strftime('%H:%M')}" if end_date
 
     # Sends the schedule message if there is a start date
     if start_date > DateTime.current.to_date
