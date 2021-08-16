@@ -41,7 +41,7 @@ class Post < ApplicationRecord
     slack_cuckoo += ", #{end_date.strftime('%H:%M')}" if end_date
 
     # Sends the schedule message if there is a start date
-    if start_date > DateTime.current.to_date
+    if start_date and start_date > DateTime.current.to_date
       client.chat_scheduleMessage(channel: category.slack_channel, text: slack_cuckoo, post_at: reminder_date_time)
     end
     # Normal slack message sent when a post is created
