@@ -1,7 +1,5 @@
 # frozen_string_literal: true
 
-require 'date'
-
 class PostsController < ActionController::API
   before_action :authenticate_user!
 
@@ -16,12 +14,14 @@ class PostsController < ActionController::API
   end
 
   def create
-    @post = Post.new(post_params)
-    @post.user = current_user
-    send_message(@post)
+    post = Post.new(post_params)
+    post.user = current_user
+    if post.save
+      post.send_message
+      render json: { message: 'A new post was created' }, status: :ok
+    end
   end
 
-  
   def destroy
     @post = current_user.posts.find(params[:id])
     @post.destroy

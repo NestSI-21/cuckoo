@@ -33,4 +33,7 @@ Category.find_or_create_by(type_id: 1, name: 'Other', slack_channel: '#alerts')
 Category.find_or_create_by(type_id: 2, name: 'Education', slack_channel: '#education')
 Category.find_or_create_by(type_id: 2, name: 'Social', slack_channel: '#social')
 Category.find_or_create_by(type_id: 2, name: 'Other', slack_channel: '#other')
-AdminUser.create!(email: 'admin@example.com', password: 'password', password_confirmation: 'password') if Rails.env.development?
+if Rails.env.development?
+  AdminUser.create!(email: 'admin@example.com', password: 'password',
+                    password_confirmation: 'password')
+end
