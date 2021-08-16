@@ -64,11 +64,6 @@ const CuckooCard = ({
         <CuckooDescription description={description} />
         <CuckooImages images={images} />
         <div className={detailsWrapper}>
-          {console.log(
-            title,
-            new Date(startDate).setHours(0, 0, 0, 0),
-            new Date(endDate).setHours(0, 0, 0, 0),
-          )}
           {location ? <CuckooLocation location={location} /> : null}
           {startDate || endDate ? <CuckooDate startDate={startDate} endDate={endDate} /> : null}
           {startDate || endDate ? <CuckooTime startTime={startDate} endTime={endDate} /> : null}
