@@ -9,7 +9,7 @@
     @include grid(0, 2rem, 1fr);
   }
   @include smallTablet-breakpoint {
-    margin-left: 12rem;
+    overflow-y: scroll; 
   }
   @include mobile-breakpoint {
     @include main(100vw, fit-content, $mainPadding: 9rem 1rem);

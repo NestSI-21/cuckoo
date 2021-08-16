@@ -5,7 +5,7 @@
   overflow-x: hidden;
   overflow-y: scroll;
   @include smallTablet-breakpoint {
-    height: 60vh;
+    height: 75vh;
   }
   @include mobile-breakpoint {
     @include container(fit-content);
