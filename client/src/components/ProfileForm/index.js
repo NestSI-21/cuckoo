@@ -10,6 +10,7 @@ import { form } from './profileform.module.scss';
 
 const ProfileForm = () => {
   const [companies, setCompanies] = useState([]);
+  const [user, setUser] = useState();
   const [data, setData] = useState({
     company: '',
     role: '',
@@ -17,14 +18,14 @@ const ProfileForm = () => {
   });
 
   let history = useHistory();
-  const user = JSON.parse(localStorage.getItem('data'));
 
   useEffect(() => {
     getCompanies();
+    getUser();
   }, []);
 
   useEffect(() => {
-    if (user.profile_completed) {
+    if (user?.profile_completed) {
       setData((prevData) => ({
         ...prevData,
         company: user.company_id,
@@ -32,7 +33,7 @@ const ProfileForm = () => {
         birthday: user.birthday,
       }));
     }
-  }, []);
+  }, [user]);
 
   // Get companies
   const getCompanies = () => {
@@ -41,6 +42,14 @@ const ProfileForm = () => {
         resp.data.data.map(({ id, attributes: { name } }) => ({ id, name })),
       );
       setCompanies(companies);
+    });
+  };
+
+  // Get user
+  const getUser = () => {
+    get('/users/profiles', function (resp) {
+      const user = denormalize(resp.data).data;
+      setUser(user);
     });
   };
 
@@ -61,10 +70,6 @@ const ProfileForm = () => {
 
     put(formData, '/users/profiles', function (resp) {
       if (resp.status === 200) {
-        let userLocal = localStorage.getItem('data');
-        userLocal = JSON.parse(userLocal);
-        userLocal.profile_completed = true;
-        localStorage.setItem('data', JSON.stringify(userLocal));
         history.push('/dashboard');
       } else {
         history.push('/profile/edit');
@@ -74,34 +79,38 @@ const ProfileForm = () => {
 
   return (
     <>
-      <Avatar userImage={user.image_url} />
-      <h1>Enter your details</h1>
-      <form className={form} onSubmit={handleSubmit}>
-        <Select
-          name='company'
-          value={data.company}
-          onChange={handleChange}
-          options={companies}
-          label='Which company do you work for?'
-          required
-        />
-        <Input
-          type='text'
-          name='role'
-          value={data.role}
-          onChange={handleChange}
-          label='What is your occupation?'
-          required
-        />
-        <Input
-          type='date'
-          name='birthday'
-          value={data.birthday}
-          onChange={handleChange}
-          label='Please enter your date of birth'
-        />
-        <Button text='Continue' type='submit' />
-      </form>
+      {user && (
+        <>
+          <Avatar userImage={user.image_url} />
+          <h1>Enter your details</h1>
+          <form className={form} onSubmit={handleSubmit}>
+            <Select
+              name='company'
+              value={data.company}
+              onChange={handleChange}
+              options={companies}
+              label='Which company do you work for?'
+              required
+            />
+            <Input
+              type='text'
+              name='role'
+              value={data.role}
+              onChange={handleChange}
+              label='What is your occupation?'
+              required
+            />
+            <Input
+              type='date'
+              name='birthday'
+              value={data.birthday}
+              onChange={handleChange}
+              label='Please enter your date of birth'
+            />
+            <Button text='Continue' type='submit' />
+          </form>
+        </>
+      )}
     </>
   );
 };

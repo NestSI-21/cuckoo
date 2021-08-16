@@ -1,11 +1,11 @@
 import React from 'react';
-import axios from 'axios';
-import SlackLogin from 'react-slack-login';
-import Layout from '../../components/Layout';
-import animatedLogo from '../../assets/logos/cuckooAnimation.svg';
-import { content, logo } from './landing.module.scss';
 import { useHistory } from 'react-router-dom';
 import { Redirect } from 'react-router';
+import axios from 'axios';
+import SlackLogin from 'react-slack-login';
+import animatedLogo from '../../assets/logos/cuckooAnimation.svg';
+import Layout from '../../components/Layout';
+import { content, logo } from './landing.module.scss';
 
 const Landing = () => {
   let history = useHistory();
@@ -18,8 +18,8 @@ const Landing = () => {
       .post(`${process.env.REACT_APP_API_BASE_URL}/slack/login`, { code: slackCode })
       .then((resp) => {
         localStorage.setItem('token', resp.headers.authorization);
-        localStorage.setItem('data', JSON.stringify(resp.data.user));
-        if (resp.data.user.profile_completed) {
+        const userProfileStatus = resp.data.user.profile_completed;
+        if (userProfileStatus) {
           history.push('/dashboard');
         } else {
           history.push('/profile/edit');
