@@ -10,7 +10,6 @@ import { calendar, container } from './calendar.module.scss';
 const Calendar = () => {
   const [cuckoos, setCuckoos] = useState([]);
   const [modifiers, setModifiers] = useState([]);
-  //const [selectedCuckoo, setSelectedCuckoo] = useState({ selectedDay: null });
   const [interval, setInterval] = useState(() => {
     let startDate = new Date();
     let endDate = new Date();
@@ -30,8 +29,6 @@ const Calendar = () => {
       end: new Date(day.setHours(23, 59, 59)),
       isMonth: false,
     });
-
-    //setSelectedCuckoo({ selectedDay: selected ? undefined : day });
   };
 
   useEffect(() => {
