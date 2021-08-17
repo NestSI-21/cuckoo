@@ -3,17 +3,15 @@
 .form {
   margin-top: 1rem;
   max-width: 75rem;
-
+  position: relative;
   .radioWrapper {
     @include grid(0, 1.6rem, 1fr 1fr);
     width: 80%;
-    margin: 0 auto 3rem auto;
+    margin: 0 auto;
   }
-
   div {
-    margin-bottom: 2rem;
+    margin-bottom: 2.5rem;
   }
-
   .flexWrapper {
     @include flex($justify: space-between);
     div {
@@ -24,60 +22,92 @@
       }
     }
   }
-
   .gridWrapper {
     @include grid(0, 2rem, 1fr 1fr 1fr 1fr);
   }
-
   .btnWrapper {
     button {
       width: 100%;
     }
+    p {
+      text-align: center;
+      width: 100%;
+      margin-top: 0.5rem;
+      font-size: $text-small;
+      color: $error;
+      position: absolute;
+      @include mobile-breakpoint {
+        font-size: 1.2rem;
+      }
+    }
+  }
+  .radioDescription,
+  .errorRadioDescription {
+    text-align: center;
+    padding-bottom: 1rem;
+    width: fit-content;
+    margin: 0 auto;
+    position: relative;
+    color: $light-gray;
+    .star {
+      position: absolute;
+      top: -0.5rem;
+      right: -1rem;
+      i {
+        font-size: 0.65rem;
+        line-height: 0;
+      }
+    }
+  }
+  .errorRadioDescription {
+    color: $error;
   }
 }
 
 @include tablet-breakpoint {
   .form {
-    width: 45rem;
+    overflow-y: scroll;
+    width: 100%;
     div {
-      margin-bottom: 1.2rem;
+      margin-bottom: 2.5rem;
     }
     .gridWrapper {
-      @include grid(2, 1.2rem, 1fr 1fr);
-      width: 450px;
+      @include grid(0.5rem, 0.5rem, 1fr 1fr);
+      width: 100%;
+      div {
+        margin: 0;
+      }
     }
   }
 }
 
 @include mobile-breakpoint {
   .form {
-    width: 28rem;
+    width: 100%;
+    padding: 0 2rem;
     .radioWrapper {
       @include grid(0, 0.6rem, 1fr 1fr);
       width: 100%;
-      margin: 0 auto 2.3rem auto;
+      margin: 0 auto;
     }
     div {
-      margin-bottom: 0.6rem;
+      margin-bottom: 2.2rem;
     }
     .flexWrapper {
-      display: block;
+      @include flex(column);
       div {
         &:first-child {
-          width: 28rem;
-          margin-bottom: 0.7rem;
+          margin-bottom: 2.2rem;
+          width: 100%;
         }
         &:last-child {
-          width: 28rem;
+          width: 100%;
         }
       }
     }
     .gridWrapper {
-      @include grid(0, 0.7rem, 1fr 1fr);
-      width: 280px;
-      div:nth-child(-n + 4) {
-        width: 13.65rem;
-      }
+      @include grid(0.5rem, 0.5rem, 1fr 1fr);
+      width: 100%;
     }
   }
 }
