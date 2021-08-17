@@ -41,23 +41,19 @@
   }
 
   .imageUploadButton {
-    border: 1px dashed $green;
+    border: 1px dashed $light-gray;
+    background: transparent;
     border-radius: 4px;
     padding: 2rem;
     width: 100%;
 
     div {
-      @include flex();
+      @include flex(column);
       margin: 0;
 
       img {
-        margin-right: 0.8rem;
+        padding-bottom: 0.8rem;
       }
-    }
-
-    img {
-      width: 1.7rem;
-      height: 1.7rem;
     }
   }
 

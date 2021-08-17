@@ -6,7 +6,7 @@ import Avatar from '../../elements/Avatar';
 import Select from '../../elements/Select';
 import Input from '../../elements/Input';
 import Button from '../../elements/Button';
-import { form } from './profileform.module.scss';
+import { form, errorMessage } from './profileform.module.scss';
 
 const ProfileForm = () => {
   const [companies, setCompanies] = useState([]);
@@ -16,6 +16,29 @@ const ProfileForm = () => {
     role: '',
     birthday: '',
   });
+
+  /*---------------FORM VALIDATION----------------*/
+  const [companyError, setCompanyError] = useState('');
+  const [roleError, setRoleError] = useState('');
+  const [authError, setAuthError] = useState('');
+
+  const formValidation = () => {
+    let companyError = null;
+    let roleError = null;
+
+    if (!data.company) {
+      companyError = 'Please insert your company';
+    }
+    if (!data.role) {
+      roleError = 'Please tell us what you do';
+    }
+    if (companyError || roleError) {
+      setCompanyError(companyError);
+      setRoleError(roleError);
+      return;
+    }
+  };
+  /*---------------------------------------------*/
 
   let history = useHistory();
 
@@ -61,6 +84,7 @@ const ProfileForm = () => {
 
   // Submit Handler for user profile
   const handleSubmit = (e) => {
+    formValidation();
     e.preventDefault();
 
     const formData = new FormData();
@@ -68,13 +92,17 @@ const ProfileForm = () => {
     formData.append('user[company_role]', data.role);
     formData.append('user[birthday]', data.birthday);
 
-    put(formData, '/users/profiles', function (resp) {
-      if (resp.status === 200) {
-        history.push('/dashboard');
-      } else {
-        history.push('/profile/edit');
-      }
-    });
+    if (data.company != '' && data.role != '') {
+      put(formData, '/users/profiles', function (resp) {
+        if (resp.status === 200) {
+          history.push('/dashboard');
+        } else {
+          history.push('/profile/edit');
+        }
+      });
+    } else {
+      setAuthError('Something went wrong');
+    }
   };
 
   return (
@@ -90,7 +118,9 @@ const ProfileForm = () => {
               onChange={handleChange}
               options={companies}
               label='Which company do you work for?'
-              required
+              mandatory
+              error={companyError}
+              onFocus={companyError ? () => setCompanyError('') : null}
             />
             <Input
               type='text'
@@ -98,7 +128,9 @@ const ProfileForm = () => {
               value={data.role}
               onChange={handleChange}
               label='What is your occupation?'
-              required
+              mandatory
+              error={roleError}
+              onFocus={roleError ? () => setRoleError('') : null}
             />
             <Input
               type='date'
@@ -108,6 +140,7 @@ const ProfileForm = () => {
               label='Please enter your date of birth'
             />
             <Button text='Continue' type='submit' />
+            {authError ? <p className={errorMessage}>{authError}</p> : null}
           </form>
         </>
       )}

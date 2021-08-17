@@ -36,6 +36,12 @@ const CuckooCard = ({
     },
   },
 }) => {
+  // const [confirmDelete, setConfirmDelete] = useState(false);
+  // const cuckooDelete = () => {
+  //   setConfirmDelete(!confirmDelete);
+  //   console.log(confirmDelete);
+  // };
+
   return (
     <div className={cuckooCard}>
       <div className={avatarContainer}>
