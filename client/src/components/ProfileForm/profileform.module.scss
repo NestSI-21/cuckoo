@@ -2,12 +2,11 @@
 
 .form {
   width: 40rem;
-  position: relative;
   @include mobile-breakpoint {
     width: 28rem;
   }
   div {
-    margin-bottom: 2.5rem;
+    margin-bottom: 2rem;
   }
   button {
     background: $green;
@@ -16,17 +15,6 @@
     text-align: center;
     span {
       width: 100%;
-    }
-  }
-  .errorMessage {
-    text-align: center;
-    width: 100%;
-    margin-top: 0.5rem;
-    font-size: $text-small;
-    color: $error;
-    position: absolute;
-    @include mobile-breakpoint {
-      font-size: 1.2rem;
     }
   }
 }

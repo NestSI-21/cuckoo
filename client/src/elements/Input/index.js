@@ -1,25 +1,19 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { input, inputError, filled, unfilled, star, errorMessage } from './input.module.scss';
+import { input } from './input.module.scss';
 
-const Input = ({ type, name, onChange, label, value, mandatory, error }) => {
+const Input = ({ type, name, onChange, label, value, required }) => {
   return (
-    <div className={!error ? input : inputError}>
+    <div className={input}>
       <input
         type={type}
         name={name}
         onChange={onChange}
         placeholder=' '
         value={value ?? ''}
-        className={value != '' ? filled : unfilled}
+        required={required}
       />
       <label>{label}</label>
-      {mandatory ? (
-        <span className={star}>
-          <i className='fas fa-asterisk'></i>
-        </span>
-      ) : null}
-      {error ? <p className={errorMessage}>{error}</p> : null}
     </div>
   );
 };
@@ -29,8 +23,7 @@ Input.propTypes = {
   name: PropTypes.string,
   onChange: PropTypes.func,
   label: PropTypes.string,
-  mandatory: PropTypes.bool,
-  error: PropTypes.string,
+  required: PropTypes.bool,
   value: PropTypes.oneOfType([PropTypes.string, PropTypes.object]),
 };
 
