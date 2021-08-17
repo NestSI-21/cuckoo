@@ -91,6 +91,9 @@ const Calendar = () => {
           .DayPicker-Day--today {
             color: #21c49c;
           }
+          .DayPicker-Day--selected {
+            opacity: 0.5;
+          }
           .DayPicker-Day--events {
             color: white;
             background-color: #21c49c;
