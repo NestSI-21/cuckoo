@@ -13,7 +13,6 @@ const Create = () => {
           <CircularButton close />
         </Link>
         <h1>Create a Cuckoo!</h1>
-        <p>Select the type of cuckoo you want to create</p>
         <CuckooForm />
       </div>
     </Layout>
