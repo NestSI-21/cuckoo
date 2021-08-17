@@ -6,11 +6,9 @@
   h1 {
     margin-top: 2.5rem;
   }
-  p {
-    text-align: center;
-  }
   @include mobile-breakpoint {
     min-height: 100vh;
+    padding: 0;
     h1 {
       margin-top: 5rem;
     }
