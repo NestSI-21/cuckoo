@@ -40,14 +40,8 @@ const Cuckoos = () => {
                 <div className={dateFilters}>
                   <h3>Date:</h3>
                   <div className={dateLabels}>
-                    <Input
-                      type='date'
-                      name='startDate'
-                      value={null}
-                      onChange={null}
-                      label='From:'
-                    />
-                    <Input type='date' name='endDate' value={null} onChange={null} label='To:' />
+                    <Input type='date' name='startDate' label='From:' />
+                    <Input type='date' name='endDate' label='To:' />
                   </div>
                 </div>
                 <div className={typeFilters}>

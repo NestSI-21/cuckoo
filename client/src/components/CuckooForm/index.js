@@ -118,6 +118,9 @@ const CuckooForm = () => {
   // Resets category when cuckoo type is selected
   const resetCategory = () => {
     setData((prevData) => ({ ...prevData, category: '' }));
+    if (data.type == 0 && typeError) {
+      setTypeError(!typeError);
+    }
   };
 
   const handleSubmit = (e) => {

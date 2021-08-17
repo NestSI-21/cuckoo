@@ -6,7 +6,7 @@
   @include tablet-breakpoint {
     padding: 0 1.5rem;
   }
-  @include mobile-breakpoint {
+  @include smallTablet-breakpoint {
     padding: 1.5rem 0;
     padding-left: 0;
   }
@@ -18,8 +18,8 @@
     color: $green;
   }
   .upcomingCard {
-    padding: 2rem 0;
-    @include flex(row, flex-start);
+    padding: 1rem 0;
+    @include flex($justify: flex-start);
     .upcomingDescription {
       margin-left: 1.2rem;
       p {
@@ -39,7 +39,7 @@
       padding-bottom: 0;
     }
     @include smallTablet-breakpoint {
-      height: 30rem;
+      height: 20rem;
     }
     .upcomingCard {
       .upcomingDay {

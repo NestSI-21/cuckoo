@@ -1,11 +1,18 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { input, inputError, star, errorMessage } from './input.module.scss';
+import { input, inputError, filled, unfilled, star, errorMessage } from './input.module.scss';
 
 const Input = ({ type, name, onChange, label, value, mandatory, error }) => {
   return (
     <div className={!error ? input : inputError}>
-      <input type={type} name={name} onChange={onChange} placeholder=' ' value={value ?? ''} />
+      <input
+        type={type}
+        name={name}
+        onChange={onChange}
+        placeholder=' '
+        value={value ?? ''}
+        className={value != '' ? filled : unfilled}
+      />
       <label>{label}</label>
       {mandatory ? (
         <span className={star}>

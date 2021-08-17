@@ -1,6 +1,9 @@
 import React, { useState, useEffect, Fragment } from 'react';
+import denormalize from '@weareredlight/denormalize_json_api';
 import Carousel from 'react-multi-carousel';
 import 'react-multi-carousel/lib/styles.css';
+import { get } from '../../helpers/Networking';
+import CuckooCard from '../CuckooCard';
 import {
   carousel,
   carouselContainer,
@@ -8,15 +11,20 @@ import {
   dotsContainer,
   cardHolder,
 } from './cuckoocarousel.module.scss';
-import CuckooCard from '../CuckooCard';
-import jsondata from '../../mockdata.json';
 
 const CuckooCarousel = () => {
   const [cuckoos, setCuckoos] = useState([]);
+
   useEffect(() => {
-    const data = jsondata.map((value) => value);
-    setCuckoos(data);
+    getCuckoos();
   }, []);
+
+  const getCuckoos = () => {
+    get('/posts', function (resp) {
+      const cuckoos = denormalize(resp.data).data;
+      setCuckoos(cuckoos);
+    });
+  };
 
   return (
     <div

@@ -48,7 +48,6 @@
     width: fit-content;
     margin: 0 auto;
     position: relative;
-    color: $light-gray;
     .star {
       position: absolute;
       top: -0.5rem;
@@ -58,6 +57,9 @@
         line-height: 0;
       }
     }
+  }
+  .radioDescription {
+    color: $light-gray;
   }
   .errorRadioDescription {
     color: $error;

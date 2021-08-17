@@ -25,7 +25,6 @@ const CuckooImages = ({ images }) => {
       }
     >
       {images.map((image, i) => {
-        console.log(image);
         return (
           <div className={imagePlaceHolder} key={i}>
             <img src={image} alt='' />

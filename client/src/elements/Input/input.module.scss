@@ -16,17 +16,16 @@
       line-height: 0;
     }
   }
-}
-
-.input {
-  input {
-    &:not(:placeholder-shown) {
-      border: 0.1rem solid $green;
+  .filled {
+    border: 0.1rem solid $green;
+    ~ .errorMessage {
+      display: none;
     }
-  }
-  [type='date']:not(:placeholder-shown),
-  [type='time']:not(:placeholder-shown) {
-    border: 0.1rem solid $light-gray;
+    ~ .star {
+      i {
+        color: $light-gray;
+      }
+    }
   }
 }
 
