@@ -17,7 +17,6 @@ const ProfileForm = () => {
     birthday: '',
   });
 
-  /*---------------FORM VALIDATION----------------*/
   const [companyError, setCompanyError] = useState('');
   const [roleError, setRoleError] = useState('');
   const [authError, setAuthError] = useState('');
@@ -38,7 +37,6 @@ const ProfileForm = () => {
       return;
     }
   };
-  /*---------------------------------------------*/
 
   let history = useHistory();
 

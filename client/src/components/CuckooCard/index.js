@@ -1,20 +1,17 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import Avatar from '../../elements/Avatar';
-// import Modal from '../Modal';
 import CuckooAuthor from '../../elements/CuckooAuthor';
 import CuckooDescription from '../../elements/CuckooDescription';
 import CuckooImages from '../../elements/CuckooImages';
 import CuckooLocation from '../../elements/CuckooLocation';
 import CuckooDate from '../../elements/CuckooDate';
 import CuckooTime from '../../elements/CuckooTime';
-// import deleteBtn from '../../assets/icons/deleteBtn.svg';
 
 import {
   cuckooCard,
   avatarContainer,
   titleSection,
-  // deleteButton,
   authorWrapper,
   detailsWrapper,
 } from './cuckoocard.module.scss';
@@ -36,12 +33,6 @@ const CuckooCard = ({
     },
   },
 }) => {
-  // const [confirmDelete, setConfirmDelete] = useState(false);
-  // const cuckooDelete = () => {
-  //   setConfirmDelete(!confirmDelete);
-  //   console.log(confirmDelete);
-  // };
-
   return (
     <div className={cuckooCard}>
       <div className={avatarContainer}>
@@ -51,12 +42,6 @@ const CuckooCard = ({
         <div>
           <div className={titleSection}>
             <h3>{title} </h3>
-            {/* TODO: Implement delete post
-            
-            <button className={deleteButton} onClick={cuckooDelete}>
-              <img src={deleteBtn} />
-            </button>
-            {confirmDelete ? <Modal /> : null} */}
           </div>
         </div>
         <p className={authorWrapper}>

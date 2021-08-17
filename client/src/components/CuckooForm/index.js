@@ -70,8 +70,6 @@ const CuckooForm = () => {
     });
   };
 
-  /*---------------FORM VALIDATION----------------*/
-
   const [typeError, setTypeError] = useState(false);
   const [titleError, setTitleError] = useState('');
   const [categoryError, setCategoryError] = useState('');
@@ -100,7 +98,7 @@ const CuckooForm = () => {
       return;
     }
   };
-  /*---------------------------------------------*/
+
   // Handler for inputs
   const handleChange = (e) => {
     const { name, value } = e.target;
