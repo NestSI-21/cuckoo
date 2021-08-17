@@ -128,10 +128,7 @@ label {
 input:focus ~ label,
 input:not(:placeholder-shown) ~ label,
 textarea:focus ~ label,
-textarea:not(:placeholder-shown) ~ label
-// select:focus ~ label,
-// select:valid ~ label
-{
+textarea:not(:placeholder-shown) ~ label {
   padding-top: 0.9rem;
   transform: none;
   font-size: 1.2rem;
