@@ -6,10 +6,10 @@ import calendar from '../../assets/icons/calendar.svg';
 const CuckooDate = ({ startDate, endDate }) => {
   return (
     <>
-      {startDate || endDate ? <img src={calendar} alt='time' /> : null}
+      {startDate || endDate ? <img src={calendar} alt='date' /> : null}
       <p>
         {startDate ? format(new Date(startDate), 'dd MMM') : null}
-        {startDate &&
+        {endDate &&
         new Date(startDate).setHours(0, 0, 0, 0) !== new Date(endDate).setHours(0, 0, 0, 0)
           ? ' - ' + format(new Date(endDate), 'dd MMM')
           : null}
