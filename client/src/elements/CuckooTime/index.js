@@ -6,11 +6,20 @@ import clock from '../../assets/icons/clock.svg';
 const CuckooTime = ({ startTime, endTime }) => {
   return (
     <>
-      {startTime || endTime ? <img src={clock} alt='time' /> : null}
+      {!(new Date(startTime).getHours() == 0 && new Date(startTime).getMinutes() == 0) ||
+      !(new Date(endTime).getHours() == 0 && new Date(endTime).getMinutes() == 0) ? (
+        <img src={clock} alt='time' />
+      ) : null}
       <p>
-        {startTime ? format(new Date(startTime), 'HH:mm') : null}
-        {startTime && endTime ? ' - ' : null}
-        {endTime ? format(new Date(endTime), 'HH:mm') : null}
+        {startTime &&
+        !(new Date(startTime).getHours() == 0 && new Date(startTime).getMinutes() == 0)
+          ? format(new Date(startTime), 'HH:mm')
+          : null}
+        {endTime &&
+        !(new Date(endTime).getHours() == 0 && new Date(endTime).getMinutes() == 0) &&
+        new Date(startTime).setFullYear(0, 0, 0) !== new Date(endTime).setFullYear(0, 0, 0)
+          ? ' - ' + format(new Date(endTime), 'HH:mm')
+          : null}
       </p>
     </>
   );

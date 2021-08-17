@@ -108,6 +108,16 @@ const CuckooForm = () => {
     }));
   };
 
+  // Handler for startDate: sets endDate when startDate is selected
+  const handleStartDateChange = (e) => {
+    const { value } = e.target;
+    setData((prevData) => ({
+      ...prevData,
+      startDate: value,
+      endDate: prevData.endDate != '' ? prevData.endDate : value,
+    }));
+  };
+
   // Handler for image upload
   const handleImageChange = (newImages) => {
     setData((prevData) => ({ ...prevData, images: newImages }));
@@ -244,7 +254,7 @@ const CuckooForm = () => {
           type='date'
           name='startDate'
           value={data.startDate}
-          onChange={handleChange}
+          onChange={handleStartDateChange}
           label='From:'
         />
         <Input
@@ -253,6 +263,7 @@ const CuckooForm = () => {
           value={data.endDate}
           onChange={handleChange}
           label='To:'
+          disabled={data.startDate === ''}
         />
         <Input
           type='time'
@@ -260,6 +271,7 @@ const CuckooForm = () => {
           value={data.startTime}
           onChange={handleChange}
           label='Starting at:'
+          disabled={data.startDate === ''}
         />
 
         <Input
@@ -268,6 +280,7 @@ const CuckooForm = () => {
           value={data.endTime}
           onChange={handleChange}
           label='Ending at:'
+          disabled={data.startTime === ''}
         />
       </div>
       <div className={btnWrapper}>

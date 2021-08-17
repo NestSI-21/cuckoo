@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { input, inputError, filled, unfilled, star, errorMessage } from './input.module.scss';
 
-const Input = ({ type, name, onChange, label, value, mandatory, error }) => {
+const Input = ({ type, name, onChange, label, value, mandatory, error, disabled }) => {
   return (
     <div className={!error ? input : inputError}>
       <input
@@ -12,6 +12,7 @@ const Input = ({ type, name, onChange, label, value, mandatory, error }) => {
         placeholder=' '
         value={value ?? ''}
         className={value != '' ? filled : unfilled}
+        disabled={disabled}
       />
       <label>{label}</label>
       {mandatory ? (
@@ -31,6 +32,7 @@ Input.propTypes = {
   label: PropTypes.string,
   mandatory: PropTypes.bool,
   error: PropTypes.string,
+  disabled: PropTypes.bool,
   value: PropTypes.oneOfType([PropTypes.string, PropTypes.object]),
 };
 
