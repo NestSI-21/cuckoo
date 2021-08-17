@@ -80,14 +80,6 @@ const CuckooForm = () => {
     }));
   };
 
-  // const handleEndDateChange = (e) => {
-  //   const { value } = e.target;
-  //   setData((prevData) => ({
-  //     ...prevData,
-  //     endDate: value,
-  //   }));
-  // };
-
   // Handler for image upload
   const handleImageChange = (newImages) => {
     setData((prevData) => ({ ...prevData, images: newImages }));
