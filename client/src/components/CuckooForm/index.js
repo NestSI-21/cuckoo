@@ -8,16 +8,7 @@ import Textarea from '../../elements/Textarea';
 import ImageUpload from '../ImageUpload';
 import Button from '../../elements/Button';
 import { get, post } from '../../helpers/Networking';
-import {
-  form,
-  radioWrapper,
-  flexWrapper,
-  gridWrapper,
-  btnWrapper,
-  radioDescription,
-  errorRadioDescription,
-  star,
-} from './cuckooform.module.scss';
+import { form, radioWrapper, flexWrapper, gridWrapper, btnWrapper } from './cuckooform.module.scss';
 
 const CuckooForm = () => {
   const [cuckooType, setCuckooType] = useState();
@@ -52,6 +43,7 @@ const CuckooForm = () => {
       setCuckooType(types);
     });
   };
+
   const getAnnouncementOptions = () => {
     get('/categories', function (resp) {
       const options = denormalize(resp.data)
@@ -70,37 +62,6 @@ const CuckooForm = () => {
     });
   };
 
-  /*---------------FORM VALIDATION----------------*/
-
-  const [typeError, setTypeError] = useState(false);
-  const [titleError, setTitleError] = useState('');
-  const [categoryError, setCategoryError] = useState('');
-  const [authError, setAuthError] = useState('');
-
-  const formValidation = () => {
-    let typeError = false;
-    let titleError = null;
-    let categoryError = null;
-
-    if (!data.type) {
-      typeError = true;
-    }
-    if (!data.title) {
-      titleError = 'Give a title to your Cuckoo';
-    } else if (data.title.length >= 50) {
-      titleError = 'This title is too long';
-    }
-    if (!data.category) {
-      categoryError = 'Please choose a category';
-    }
-    if (typeError || titleError || categoryError) {
-      setTypeError(typeError);
-      setTitleError(titleError);
-      setCategoryError(categoryError);
-      return;
-    }
-  };
-  /*---------------------------------------------*/
   // Handler for inputs
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -118,14 +79,9 @@ const CuckooForm = () => {
   // Resets category when cuckoo type is selected
   const resetCategory = () => {
     setData((prevData) => ({ ...prevData, category: '' }));
-    if (data.type == 0 && typeError) {
-      setTypeError(!typeError);
-    }
   };
 
   const handleSubmit = (e) => {
-    formValidation();
-
     e.preventDefault();
 
     const startDate = data.startDate ? new Date(data.startDate) : undefined;
@@ -167,28 +123,17 @@ const CuckooForm = () => {
         ).toISOString(),
       );
     }
-    if (data.type != 0 && data.title != '' && data.category != '') {
-      console.log(data);
-      post(formData, '/posts', function (resp) {
-        if (resp.status === 200) {
-          history.push('/cuckoos');
-        } else {
-          history.push('/create');
-        }
-      });
-    } else {
-      setAuthError('Something went wrong');
-    }
+    post(formData, '/posts', function (resp) {
+      if (resp.status === 200) {
+        history.push('/cuckoos');
+      } else {
+        history.push('/create');
+      }
+    });
   };
 
   return (
     <form className={form} onSubmit={handleSubmit}>
-      <p className={!typeError ? radioDescription : errorRadioDescription}>
-        Select the type of Cuckoo you want to create
-        <span className={star}>
-          <i className='fas fa-asterisk'></i>
-        </span>
-      </p>
       <div className={radioWrapper}>
         {cuckooType &&
           cuckooType.map((type, i) => (
@@ -201,6 +146,7 @@ const CuckooForm = () => {
               checked={parseInt(data.type) === parseInt(type.id)}
               onClick={resetCategory}
               onChange={handleChange}
+              required
             />
           ))}
       </div>
@@ -211,9 +157,7 @@ const CuckooForm = () => {
         value={data.title}
         onChange={handleChange}
         label='Give your Cuckoo a title'
-        mandatory
-        error={titleError}
-        onFocus={titleError ? () => setTitleError('') : null}
+        required
       />
       <div className={flexWrapper}>
         <Input
@@ -229,9 +173,7 @@ const CuckooForm = () => {
           onChange={handleChange}
           options={data.type === 1 ? announcementOptions : data.type === 2 ? eventOptions : []}
           label='Category'
-          mandatory
-          error={categoryError}
-          onFocus={categoryError ? () => setCategoryError('') : null}
+          required
         />
       </div>
       <Textarea
@@ -274,7 +216,6 @@ const CuckooForm = () => {
       </div>
       <div className={btnWrapper}>
         <Button text='PUBLISH' type='submit' style='green' />
-        {authError ? <p>{authError}</p> : null}
       </div>
     </form>
   );
