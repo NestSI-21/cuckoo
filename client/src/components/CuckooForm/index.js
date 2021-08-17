@@ -71,6 +71,7 @@ const CuckooForm = () => {
     }));
   };
 
+  // Handler for startDate: sets endDate when startDate is selected
   const handleStartDateChange = (e) => {
     const { value } = e.target;
     setData((prevData) => ({
