@@ -31,5 +31,3 @@ CuckooTime.propTypes = {
 };
 
 export default CuckooTime;
-
-// !(new Date(endTime).getHours() == 0 && new Date(endTime).getMinutes() == 0);
