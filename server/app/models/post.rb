@@ -5,6 +5,11 @@ class Post < ApplicationRecord
   belongs_to :type
   belongs_to :category
   has_many_attached :images
+  scope :filter_by_categories, ->(category) { joins(:category).where(category: { id: category }).distinct }
+  scope :filter_by_types, ->(type) { joins(:type).where(type: { id: type }).distinct }
+
+
+  #filter by category and type or just one of them
 
 
   def send_message
