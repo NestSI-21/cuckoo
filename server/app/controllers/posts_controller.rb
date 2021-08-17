@@ -4,10 +4,16 @@ class PostsController < ActionController::API
   before_action :authenticate_user!
 
   def index
-    @posts = Post.order(created_at: :desc).all
+    categories = params[:categories]
+    types = params[:types]
+    posts = Post.order(created_at: :desc).all
+    posts = posts.filter_by_categories(categories) if categories.present?
+    posts = posts.filter_by_types(types) if types.present?
+
+
     render(
       json: PostSerializer.new(
-        @posts,
+        posts,
         { include: %i[user user.company type] }
       )
     )
