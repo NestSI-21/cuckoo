@@ -9,12 +9,12 @@ const Toast = ({ type }) => {
     type === 'success' ? successToast : type === 'failure' ? failureToast : null;
   }
   const successToast = () => {
-    toast('Your Cuckoo was posted!', {
+    toast('Your Cuckoo was posted! 🎉', {
       className: 'toast success',
     });
   };
   const failureToast = () => {
-    toast('Something went wrong :(', {
+    toast('Something went wrong 😔', {
       className: 'toast failure',
     });
   };
@@ -27,11 +27,6 @@ const Toast = ({ type }) => {
         pauseOnHover={true}
         draggable={true}
       />
-
-      <div className='justTest'>
-        <button onClick={successToast}>Test Success</button>
-        <button onClick={failureToast}>Test Failure</button>
-      </div>
     </>
   );
 };
