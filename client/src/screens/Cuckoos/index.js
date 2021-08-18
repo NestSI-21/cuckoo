@@ -54,6 +54,16 @@ const Cuckoos = () => {
     }));
   };
 
+  const handleFilterClick = (name, value, filterProp) => {
+    setAllFilters((prevData) => ({
+      ...prevData,
+      [filterProp]: {
+        ...prevData[filterProp],
+        [name]: value,
+      },
+    }));
+  };
+
   const getCuckooTypes = () => {
     get('/categories', function (resp) {
       const types = denormalize(
