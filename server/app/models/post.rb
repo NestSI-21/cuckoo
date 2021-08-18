@@ -1,16 +1,16 @@
 # frozen_string_literal: true
 
 class Post < ApplicationRecord
+  include PgSearch::Model
   belongs_to :user
   belongs_to :type
   belongs_to :category
   has_many_attached :images
   scope :filter_by_categories, ->(category) { joins(:category).where(category: { id: category }).distinct }
   scope :filter_by_types, ->(type) { joins(:type).where(type: { id: type }).distinct }
+  pg_search_scope :search, against: %i[title description]
 
-
-  #filter by category and type or just one of them
-
+  # filter by category and type or just one of them
 
   def send_message
     Slack.configure do |config|
@@ -34,7 +34,8 @@ class Post < ApplicationRecord
       # Posts that are created on the current day or before wont have a reminder
       if start_date > DateTime.current.to_date
         reminder_day = start_date - 1.day # The reminder is currently set to one day before the start date
-        reminder_date_time = reminder_day.change(hour: ENV['SLACK_SCHEDULED_HOURS'], min: ENV['SLACK_SCHEDULED_MINUTES'])
+        reminder_date_time = reminder_day.change(hour: ENV['SLACK_SCHEDULED_HOURS'],
+                                                 min: ENV['SLACK_SCHEDULED_MINUTES'])
         byebug
         reminder_date_time = reminder_date_time.to_time.to_i
       end
@@ -46,13 +47,12 @@ class Post < ApplicationRecord
     slack_cuckoo += ", #{end_date.strftime('%H:%M')}" if end_date
 
     # Sends the schedule message if there is a start date
-    if start_date and start_date > DateTime.current.to_date
+    if start_date && (start_date > DateTime.current.to_date)
       client.chat_scheduleMessage(channel: category.slack_channel, text: slack_cuckoo, post_at: reminder_date_time)
     end
     # Normal slack message sent when a post is created
     client.chat_postMessage(channel: category.slack_channel, text: slack_cuckoo, as_user: true)
   end
-
 
   def images_url
     Rails.application.routes.default_url_options = { host: 'localhost:3000', protocol: 'http' }

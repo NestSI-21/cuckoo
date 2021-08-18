@@ -43,6 +43,8 @@ gem 'rubocop-rails', require: false
 gem 'activeadmin'
 gem 'sassc-rails'
 
+gem 'pg_search'
+
 # gem "omniauth-rails_csrf_protection", "~> 1.0"
 
 # Use Rack CORS for handling Cross-Origin Resource Sharing (CORS), making cross-origin AJAX possible
