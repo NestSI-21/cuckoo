@@ -105,7 +105,6 @@ const Cuckoos = () => {
         return `&categories[]=${category}`;
       })}`,
       function (resp) {
-        console.log(resp.config.url);
         const cuckoos = denormalize(resp.data).data;
         setCuckoos(cuckoos);
       },
