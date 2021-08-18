@@ -58,6 +58,7 @@ span {
 
 a,
 button {
+  font-family: $rubik;
   font-size: $text;
   text-decoration: none;
   font-weight: 400;
@@ -107,11 +108,11 @@ textarea {
   resize: none;
 }
 label {
-  background-color: $background;
+  width: 80%;
   position: absolute;
   pointer-events: none;
   left: 2rem;
-  top: 0.2rem;
+  top: 0.1rem;
   padding-top: 1.8rem;
   transition: 0.1s ease all;
   color: $light-gray;
@@ -127,9 +128,7 @@ label {
 input:focus ~ label,
 input:not(:placeholder-shown) ~ label,
 textarea:focus ~ label,
-textarea:not(:placeholder-shown) ~ label,
-select:focus ~ label,
-select:valid ~ label {
+textarea:not(:placeholder-shown) ~ label {
   padding-top: 0.9rem;
   transform: none;
   font-size: 1.2rem;
@@ -137,4 +136,10 @@ select:valid ~ label {
     font-size: 1rem;
     padding-top: 0.7rem;
   }
+}
+input:-webkit-autofill,
+input:-webkit-autofill:hover,
+input:-webkit-autofill:focus,
+input:-webkit-autofill:active {
+  box-shadow: 0 0 0 30px $background inset !important;
 }

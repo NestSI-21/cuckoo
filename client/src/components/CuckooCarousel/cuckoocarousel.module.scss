@@ -2,30 +2,28 @@
 
 .carousel {
   width: 100vw;
-  position: relative;
-  margin-left: -3rem;
+  margin: 1rem 0 0 -1rem;
 
   .carouselContainer {
-    position: relative;
     .cuckooCard {
       display: flex;
       align-items: center;
       background-color: $background;
-      padding: 0 3rem;
+      padding: 0 1rem;
       margin: 0 1.5;
       .cardHolder {
-        @include container(fit-content);
+        @include container();
+        @include flex($align: center, $justify: flex-start);
+        width: 100%;
+        min-height: 50rem;
       }
     }
   }
   .dotsContainer {
     position: initial;
-    margin-top: 0.5rem;
+    margin-top: 1rem;
     li {
       button {
-        border-style: none;
-        outline: none;
-        background-color: $green;
         border-radius: 50%;
       }
     }

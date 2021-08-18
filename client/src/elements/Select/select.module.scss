@@ -1,9 +1,73 @@
 @import '../../styles/applications.scss';
 
-.select {
+.select,
+.selectError {
   position: relative;
   select {
     -webkit-appearance: none;
     cursor: pointer;
+    border: 0.1rem solid $light-gray;
+  }
+  i {
+    color: $light-gray;
+    position: absolute;
+    background: transparent;
+    font-size: 2rem;
+    right: 1.8rem;
+    top: 45%;
+    transform: translateY(-50%);
+  }
+  .selected {
+    border: 0.1rem solid $green;
+    ~ label {
+      padding-top: 0.9rem;
+      transform: none;
+      font-size: 1.2rem;
+      @include mobile-breakpoint {
+        font-size: 1rem;
+        padding-top: 0.7rem;
+      }
+    }
+    ~ .errorMessage {
+      display: none;
+    }
+    ~ .star {
+      i {
+        color: $light-gray;
+      }
+    }
+  }
+
+  .star {
+    position: absolute;
+    top: 0rem;
+    right: 0.75rem;
+    i {
+      position: initial;
+      font-size: 0.65rem;
+      color: $light-gray;
+      line-height: 0;
+      transform: none;
+    }
+  }
+}
+
+.selectError {
+  select {
+    border: 0.1rem solid $error;
+  }
+  .star {
+    i {
+      color: $error;
+    }
+  }
+  .errorMessage {
+    text-align: left;
+    font-size: $text-small;
+    color: $error;
+    position: absolute;
+    @include mobile-breakpoint {
+      font-size: 1.2rem;
+    }
   }
 }

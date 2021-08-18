@@ -3,7 +3,7 @@
 .companyMain {
   .company {
     @include flex($align: center, $justify: flex-start);
-    padding: 3rem 0;
+    padding: 3rem 1rem;
     border-bottom: 0.2rem solid #d8d8d8;
 
     .logoBox {
@@ -49,7 +49,7 @@
 @include smallTablet-breakpoint {
   .companyMain {
     .company {
-      padding: 2.5rem 0;
+      padding: 2.5rem 1;
       .logoBox {
         min-width: 6.5rem;
         height: 6.5rem;
@@ -65,7 +65,7 @@
 @include mobile-breakpoint {
   .companyMain {
     .company {
-      padding: 2rem 0;
+      padding: 2rem 1rem;
       align-items: flex-start;
       .logoBox {
         max-height: 4.5rem;

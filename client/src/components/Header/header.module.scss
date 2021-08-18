@@ -1,9 +1,9 @@
 @import '../../styles/applications.scss';
 
 .header {
-  @include flex($align: flex-end, $justify: space-between);
+  @include flex($align: center, $justify: space-between);
   background-color: $background;
-  padding: 0 3rem;
+  padding: 3.6rem 3rem 2rem 3rem;
   width: calc(100vw - 20rem);
   height: 10vh;
   .icon {

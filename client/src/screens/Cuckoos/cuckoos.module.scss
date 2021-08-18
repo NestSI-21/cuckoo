@@ -5,11 +5,14 @@
   @include grid(0, 2rem, 1fr 2fr);
 
   @include tablet-breakpoint {
-    @include main(calc(100vw - 12rem), $mainPadding: 1rem 3rem);
+    @include main(calc(100vw - 12rem), $mainPadding: 1rem 1.8rem);
     @include grid(0, 2rem, 1fr);
   }
+  @include smallTablet-breakpoint {
+    overflow-y: scroll; 
+  }
   @include mobile-breakpoint {
-    @include main(100vw, fit-content, $mainPadding: 10rem 3rem);
+    @include main(100vw, fit-content, $mainPadding: 9rem 1rem);
   }
 
   .search {
@@ -72,7 +75,7 @@
       }
       .categoryFilters {
         padding-left: 2rem;
-        border-left: 0.2rem solid #eef1f0;
+        border-left: 0.2rem solid $border-gray;
       }
     }
     @include mobile-breakpoint {
