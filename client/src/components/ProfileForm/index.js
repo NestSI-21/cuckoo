@@ -7,6 +7,7 @@ import Select from '../../elements/Select';
 import Input from '../../elements/Input';
 import Button from '../../elements/Button';
 import { form, errorMessage } from './profileform.module.scss';
+import { toast } from 'react-toastify';
 
 const ProfileForm = () => {
   const [companies, setCompanies] = useState([]);
@@ -94,12 +95,17 @@ const ProfileForm = () => {
       put(formData, '/users/profiles', function (resp) {
         if (resp.status === 200) {
           history.push('/dashboard');
-        } else {
-          history.push('/profile/edit');
+          toast('Your profile was updated! 🎉', {
+            className: 'toast success',
+          });
         }
       });
     } else {
+      history.push('/profile/edit');
       setAuthError('Something went wrong');
+      toast('Something went wrong 😔', {
+        className: 'toast failure',
+      });
     }
   };
 

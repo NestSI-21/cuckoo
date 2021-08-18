@@ -35,7 +35,6 @@ class Post < ApplicationRecord
       if start_date > DateTime.current.to_date
         reminder_day = start_date - 1.day # The reminder is currently set to one day before the start date
         reminder_date_time = reminder_day.change(hour: ENV['SLACK_SCHEDULED_HOURS'], min: ENV['SLACK_SCHEDULED_MINUTES'])
-        byebug
         reminder_date_time = reminder_date_time.to_time.to_i
       end
     end

@@ -28,7 +28,7 @@ const Sidebar = () => {
           </a>
 
           <div className={createBtn}>
-            <Link to='/Create' className={createBtn}>
+            <Link to='/create' className={createBtn}>
               <CircularButton />
             </Link>
           </div>

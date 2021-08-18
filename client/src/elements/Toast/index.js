@@ -1,23 +1,10 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { ToastContainer, toast } from 'react-toastify';
+import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import './toast.scss';
 
-const Toast = ({ type }) => {
-  {
-    type === 'success' ? successToast : type === 'failure' ? failureToast : null;
-  }
-  const successToast = () => {
-    toast('Your Cuckoo was posted! 🎉', {
-      className: 'toast success',
-    });
-  };
-  const failureToast = () => {
-    toast('Something went wrong 😔', {
-      className: 'toast failure',
-    });
-  };
+const Toast = () => {
   return (
     <>
       <ToastContainer
@@ -30,9 +17,4 @@ const Toast = ({ type }) => {
     </>
   );
 };
-
-Toast.propTypes = {
-  type: PropTypes.string,
-};
-
 export default Toast;
