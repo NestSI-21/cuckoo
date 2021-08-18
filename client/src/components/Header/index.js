@@ -25,7 +25,7 @@ const Header = ({ pageTitle, hideCreateBtn }) => {
       <img className={icon} src={cuckooIcon} alt='Cuckoo icon' />
       <h1>{pageTitle}</h1>
       {!hideCreateBtn && (
-        <Link to='/Create'>
+        <Link to='/create'>
           <CircularButton />
         </Link>
       )}
