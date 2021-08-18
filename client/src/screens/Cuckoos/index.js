@@ -1,9 +1,11 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
+import denormalize from '@weareredlight/denormalize_json_api';
 import Layout from '../../components/Layout';
 import SearchBar from '../../elements/SearchBar';
 import FilterBtn from '../../elements/FilterBtn';
 import Input from '../../elements/Input';
 import CuckooList from '../../components/CuckooList';
+import { get } from '../../helpers/Networking';
 import {
   contentContainer,
   filterContainer,
@@ -16,13 +18,67 @@ import {
 } from './cuckoos.module.scss';
 
 const Cuckoos = () => {
+  const [cuckooType, setCuckooType] = useState();
+  const [announcementOptions, setAnnouncementOptions] = useState();
+  const [eventOptions, setEventOptions] = useState();
+  const [cuckooFilters, setCuckooFilters] = useState({ type: [], category: [] });
+  // const [active, setActive] = useState(false);
   const [searchTerm, setSearchTerm] = useState('');
   const [showFilters, setShowFilters] = useState(false);
+
+  const width = window.innerWidth;
+  const breakpoint = 1024;
+
+  useEffect(() => {
+    getCuckooTypes();
+    getAnnouncementOptions();
+    getEventOptions();
+  }, []);
+
+  console.log(cuckooFilters);
+
+  // const toggleActive = () => {
+  //   setActive(!active);
+  // };
+
   const toggleOpenFilters = () => {
     setShowFilters(!showFilters);
   };
-  const width = window.innerWidth;
-  const breakpoint = 1024;
+
+  const handleFilterClick = (e) => {
+    const { name, value } = e.target;
+
+    setCuckooFilters((prevData) => ({
+      ...prevData,
+      [name]: value,
+    }));
+  };
+
+  const getCuckooTypes = () => {
+    get('/categories', function (resp) {
+      const types = denormalize(
+        resp.data.included.map(({ id, attributes: { name } }) => ({ id, name })),
+      );
+      setCuckooType(types);
+    });
+  };
+  const getAnnouncementOptions = () => {
+    get('/categories', function (resp) {
+      const options = denormalize(resp.data)
+        .data.filter((option) => option.type.id === '1')
+        .map(({ id, name }) => ({ id, name }));
+      setAnnouncementOptions(options);
+    });
+  };
+
+  const getEventOptions = () => {
+    get('/categories', function (resp) {
+      const options = denormalize(resp.data)
+        .data.filter((option) => option.type.id === '2')
+        .map(({ id, name }) => ({ id, name }));
+      setEventOptions(options);
+    });
+  };
 
   return (
     <Layout pageTitle='Cuckoos'>
@@ -46,18 +102,46 @@ const Cuckoos = () => {
                 </div>
                 <div className={typeFilters}>
                   <h3>Type:</h3>
-                  <FilterBtn text='Event' />
-                  <FilterBtn text='Announcement' />
+                  {cuckooType &&
+                    cuckooType.map((type, i) => (
+                      <FilterBtn
+                        key={i}
+                        id={type.id}
+                        name='type'
+                        value={type.id}
+                        text={type.name}
+                        onClick={handleFilterClick}
+                        // active={active}
+                      />
+                    ))}
                 </div>
               </div>
               <div className={categoryFilters}>
                 <h3>Category:</h3>
-                <FilterBtn text='Alert' />
-                <FilterBtn text='Education' />
-                <FilterBtn text='New Company' />
-                <FilterBtn text='New Employee' />
-                <FilterBtn text='Social' />
-                <FilterBtn text='Other' />
+                {announcementOptions &&
+                  announcementOptions.map((category, i) => (
+                    <FilterBtn
+                      key={i}
+                      id={category.id}
+                      name='category'
+                      value={category.id}
+                      text={category.name}
+                      onClick={handleFilterClick}
+                      // active={active}
+                    />
+                  ))}
+                {eventOptions &&
+                  eventOptions.map((category, i) => (
+                    <FilterBtn
+                      key={i}
+                      id={category.id}
+                      name='category'
+                      value={category.id}
+                      text={category.name}
+                      onClick={handleFilterClick}
+                      // active={active ?? false}
+                    />
+                  ))}
               </div>
             </div>
           ) : null}
