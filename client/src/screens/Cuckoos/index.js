@@ -17,11 +17,11 @@ import {
 } from './cuckoos.module.scss';
 
 const Cuckoos = () => {
+  const [cuckoos, setCuckoos] = useState();
   const [cuckooType, setCuckooType] = useState();
   const [announcementOptions, setAnnouncementOptions] = useState();
   const [eventOptions, setEventOptions] = useState();
-  const [cuckooFilters, setCuckooFilters] = useState({ searchTerm: '', type: '', category: [] });
-  const [searchTerm, setSearchTerm] = useState('');
+  const [cuckooFilters, setCuckooFilters] = useState({ query: '', types: '', categories: [] });
   const [showFilters, setShowFilters] = useState(false);
 
   const width = window.innerWidth;
@@ -33,6 +33,10 @@ const Cuckoos = () => {
     getEventOptions();
   }, []);
 
+  useEffect(() => {
+    getCuckoos();
+  }, [cuckooFilters]);
+
   // Handler to show/hide filters
   const toggleOpenFilters = () => {
     setShowFilters(!showFilters);
@@ -42,27 +46,29 @@ const Cuckoos = () => {
   const handleTypeFilterClick = (value) => {
     setCuckooFilters((prevData) => ({
       ...prevData,
-      type: value,
+      types: value,
+      categories: [],
     }));
   };
 
   // Handler for category filter click
   const handleCategoryFilterClick = (value) => {
-    if (cuckooFilters.category.includes(value)) {
+    if (cuckooFilters.categories.includes(value)) {
       setCuckooFilters((prevData) => ({
         ...prevData,
-        category: prevData.category.filter((cat) => cat != value),
+        categories: prevData.categories.filter((category) => category != value),
       }));
     } else {
       setCuckooFilters((prevData) => ({
         ...prevData,
-        category: [...prevData.category, value],
+        categories: [...prevData.categories, value],
       }));
     }
   };
 
-  const handleSearchInput = () => {
-    setCuckooFilters();
+  // Handle search input change
+  const handleSearchChange = (e) => {
+    setCuckooFilters((prevData) => ({ ...prevData, query: e.target.value }));
   };
 
   const getCuckooTypes = () => {
@@ -91,12 +97,27 @@ const Cuckoos = () => {
     });
   };
 
+  const getCuckoos = () => {
+    get(
+      `/posts?query=${cuckooFilters.query}&types=${
+        cuckooFilters.types
+      }${cuckooFilters.categories.map((category) => {
+        return `&categories[]=${category}`;
+      })}`,
+      function (resp) {
+        console.log(resp.config.url);
+        const cuckoos = denormalize(resp.data).data;
+        setCuckoos(cuckoos);
+      },
+    );
+  };
+
   return (
     <Layout pageTitle='Cuckoos'>
       <div className={contentContainer}>
         <div className={filterContainer}>
           <div className={search}>
-            <SearchBar setSearchTerm={setSearchTerm} />
+            <SearchBar handleSearchChange={handleSearchChange} />
             <button onClick={toggleOpenFilters}>
               <i className='fas fa-sliders-h'></i>
             </button>
@@ -119,7 +140,7 @@ const Cuckoos = () => {
                     value=''
                     text='All'
                     handleTypeFilterClick={handleTypeFilterClick}
-                    active={cuckooFilters.type === ''}
+                    active={cuckooFilters.types === ''}
                   />
                   {cuckooType &&
                     cuckooType.map((type, i) => (
@@ -130,15 +151,15 @@ const Cuckoos = () => {
                         value={type.id}
                         text={type.name}
                         handleTypeFilterClick={handleTypeFilterClick}
-                        active={cuckooFilters.type === type.id}
+                        active={cuckooFilters.types === type.id}
                       />
                     ))}
                 </div>
               </div>
               <div className={categoryFilters}>
                 <h3>Category:</h3>
-                <p className={cuckooFilters.type === '' ? show : hide}>Please select a type</p>
-                <div className={cuckooFilters.type === '1' ? show : hide}>
+                <p className={cuckooFilters.types === '' ? show : hide}>Please select a type</p>
+                <div className={cuckooFilters.types === '1' ? show : hide}>
                   {announcementOptions &&
                     announcementOptions.map((category, i) => (
                       <FilterBtn
@@ -148,11 +169,11 @@ const Cuckoos = () => {
                         value={category.id}
                         text={category.name}
                         handleCategoryFilterClick={handleCategoryFilterClick}
-                        active={cuckooFilters.category.includes(category.id)}
+                        active={cuckooFilters.categories.includes(category.id)}
                       />
                     ))}
                 </div>
-                <div className={cuckooFilters.type === '2' ? show : hide}>
+                <div className={cuckooFilters.types === '2' ? show : hide}>
                   {eventOptions &&
                     eventOptions.map((category, i) => (
                       <FilterBtn
@@ -162,7 +183,7 @@ const Cuckoos = () => {
                         value={category.id}
                         text={category.name}
                         handleCategoryFilterClick={handleCategoryFilterClick}
-                        active={cuckooFilters.category.includes(category.id)}
+                        active={cuckooFilters.categories.includes(category.id)}
                       />
                     ))}
                 </div>
@@ -170,7 +191,7 @@ const Cuckoos = () => {
             </div>
           ) : null}
         </div>
-        <CuckooList searchTerm={searchTerm} />
+        <CuckooList cuckoos={cuckoos} />
       </div>
     </Layout>
   );

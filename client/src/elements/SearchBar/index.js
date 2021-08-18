@@ -2,15 +2,15 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { search } from './searchbar.module.scss';
 
-const SearchBar = ({ setSearchTerm }) => {
+const SearchBar = ({ handleSearchChange }) => {
   return (
     <div className={search}>
       <input
         type='text'
         placeholder='Search..'
         name='search'
-        onChange={(event) => {
-          setSearchTerm(event.target.value);
+        onChange={(e) => {
+          handleSearchChange(e);
         }}
       />
       <i className='fa fa-search'></i>
@@ -19,7 +19,7 @@ const SearchBar = ({ setSearchTerm }) => {
 };
 
 SearchBar.propTypes = {
-  setSearchTerm: PropTypes.func,
+  handleSearchChange: PropTypes.func,
 };
 
 export default SearchBar;
