@@ -34,8 +34,8 @@ class Post < ApplicationRecord
       # Posts that are created on the current day or before wont have a reminder
       if start_date > DateTime.current.to_date
         reminder_day = start_date - 1.day # The reminder is currently set to one day before the start date
-        reminder_time = ENV['SLACK_SCHEDULED_TIME'] # The reminder will always be at this hour - Server runs on a different time zone 1 hour earlier
-        reminder_date_time = DateTime.parse([reminder_day, reminder_time].join(' '))
+        reminder_date_time = reminder_day.change(hour: ENV['SLACK_SCHEDULED_HOURS'], min: ENV['SLACK_SCHEDULED_MINUTES'])
+        byebug
         reminder_date_time = reminder_date_time.to_time.to_i
       end
     end
