@@ -28,7 +28,6 @@
     }
   }
 }
-
 .inputError {
   input {
     border: 0.1rem solid $error;
@@ -45,6 +44,12 @@
     position: absolute;
     @include mobile-breakpoint {
       font-size: 1.2rem;
+    }
+  }
+  .filled[type='date'] {
+    border: 0.1rem solid $error;
+    ~ .errorMessage {
+      display: none;
     }
   }
 }

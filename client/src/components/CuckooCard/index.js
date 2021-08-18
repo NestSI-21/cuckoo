@@ -14,6 +14,7 @@ import {
   titleSection,
   authorWrapper,
   detailsWrapper,
+  cuckooDetail,
 } from './cuckoocard.module.scss';
 
 const CuckooCard = ({
@@ -55,9 +56,15 @@ const CuckooCard = ({
         <CuckooDescription description={description} />
         <CuckooImages images={images} />
         <div className={detailsWrapper}>
-          {location ? <CuckooLocation location={location} /> : null}
-          {startDate || endDate ? <CuckooDate startDate={startDate} endDate={endDate} /> : null}
-          {startDate || endDate ? <CuckooTime startTime={startDate} endTime={endDate} /> : null}
+          <div className={cuckooDetail}>
+            {location ? <CuckooLocation location={location} /> : null}
+          </div>
+          <div className={cuckooDetail}>
+            {startDate || endDate ? <CuckooDate startDate={startDate} endDate={endDate} /> : null}
+          </div>
+          <div className={cuckooDetail}>
+            {startDate || endDate ? <CuckooTime startTime={startDate} endTime={endDate} /> : null}
+          </div>
         </div>
       </div>
     </div>

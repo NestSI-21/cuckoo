@@ -20,7 +20,6 @@
     padding-bottom: 1rem;
     border-bottom: 0.2rem solid $border-gray;
     @include tablet-breakpoint {
-      width: 80%;
       padding-right: 1.5rem;
       border-bottom: none;
       border-right: 0.2rem solid $border-gray;

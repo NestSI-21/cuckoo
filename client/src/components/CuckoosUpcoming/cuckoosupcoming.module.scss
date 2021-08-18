@@ -1,14 +1,17 @@
 @import '../../styles/applications.scss';
 .upcoming {
   padding: 2rem 0;
+  width: 100%;
   height: 100%;
   position: relative;
   @include tablet-breakpoint {
     padding: 0 1.5rem;
+    width: 75%;
   }
   @include smallTablet-breakpoint {
     padding: 1.5rem 0;
     padding-left: 0;
+    width: 100%;
   }
 
   .upcomingTitle {
