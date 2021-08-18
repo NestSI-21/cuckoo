@@ -188,7 +188,6 @@ const CuckooForm = () => {
       (!data.type != 0 || data.title != '' || data.category != '') &&
       data.startDate <= data.endDate
     ) {
-      console.log(data);
       post(formData, '/posts', function (resp) {
         if (resp.status === 200) {
           history.push('/cuckoos');
