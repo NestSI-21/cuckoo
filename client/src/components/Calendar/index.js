@@ -76,6 +76,9 @@ const Calendar = () => {
         <style>{`
           .DayPicker-Month{
             width:100%;
+            border-collapse: separate;
+          }
+          .DayPicker-Body{
           }
           .DayPicker-Caption{
             color: #21c49c;
@@ -87,12 +90,10 @@ const Calendar = () => {
             box-sizing: border-box;
             padding:0.5rem;
             border-radius:0.5rem;
+            border: 2px solid white;
           }
           .DayPicker-Day--today {
             color: #21c49c;
-          }
-          .DayPicker-Day--selected {
-            opacity: 0.5;
           }
           .DayPicker-Day--events {
             color: white;
@@ -100,7 +101,15 @@ const Calendar = () => {
             cursor: pointer;
             pointer-events: auto;
           }
-          .DayPicker-Day:hover {
+          .DayPicker-Day--selected:not(.DayPicker-Day--disabled):not(.DayPicker-Day--outside) {
+            background: #21c49c;
+            opacity: 0.5;
+          }
+          .DayPicker-Day--selected:not(.DayPicker-Day--disabled):not(.DayPicker-Day--outside):hover {
+            background: #21c49c;
+          }
+          .DayPicker:not(.DayPicker--interactionDisabled) .DayPicker-Day:not(.DayPicker-Day--disabled):not(.DayPicker-Day--selected):not(.DayPicker-Day--outside):hover {
+            background: #21c49c;
             opacity: 0.75;
           }
           `}</style>

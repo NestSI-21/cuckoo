@@ -45,10 +45,18 @@
   .detailsWrapper {
     @include flex($justify: flex-start);
     margin-top: 1rem;
-    p {
-      color: $light-gray;
-      margin: 0 1.5rem 0 0.5rem;
-      font-size: $text-small;
+    .cuckooDetail,
+    .cuckooDetail div {
+      display: flex;
+      align-items: center;
+      padding: 0.25rem 0;
+      p {
+        color: $light-gray;
+        margin: 0 1.5rem 0 0.5rem;
+        font-size: $text-small;
+        width: fit-content;
+        display: inline;
+      }
     }
   }
 }
