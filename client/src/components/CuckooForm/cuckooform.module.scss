@@ -24,6 +24,20 @@
   }
   .gridWrapper {
     @include grid(0, 2rem, 1fr 1fr 1fr 1fr);
+    position: relative;
+    p {
+      text-align: center;
+      font-size: $text-small;
+      color: $error;
+      position: absolute;
+      bottom: 0rem;
+      @include tablet-breakpoint {
+        bottom: -1.85rem;
+      }
+      @include mobile-breakpoint {
+        font-size: 1.2rem;
+      }
+    }
   }
   .btnWrapper {
     button {

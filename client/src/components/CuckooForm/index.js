@@ -73,12 +73,14 @@ const CuckooForm = () => {
   const [typeError, setTypeError] = useState(false);
   const [titleError, setTitleError] = useState('');
   const [categoryError, setCategoryError] = useState('');
+  const [dateError, setDateError] = useState(false);
   const [authError, setAuthError] = useState('');
 
   const formValidation = () => {
     let typeError = false;
     let titleError = null;
     let categoryError = null;
+    let dateError = false;
 
     if (!data.type) {
       typeError = true;
@@ -91,10 +93,15 @@ const CuckooForm = () => {
     if (!data.category) {
       categoryError = 'Please choose a category';
     }
-    if (typeError || titleError || categoryError) {
+    if (data.startDate > data.endDate) {
+      dateError = true;
+    }
+
+    if (typeError || titleError || categoryError || dateError) {
       setTypeError(typeError);
       setTitleError(titleError);
       setCategoryError(categoryError);
+      setDateError(dateError);
       return;
     }
   };
@@ -151,6 +158,7 @@ const CuckooForm = () => {
     data.images.forEach((image) => {
       formData.append('post[images][]', image);
     });
+
     if (startDate || startTime) {
       formData.append(
         'post[start_date]',
@@ -175,7 +183,11 @@ const CuckooForm = () => {
         ).toISOString(),
       );
     }
-    if (data.type != 0 && data.title != '' && data.category != '') {
+
+    if (
+      (!data.type != 0 || data.title != '' || data.category != '') &&
+      data.startDate <= data.endDate
+    ) {
       console.log(data);
       post(formData, '/posts', function (resp) {
         if (resp.status === 200) {
@@ -256,6 +268,8 @@ const CuckooForm = () => {
           value={data.startDate}
           onChange={handleStartDateChange}
           label='From:'
+          dateValidation={dateError}
+          onFocus={dateError ? () => setDateError('') : null}
         />
         <Input
           type='date'
@@ -264,6 +278,8 @@ const CuckooForm = () => {
           onChange={handleChange}
           label='To:'
           disabled={data.startDate === ''}
+          dateValidation={dateError}
+          onFocus={dateError ? () => setDateError('') : null}
         />
         <Input
           type='time'
@@ -282,6 +298,7 @@ const CuckooForm = () => {
           label='Ending at:'
           disabled={data.startTime === ''}
         />
+        {dateError ? <p>Invalid date</p> : null}
       </div>
       <div className={btnWrapper}>
         <Button text='PUBLISH' type='submit' style='green' />
