@@ -8,6 +8,8 @@ import {
   contentContainer,
   filterContainer,
   search,
+  filtersCard,
+  hideFiltersCard,
   filters,
   dateFilters,
   dateLabels,
@@ -22,8 +24,6 @@ const Cuckoos = () => {
   const toggleOpenFilters = () => {
     setShowFilters(!showFilters);
   };
-  const width = window.innerWidth;
-  const breakpoint = 1024;
 
   return (
     <Layout pageTitle='Cuckoos'>
@@ -35,7 +35,7 @@ const Cuckoos = () => {
               <i className='fas fa-sliders-h'></i>
             </button>
           </div>
-          {showFilters || width > breakpoint ? (
+          <div className={!showFilters ? filtersCard : hideFiltersCard}>
             <div className={filters}>
               <div>
                 <div className={dateFilters}>
@@ -61,7 +61,7 @@ const Cuckoos = () => {
                 <FilterBtn text='Other' />
               </div>
             </div>
-          ) : null}
+          </div>
         </div>
         <div className={cuckooList}>
           <CuckooList searchTerm={searchTerm} />

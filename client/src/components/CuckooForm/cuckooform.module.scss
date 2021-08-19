@@ -4,6 +4,7 @@
   margin-top: 1rem;
   max-width: 75rem;
   position: relative;
+  overflow-x: hidden;
   .radioWrapper {
     @include grid(0, 1.6rem, 1fr 1fr);
     width: 80%;

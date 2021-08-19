@@ -5,14 +5,14 @@
   @include grid(0, 2rem, 1fr 2fr);
 
   @include tablet-breakpoint {
-    @include main(calc(100vw - 12rem), $mainPadding: 1rem 1.8rem);
+    @include main(calc(100vw - 12rem), $mainPadding: 1rem 1.8rem 2rem 1.8rem);
     @include grid(0, 2rem, 1fr);
   }
   @include smallTablet-breakpoint {
-    overflow-y: scroll; 
+    overflow-y: scroll;
   }
   @include mobile-breakpoint {
-    @include main(100vw, fit-content, $mainPadding: 9rem 1rem);
+    @include main(100vw, fit-content, $mainPadding: 9.5rem 1rem);
   }
 
   .search {
@@ -40,64 +40,76 @@
       }
     }
   }
-  .filters {
-    @include container(fit-content);
-    div {
-      margin-bottom: 1rem;
-    }
-
-    .dateLabels {
-      @include grid(0, 1rem, 1fr 1fr);
-      label {
-        background: #fff;
-        top: 0.1;
-        left: 1rem;
-        padding-top: 0.65rem;
-      }
-      input {
-        padding: 2rem 0.5rem 0.5rem 1rem;
-        background-color: #fff;
-      }
-      @include tablet-breakpoint {
-        @include grid(0, 1rem, 1fr);
-      }
-    }
-
+  .hideFiltersCard {
     @include tablet-breakpoint {
-      @include grid(0, 2rem, 1fr 1fr);
-      margin-bottom: 2rem;
-      .typeFilters {
-        margin-top: 2rem;
-      }
-      .typeFilters,
-      .dateFilters {
-        padding-right: 2rem;
-      }
-      .categoryFilters {
-        padding-left: 2rem;
-        border-left: 0.2rem solid $border-gray;
-      }
-    }
-    @include mobile-breakpoint {
       display: block;
-      .typeFilters {
-        margin-top: 0;
+    }
+  }
+  .filtersCard {
+    @include tablet-breakpoint {
+      display: none;
+    }
+  }
+  .filtersCard,
+  .hideFiltersCard {
+    .filters {
+      @include container(fit-content);
+      div {
+        margin-bottom: 1rem;
       }
-      .typeFilters,
-      .dateFilters {
-        padding-right: 0;
+
+      .dateLabels {
+        @include grid(0, 1rem, 1fr 1fr);
+        label {
+          background: #fff;
+          top: 0.1;
+          left: 1rem;
+          padding-top: 0.65rem;
+        }
+        input {
+          padding: 2rem 0.5rem 0.5rem 1rem;
+          background-color: #fff;
+        }
+        @include tablet-breakpoint {
+          @include grid(0, 1rem, 1fr);
+        }
       }
-      .categoryFilters {
-        padding-left: 0;
-        border-style: none;
+
+      @include tablet-breakpoint {
+        @include grid(0, 2rem, 1fr 1fr);
+        margin-bottom: 2rem;
+        .typeFilters {
+          margin-top: 2rem;
+        }
+        .typeFilters,
+        .dateFilters {
+          padding-right: 2rem;
+        }
+        .categoryFilters {
+          padding-left: 2rem;
+          border-left: 0.2rem solid $border-gray;
+        }
+      }
+      @include mobile-breakpoint {
+        .typeFilters {
+          margin-top: 0;
+        }
+        .typeFilters,
+        .dateFilters {
+          padding-right: 0;
+        }
+        .categoryFilters {
+          padding-left: 0;
+          border-style: none;
+        }
       }
     }
   }
   .cuckooList {
-    @include container();
+    @include container(100%);
     overflow-x: hidden;
     overflow-y: scroll;
-    height: 100%;
+    margin: 0;
 
     &::-webkit-scrollbar {
       width: 2.5rem;

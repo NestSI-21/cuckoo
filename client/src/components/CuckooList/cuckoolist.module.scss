@@ -1,17 +1,12 @@
 @import '../../styles/applications.scss';
 
 .container {
-  @include container();
   overflow-x: hidden;
   overflow-y: scroll;
-  @include smallTablet-breakpoint {
-    height: 75vh;
-  }
-  @include mobile-breakpoint {
-    @include container(fit-content);
+  @include tablet-breakpoint {
     overflow-y: hidden;
+    min-height: 75vh;
   }
-
   &::-webkit-scrollbar {
     width: 2.5rem;
     border-radius: 0.5rem;
@@ -28,5 +23,37 @@
   }
   &::-webkit-scrollbar-thumb:hover {
     background-color: $light-gray;
+  }
+}
+
+.noCuckoos {
+  @include flex(column);
+  height: 100%;
+  width: 100%;
+  text-align: center;
+  opacity: 0.5;
+  overflow: hidden;
+  @include tablet-breakpoint {
+    min-height: 73vh;
+  }
+  img {
+    width: 20%;
+  }
+  h3 {
+    color: $light-gray;
+    margin-top: 1.5rem;
+  }
+  p {
+    margin-bottom: 3.5rem;
+    color: white;
+    color: $light-gray;
+  }
+  @include smallTablet-breakpoint {
+    img {
+      width: 30%;
+    }
+    p {
+      margin-bottom: 0;
+    }
   }
 }

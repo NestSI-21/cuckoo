@@ -22,9 +22,13 @@
 
   .closeBtn {
     position: absolute;
-    top: 3rem;
+    top: 2.5rem;
     right: 3rem;
     transform: rotate(45deg);
+    @include tablet-breakpoint {
+      top: 1.8rem;
+      right: 2rem;
+    }
     @include mobile-breakpoint {
       width: 3.2rem;
       height: 3.2rem;

@@ -3,7 +3,8 @@ import denormalize from '@weareredlight/denormalize_json_api';
 import PropTypes from 'prop-types';
 import { get } from '../../helpers/Networking';
 import CuckooCard from '../CuckooCard';
-import { container } from './cuckoolist.module.scss';
+import nocuckoos from '../../assets/logos/nocuckoos.svg';
+import { container, noCuckoos } from './cuckoolist.module.scss';
 
 const CuckooList = ({ searchTerm }) => {
   const [cuckoos, setCuckoos] = useState([]);
@@ -19,32 +20,44 @@ const CuckooList = ({ searchTerm }) => {
     });
   };
 
+  console.log(cuckoos);
+
   return (
-    <div className={container}>
-      {cuckoos &&
-        cuckoos
-          .filter((cuckoo) => {
-            if (!searchTerm) {
-              return cuckoo;
-            } else if (searchTerm === '') {
-              return cuckoo;
-            } else if (
-              cuckoo.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
-              cuckoo.description.toLowerCase().includes(searchTerm.toLowerCase()) ||
-              cuckoo.company.toLowerCase().includes(searchTerm.toLowerCase()) ||
-              cuckoo.username.toLowerCase().includes(searchTerm.toLowerCase())
-            ) {
-              return cuckoo;
-            } else {
-              return false;
-            }
-          })
-          .map((cuckoo, i) => (
-            <Fragment key={i}>
-              <CuckooCard cuckoo={cuckoo} />
-            </Fragment>
-          ))}
-    </div>
+    <>
+      {cuckoos != '' ? (
+        <div className={container}>
+          {cuckoos &&
+            cuckoos
+              .filter((cuckoo) => {
+                if (!searchTerm) {
+                  return cuckoo;
+                } else if (searchTerm === '') {
+                  return cuckoo;
+                } else if (
+                  cuckoo.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
+                  cuckoo.description.toLowerCase().includes(searchTerm.toLowerCase()) ||
+                  cuckoo.company.toLowerCase().includes(searchTerm.toLowerCase()) ||
+                  cuckoo.username.toLowerCase().includes(searchTerm.toLowerCase())
+                ) {
+                  return cuckoo;
+                } else {
+                  return false;
+                }
+              })
+              .map((cuckoo, i) => (
+                <Fragment key={i}>
+                  <CuckooCard cuckoo={cuckoo} />
+                </Fragment>
+              ))}
+        </div>
+      ) : (
+        <div className={noCuckoos}>
+          <img src={nocuckoos} alt='nocuckoos' />
+          <h3>Cuck-OOPS</h3>
+          <p>There's no Cuckoos here</p>
+        </div>
+      )}
+    </>
   );
 };
 
