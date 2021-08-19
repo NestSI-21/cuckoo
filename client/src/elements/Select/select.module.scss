@@ -7,6 +7,7 @@
     -webkit-appearance: none;
     cursor: pointer;
     border: 0.1rem solid $light-gray;
+    z-index: 1;
   }
   i {
     color: $light-gray;
@@ -16,6 +17,7 @@
     right: 1.8rem;
     top: 45%;
     transform: translateY(-50%);
+    pointer-events: none;
   }
   .selected {
     border: 0.1rem solid $green;

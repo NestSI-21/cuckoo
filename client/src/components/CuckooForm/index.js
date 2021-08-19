@@ -277,6 +277,8 @@ const CuckooForm = () => {
             label='From:'
             error={dateError}
             onFocus={dateError ? () => setDateError('') : null}
+            max='2025-01-01'
+            min='2015-01-01'
           />
           <Input
             type='date'
@@ -287,6 +289,8 @@ const CuckooForm = () => {
             disabled={data.startDate === ''}
             error={dateError}
             onFocus={dateError ? () => setDateError('') : null}
+            max='2025-01-01'
+            min='2015-01-01'
           />
           <Input
             type='time'

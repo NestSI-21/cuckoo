@@ -5,6 +5,12 @@
   position: relative;
   input {
     border: 0.1rem solid $light-gray;
+    &[type='date'] {
+      cursor: text;
+      &::-webkit-calendar-picker-indicator {
+        cursor: pointer;
+      }
+    }
   }
   .star {
     position: absolute;
