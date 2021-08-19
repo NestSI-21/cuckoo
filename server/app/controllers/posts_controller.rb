@@ -6,10 +6,11 @@ class PostsController < ActionController::API
   def index
     categories = params[:categories]
     types = params[:types]
+    query = params[:query]
     posts = Post.order(created_at: :desc).all
     posts = posts.filter_by_categories(categories) if categories.present?
     posts = posts.filter_by_types(types) if types.present?
-
+    posts = posts.search(query) if query.present?
 
     render(
       json: PostSerializer.new(
