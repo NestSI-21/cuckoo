@@ -1,8 +1,7 @@
-import React, { useState, useEffect, Fragment } from 'react';
-import denormalize from '@weareredlight/denormalize_json_api';
+import React, { Fragment } from 'react';
+import PropTypes from 'prop-types';
 import Carousel from 'react-multi-carousel';
 import 'react-multi-carousel/lib/styles.css';
-import { get } from '../../helpers/Networking';
 import CuckooCard from '../CuckooCard';
 import nocuckoos from '../../assets/logos/nocuckoos.svg';
 import {
@@ -14,20 +13,7 @@ import {
   noCuckoos,
 } from './cuckoocarousel.module.scss';
 
-const CuckooCarousel = () => {
-  const [cuckoos, setCuckoos] = useState([]);
-
-  useEffect(() => {
-    getCuckoos();
-  }, []);
-
-  const getCuckoos = () => {
-    get('/posts', function (resp) {
-      const cuckoos = denormalize(resp.data).data;
-      setCuckoos(cuckoos);
-    });
-  };
-
+const CuckooCarousel = ({ cuckoos }) => {
   return (
     <>
       {cuckoos != '' ? (
@@ -80,13 +66,14 @@ const CuckooCarousel = () => {
             slidesToSlide={1}
             swipeable
           >
-            {cuckoos.map((cuckoo, i) => (
-              <Fragment key={i}>
-                <div className={cardHolder}>
-                  <CuckooCard cuckoo={cuckoo} />
-                </div>
-              </Fragment>
-            ))}
+            {cuckoos &&
+              cuckoos.map((cuckoo, i) => (
+                <Fragment key={i}>
+                  <div className={cardHolder}>
+                    <CuckooCard cuckoo={cuckoo} />
+                  </div>
+                </Fragment>
+              ))}
           </Carousel>
         </div>
       ) : (
@@ -98,6 +85,10 @@ const CuckooCarousel = () => {
       )}
     </>
   );
+};
+
+CuckooCarousel.propTypes = {
+  cuckoos: PropTypes.array,
 };
 
 export default CuckooCarousel;
