@@ -31,7 +31,7 @@ class Post < ApplicationRecord
     if start_date
       slack_cuckoo += "🗓 From: #{start_date.strftime('%d:%m:%Y')}"
       # Posts that are created on the current day or before wont have a reminder
-      if start_date > DateTime.current.to_date
+      if start_date.to_date > DateTime.current.to_date
         reminder_day = start_date - 1.day # The reminder is currently set to one day before the start date
         reminder_date_time = reminder_day.change(hour: ENV['SLACK_SCHEDULED_HOURS'],
                                                  min: ENV['SLACK_SCHEDULED_MINUTES'])
@@ -45,7 +45,7 @@ class Post < ApplicationRecord
     slack_cuckoo += ", #{end_date.strftime('%H:%M')}" if end_date
 
     # Sends the schedule message if there is a start date
-    if start_date && (start_date > DateTime.current.to_date)
+    if start_date && (start_date.to_date > DateTime.current.to_date)
       client.chat_scheduleMessage(channel: category.slack_channel, text: slack_cuckoo, post_at: reminder_date_time)
     end
     # Normal slack message sent when a post is created
