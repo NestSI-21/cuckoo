@@ -9,7 +9,7 @@
     @include grid(0, 2rem, 1fr);
   }
   @include smallTablet-breakpoint {
-    overflow-y: scroll; 
+    overflow-y: scroll;
   }
   @include mobile-breakpoint {
     @include main(100vw, fit-content, $mainPadding: 9rem 1rem);
@@ -41,27 +41,33 @@
     }
   }
   .filters {
+    .show {
+      display: block;
+    }
+    .hide {
+      display: none;
+    }
     @include container(fit-content);
     div {
       margin-bottom: 1rem;
     }
 
-    .dateLabels {
-      @include grid(0, 1rem, 1fr 1fr);
-      label {
-        background: #fff;
-        top: 0.1;
-        left: 1rem;
-        padding-top: 0.65rem;
-      }
-      input {
-        padding: 2rem 0.5rem 0.5rem 1rem;
-        background-color: #fff;
-      }
-      @include tablet-breakpoint {
-        @include grid(0, 1rem, 1fr);
-      }
-    }
+    // .dateLabels {
+    //   @include grid(0, 1rem, 1fr 1fr);
+    //   label {
+    //     background: #fff;
+    //     top: 0.1;
+    //     left: 1rem;
+    //     padding-top: 0.65rem;
+    //   }
+    //   input {
+    //     padding: 2rem 0.5rem 0.5rem 1rem;
+    //     background-color: #fff;
+    //   }
+    //   @include tablet-breakpoint {
+    //     @include grid(0, 1rem, 1fr);
+    //   }
+    // }
 
     @include tablet-breakpoint {
       @include grid(0, 2rem, 1fr 1fr);
@@ -70,9 +76,9 @@
         margin-top: 2rem;
       }
       .typeFilters,
-      .dateFilters {
-        padding-right: 2rem;
-      }
+      // .dateFilters {
+      //   padding-right: 2rem;
+      // }
       .categoryFilters {
         padding-left: 2rem;
         border-left: 0.2rem solid $border-gray;
@@ -84,9 +90,9 @@
         margin-top: 0;
       }
       .typeFilters,
-      .dateFilters {
-        padding-right: 0;
-      }
+      // .dateFilters {
+      //   padding-right: 0;
+      // }
       .categoryFilters {
         padding-left: 0;
         border-style: none;

@@ -1,23 +1,44 @@
-import React, { useState } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 import { selected, unselected } from './filterbtn.module.scss';
 
-const FilterBtn = ({ text }) => {
-  const [active, setActive] = useState(false);
-
+const FilterBtn = ({
+  id,
+  name,
+  value,
+  text,
+  handleTypeFilterClick,
+  handleCategoryFilterClick,
+  active,
+}) => {
   const toggleActive = () => {
-    setActive(!active);
+    if (name === 'type') {
+      handleTypeFilterClick(value);
+    } else if (name === 'category') {
+      handleCategoryFilterClick(value);
+    } else return;
   };
-
   return (
-    <button className={active ? selected : unselected} onClick={toggleActive}>
-      <span>{text}</span>
+    <button
+      id={id}
+      name={name}
+      value={value}
+      className={active ? selected : unselected}
+      onClick={toggleActive}
+    >
+      {text}
     </button>
   );
 };
 
 FilterBtn.propTypes = {
+  id: PropTypes.number,
+  name: PropTypes.string,
+  value: PropTypes.number,
   text: PropTypes.string,
+  active: PropTypes.bool,
+  handleTypeFilterClick: PropTypes.func,
+  handleCategoryFilterClick: PropTypes.func,
 };
 
 export default FilterBtn;
