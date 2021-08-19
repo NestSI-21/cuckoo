@@ -20,7 +20,7 @@ const CuckooList = ({ cuckoos }) => {
         <div className={noCuckoos}>
           <img src={nocuckoos} alt='nocuckoos' />
           <h3>Cuck-OOPS</h3>
-          <p>There's no Cuckoos here</p>
+          <p>There are no Cuckoos here</p>
         </div>
       )}
     </>
