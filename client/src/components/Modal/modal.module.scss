@@ -1,0 +1,78 @@
+@import '../../styles/applications.scss';
+
+.modal {
+  @include flex();
+  background: rgba(16, 16, 16, 0.8);
+  position: fixed;
+  transform: translate3d(0, 0, 0);
+  width: 100vw;
+  height: 100vh;
+  top: 0;
+  left: 0;
+  z-index: 2;
+  .modalContainer {
+    @include container();
+    @include flex(column);
+    position: relative;
+    padding: 6rem 13rem;
+    .close {
+      button {
+        width: 4rem;
+        height: 4rem;
+        background: $error;
+        position: absolute;
+        top: -2rem;
+        right: -2rem;
+      }
+    }
+    h3 {
+      margin-top: 1rem;
+    }
+    p {
+      text-align: center;
+    }
+    .confirm {
+      margin-top: 4rem;
+      button {
+        padding: 1rem 6.5rem;
+        border-radius: 0.2rem;
+      }
+      :first-child {
+        border: $error 0.1rem solid;
+        color: $error;
+        background: transparent;
+        margin-right: 0.5rem;
+      }
+      :last-child {
+        background: $error;
+        color: $background;
+        margin-left: 0.5rem;
+      }
+    }
+  }
+}
+
+@include smallTablet-breakpoint {
+  .modal {
+    .modalContainer {
+      margin: auto 1rem;
+      padding: 2.6rem 3rem;
+      img {
+        width: 6rem;
+        height: 6rem;
+      }
+    }
+  }
+}
+@include mobile-breakpoint {
+  .modal {
+    .modalContainer {
+      .confirm {
+        button {
+          padding: 0.8rem 3rem;
+          border-radius: 0.2rem;
+        }
+      }
+    }
+  }
+}

@@ -1,35 +1,111 @@
-/* eslint-disable react/jsx-key */
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
+import { useHistory } from 'react-router-dom';
+import denormalize from '@weareredlight/denormalize_json_api';
 import Radio from '../../elements/Radio';
 import Input from '../../elements/Input';
 import Select from '../../elements/Select';
 import Textarea from '../../elements/Textarea';
 import ImageUpload from '../ImageUpload';
 import Button from '../../elements/Button';
-import { form, radioWrapper, flexWrapper, gridWrapper, btnWrapper } from './cuckooform.module.scss';
-import { post } from '../../helpers/Networking';
+import { get, post } from '../../helpers/Networking';
+import { toast } from 'react-toastify';
+import {
+  form,
+  radioWrapper,
+  flexWrapper,
+  gridWrapper,
+  btnWrapper,
+  radioDescription,
+  errorRadioDescription,
+  star,
+} from './cuckooform.module.scss';
 
 const CuckooForm = () => {
+  const [cuckooType, setCuckooType] = useState();
+  const [announcementOptions, setAnnouncementOptions] = useState();
+  const [eventOptions, setEventOptions] = useState();
   const [data, setData] = useState({
     type: 0,
     title: '',
     location: '',
-    category: '',
+    category: 0,
     description: '',
     images: [],
-    startDate: {},
-    endDate: {},
-    startTime: {},
-    endTime: {},
+    startDate: '',
+    endDate: '',
+    startTime: '',
+    endTime: '',
   });
 
-  //Select dropdown options - announcements/events
-  const typeOptions = [
-    { id: 1, type: 'Announcement' },
-    { id: 2, type: 'Event' },
-  ];
-  const announcementOptions = ['Alert', 'New Company', 'New Employee', 'Other'];
-  const eventOptions = ['Education', 'Social', 'Other'];
+  let history = useHistory();
+
+  useEffect(() => {
+    getCuckooTypes();
+    getAnnouncementOptions();
+    getEventOptions();
+  }, []);
+
+  const getCuckooTypes = () => {
+    get('/categories', function (resp) {
+      const types = denormalize(
+        resp.data.included.map(({ id, attributes: { name } }) => ({ id, name })),
+      );
+      setCuckooType(types);
+    });
+  };
+  const getAnnouncementOptions = () => {
+    get('/categories', function (resp) {
+      const options = denormalize(resp.data)
+        .data.filter((option) => option.type.id === '1')
+        .map(({ id, name }) => ({ id, name }));
+      setAnnouncementOptions(options);
+    });
+  };
+
+  const getEventOptions = () => {
+    get('/categories', function (resp) {
+      const options = denormalize(resp.data)
+        .data.filter((option) => option.type.id === '2')
+        .map(({ id, name }) => ({ id, name }));
+      setEventOptions(options);
+    });
+  };
+
+  const [typeError, setTypeError] = useState(false);
+  const [titleError, setTitleError] = useState('');
+  const [categoryError, setCategoryError] = useState('');
+  const [dateError, setDateError] = useState('');
+  const [authError, setAuthError] = useState('');
+
+  const formValidation = () => {
+    let typeError = false;
+    let titleError = null;
+    let categoryError = null;
+    let dateError = null;
+
+    if (!data.type) {
+      typeError = true;
+    }
+    if (!data.title) {
+      titleError = 'Give a title to your Cuckoo';
+    } else if (data.title.length >= 50) {
+      titleError = 'This title is too long';
+    }
+    if (!data.category) {
+      categoryError = 'Please choose a category';
+    }
+    if (data.startDate > data.endDate) {
+      dateError = 'Invalid date';
+    }
+
+    if (typeError || titleError || categoryError || dateError) {
+      setTypeError(typeError);
+      setTitleError(titleError);
+      setCategoryError(categoryError);
+      setDateError(dateError);
+      return;
+    }
+  };
 
   // Handler for inputs
   const handleChange = (e) => {
@@ -37,6 +113,16 @@ const CuckooForm = () => {
     setData((prevData) => ({
       ...prevData,
       [name]: e.target.type === 'radio' ? parseInt(value) : value,
+    }));
+  };
+
+  // Handler for startDate: sets endDate when startDate is selected
+  const handleStartDateChange = (e) => {
+    const { value } = e.target;
+    setData((prevData) => ({
+      ...prevData,
+      startDate: value,
+      endDate: prevData.endDate != '' ? prevData.endDate : value,
     }));
   };
 
@@ -48,113 +134,185 @@ const CuckooForm = () => {
   // Resets category when cuckoo type is selected
   const resetCategory = () => {
     setData((prevData) => ({ ...prevData, category: '' }));
+    if (data.type == 0 && typeError) {
+      setTypeError(!typeError);
+    }
   };
 
-  const handleSubmit = (event) => {
-    event.preventDefault();
+  const handleSubmit = (e) => {
+    formValidation();
+
+    e.preventDefault();
+
+    const startDate = data.startDate ? new Date(data.startDate) : undefined;
+    const startTime = data.startTime;
+
+    const endDate = data.endDate ? new Date(data.endDate) : undefined;
+    const endTime = data.endTime;
 
     const formData = new FormData();
     formData.append('post[type_id]', data.type);
     formData.append('post[title]', data.title);
     formData.append('post[location]', data.location);
-    formData.append('post[category]', data.category);
+    formData.append('post[category_id]', data.category);
     formData.append('post[description]', data.description);
-    formData.append('post[images]', data.images);
-    formData.append('post[start_date]', data.startDate);
-    formData.append('post[end_date]', data.endDate);
-    formData.append('post[start_time]', data.startTime);
-    formData.append('post[end_time]', data.endTime);
-
-    post(formData, '/posts', function (response) {
-      alert(response.data);
+    data.images.forEach((image) => {
+      formData.append('post[images][]', image);
     });
+
+    if (startDate || startTime) {
+      formData.append(
+        'post[start_date]',
+        new Date(
+          startDate?.getFullYear() ?? 0,
+          startDate?.getMonth() ?? 0,
+          startDate?.getDate() ?? 0,
+          startTime.split(':')?.[0] ?? 0,
+          startTime.split(':')?.[1] ?? 0,
+        ).toISOString(),
+      );
+    }
+    if (endDate || endTime) {
+      formData.append(
+        'post[end_date]',
+        new Date(
+          endDate?.getFullYear() ?? 0,
+          endDate?.getMonth() ?? 0,
+          endDate?.getDate() ?? 0,
+          endTime.split(':')?.[0] ?? 0,
+          endTime.split(':')?.[1] ?? 0,
+        ).toISOString(),
+      );
+    }
+    if (
+      data.type != 0 &&
+      data.title != '' &&
+      data.category != '' &&
+      data.startDate <= data.endDate
+    ) {
+      post(formData, '/posts', function (resp) {
+        if (resp.status === 200) {
+          history.push('/cuckoos');
+          toast('Your Cuckoo was posted! 🎉', {
+            className: 'toast success',
+          });
+        }
+      });
+    } else {
+      history.push('/create');
+      setAuthError('Something went wrong');
+      toast('Something went wrong 😔', {
+        className: 'toast failure',
+      });
+    }
   };
 
   return (
-    <form className={form} onSubmit={handleSubmit}>
-      <div className={radioWrapper}>
-        {typeOptions.map((type, i) => (
-          <Radio
-            key={i}
-            id={type.id}
-            name='type'
-            label={type.type}
-            value={type.id}
-            checked={data.type === type.id}
-            onClick={resetCategory}
-            onChange={handleChange}
-            required
-          />
-        ))}
-      </div>
+    <>
+      <form className={form} onSubmit={handleSubmit}>
+        <p className={!typeError ? radioDescription : errorRadioDescription}>
+          Select the type of Cuckoo you want to create
+          <span className={star}>
+            <i className='fas fa-asterisk'></i>
+          </span>
+        </p>
+        <div className={radioWrapper}>
+          {cuckooType &&
+            cuckooType.map((type, i) => (
+              <Radio
+                key={i}
+                id={type.id}
+                name='type'
+                label={type.name}
+                value={type.id}
+                checked={parseInt(data.type) === parseInt(type.id)}
+                onClick={resetCategory}
+                onChange={handleChange}
+              />
+            ))}
+        </div>
 
-      <Input
-        type='text'
-        name='title'
-        value={data.title}
-        onChange={handleChange}
-        label='Give your Cuckoo a title'
-        required
-      />
-      <div className={flexWrapper}>
         <Input
           type='text'
-          name='location'
-          value={data.location}
+          name='title'
+          value={data.title}
           onChange={handleChange}
-          label='Location'
+          label='Give your Cuckoo a title'
+          mandatory
+          error={titleError}
+          onFocus={titleError ? () => setTitleError('') : null}
         />
-        <Select
-          name='category'
-          value={data.category}
+        <div className={flexWrapper}>
+          <Input
+            type='text'
+            name='location'
+            value={data.location}
+            onChange={handleChange}
+            label='Location'
+          />
+          <Select
+            name='category'
+            value={data.category}
+            onChange={handleChange}
+            options={data.type === 1 ? announcementOptions : data.type === 2 ? eventOptions : []}
+            label='Category'
+            mandatory
+            error={categoryError}
+            onFocus={categoryError ? () => setCategoryError('') : null}
+          />
+        </div>
+        <Textarea
+          name='description'
+          value={data.description}
           onChange={handleChange}
-          options={data.type === 1 ? announcementOptions : data.type === 2 ? eventOptions : []}
-          label='Category'
-          required
+          label='Tell us more about what you want to share'
         />
-      </div>
-      <Textarea
-        name='description'
-        value={data.description}
-        onChange={handleChange}
-        label='Tell us more about what you want to share'
-      />
-      <ImageUpload images={data.images} onChange={handleImageChange} />
-      <div className={gridWrapper}>
-        <Input
-          type='date'
-          name='startDate'
-          value={data.startDate}
-          onChange={handleChange}
-          label='From:'
-        />
-        <Input
-          type='date'
-          name='endDate'
-          value={data.endDate}
-          onChange={handleChange}
-          label='To:'
-        />
-        <Input
-          type='time'
-          name='startTime'
-          value={data.startTime}
-          onChange={handleChange}
-          label='Starting at:'
-        />
+        <ImageUpload images={data.images} onChange={handleImageChange} />
+        <div className={gridWrapper}>
+          <Input
+            type='date'
+            name='startDate'
+            value={data.startDate}
+            onChange={handleStartDateChange}
+            label='From:'
+            error={dateError}
+            onFocus={dateError ? () => setDateError('') : null}
+          />
+          <Input
+            type='date'
+            name='endDate'
+            value={data.endDate}
+            onChange={handleChange}
+            label='To:'
+            disabled={data.startDate === ''}
+            error={dateError}
+            onFocus={dateError ? () => setDateError('') : null}
+          />
+          <Input
+            type='time'
+            name='startTime'
+            value={data.startTime}
+            onChange={handleChange}
+            label='Starting at:'
+            disabled={data.startDate === ''}
+          />
 
-        <Input
-          type='time'
-          name='endTime'
-          value={data.endTime}
-          onChange={handleChange}
-          label='Ending at:'
-        />
-      </div>
-      <div className={btnWrapper}>
-        <Button text='PUBLISH' type='submit' style='green' />
-      </div>
-    </form>
+          <Input
+            type='time'
+            name='endTime'
+            value={data.endTime}
+            onChange={handleChange}
+            label='Ending at:'
+            disabled={data.startTime === ''}
+          />
+          {dateError ? <p>{dateError}</p> : null}
+        </div>
+        <div className={btnWrapper}>
+          <Button text='PUBLISH' type='submit' style='green' />
+          {authError ? <p>{authError}</p> : null}
+        </div>
+      </form>
+    </>
   );
 };
 

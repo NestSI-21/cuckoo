@@ -2,5 +2,15 @@
 
 .contentContainer {
   @include main(100vw, 100vh);
-  @include flex(column);
+  @include flex(column, $justify: center);
+  h1 {
+    margin-top: 2.5rem;
+  }
+  @include mobile-breakpoint {
+    min-height: 100vh;
+    padding: 0;
+    h1 {
+      margin-top: 5rem;
+    }
+  }
 }

@@ -3,10 +3,13 @@
 .radioInnerWrapper {
   position: relative;
   height: 4.5rem;
+  @include mobile-breakpoint {
+    height: 3.8rem;
+  }
 
   input[type='radio'] {
-    width: 20rem;
-    height: 4.5rem;
+    width: 100%;
+    height: 100%;
     -webkit-appearance: none;
     cursor: pointer;
     display: inline-block;
@@ -22,6 +25,8 @@
       transform: translate(-50%, -50%);
     }
     ~ label {
+      width: 100%;
+      text-align: center;
       position: absolute;
       top: 50%;
       left: 50%;
@@ -30,6 +35,9 @@
       color: $green;
       padding: 0;
       background: transparent;
+      @include mobile-breakpoint {
+        font-size: 1.4rem;
+      }
     }
   }
 }

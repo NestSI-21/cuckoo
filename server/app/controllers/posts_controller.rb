@@ -1,50 +1,32 @@
 # frozen_string_literal: true
 
-
 class PostsController < ActionController::API
   before_action :authenticate_user!
 
   def index
-    @posts = Post.order(created_at: :desc).all
+    categories = params[:categories]
+    types = params[:types]
+    query = params[:query]
+    posts = Post.order(created_at: :desc).all
+    posts = posts.filter_by_categories(categories) if categories.present?
+    posts = posts.filter_by_types(types) if types.present?
+    posts = posts.search(query) if query.present?
 
-    respond_to do |format|
-      format.json { render json: @posts }
-    end
-  end
-
-  def new
-    @post = Post.new
+    render(
+      json: PostSerializer.new(
+        posts,
+        { include: %i[user user.company type] }
+      )
+    )
   end
 
   def create
-    @post = Post.new(post_params)
-    @post.user = current_user
-    
-    if @post.save
+    post = Post.new(post_params)
+    post.user = current_user
+    if post.save
+      post.send_message
       render json: { message: 'A new post was created' }, status: :ok
-    else
-      render json: { message: 'There was an error!' }, status: :unauthorized
     end
-
-    # notifier = Slack::Notifier.new "#{ENV['SLACK_WEBHOOK']}" do
-    #     defaults channel: "#nestsi-21-equipa",
-    #              username: "cuckoo"
-    #   end
-      
-    #   notifier.ping "Hello default"
-      # => will message "Hello default"
-      # => to the "#default" channel as 'notifier'
-
-      # Slack.configure do |config|
-      #   config.token = ENV['SLACK_OAUTH_TOKEN']
-      #   raise 'Missing ENV[SLACK_OAUTH_TOKEN]!' unless config.token
-      # end
-
-#       client = Slack::Web::Client.new
-
-# client.auth_test
-
-# client.chat_postMessage(channel: '#nestsi-21-equipa', text: 'Hello World', as_user: true)
   end
 
   def destroy
@@ -56,7 +38,7 @@ class PostsController < ActionController::API
   private
 
   def post_params
-    params.require(:post).permit(:type_id, :category, :title, :location, :description, :img_url,
-                                 :start_date, :end_date, :start_time, :end_time)
+    params.require(:post).permit(:type_id, :category_id, :title, :location, :description,
+                                 :start_date, :end_date, images: [])
   end
 end

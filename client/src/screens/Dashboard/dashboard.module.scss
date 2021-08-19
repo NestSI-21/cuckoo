@@ -33,12 +33,15 @@
   }
 
   @include tablet-breakpoint {
-    @include main(calc(100vw - 12rem));
+    @include main(calc(100vw - 12rem), $mainPadding: 1rem 1.8rem);
     @include grid(2rem, 0, 1fr);
   }
+  @include smallTablet-breakpoint {
+    overflow-y: scroll;
+  }
+
   @include mobile-breakpoint {
-    @include main(100vw, fit-content);
-    padding-bottom: 15rem;
+    @include main(100vw, fit-content, $mainPadding: 9rem 1rem);
     position: relative;
     display: block;
 

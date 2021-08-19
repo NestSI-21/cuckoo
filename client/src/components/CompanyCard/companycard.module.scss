@@ -3,14 +3,14 @@
 .companyMain {
   .company {
     @include flex($align: center, $justify: flex-start);
-    padding: 3rem 0;
+    padding: 3rem 1rem;
     border-bottom: 0.2rem solid #d8d8d8;
 
     .logoBox {
       border: 0.1rem solid #21c49c;
       border-radius: 100%;
-      min-width: 15rem;
-      height: 15rem;
+      min-width: 10.5rem;
+      height: 10.5rem;
       background: #fff;
       position: relative;
       img {
@@ -27,7 +27,7 @@
       margin-left: 2rem;
       padding-right: 3rem;
       p {
-        margin-top: 1rem;
+        margin-top: 0.4rem;
       }
     }
   }
@@ -35,12 +35,29 @@
 @include tablet-breakpoint {
   .companyMain {
     .company {
+      align-items: flex-start;
       .logoBox {
-        min-width: 12rem;
-        height: 12rem;
+        min-width: 9rem;
+        height: 9rem;
       }
-      img {
-        max-width: 80%;
+      .companyInfo {
+        margin-top: 0.6rem;
+      }
+    }
+  }
+}
+@include smallTablet-breakpoint {
+  .companyMain {
+    .company {
+      padding: 2.5rem 1;
+      .logoBox {
+        min-width: 6.5rem;
+        height: 6.5rem;
+      }
+      .companyInfo {
+        margin-left: 1rem;
+        margin-top: 0.1rem;
+        padding-right: 0;
       }
     }
   }
@@ -48,6 +65,7 @@
 @include mobile-breakpoint {
   .companyMain {
     .company {
+      padding: 2rem 1rem;
       align-items: flex-start;
       .logoBox {
         max-height: 4.5rem;
@@ -61,6 +79,7 @@
       .companyInfo {
         margin-left: 1rem;
         padding-right: 0;
+        margin-top: 0;
         p {
           margin-top: 0rem;
         }

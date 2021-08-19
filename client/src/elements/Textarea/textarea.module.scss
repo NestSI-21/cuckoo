@@ -2,4 +2,19 @@
 
 .textarea {
   position: relative;
+  textarea {
+    border: 0.1rem solid $light-gray;
+
+    &:focus {
+      border: 0.1rem solid $light-gray;
+    }
+    &:not(:placeholder-shown) {
+      border: 0.1rem solid $green;
+    }
+
+    [type='date']:not(:placeholder-shown),
+    [type='time']:not(:placeholder-shown) {
+      border: 0.1rem solid $light-gray;
+    }
+  }
 }

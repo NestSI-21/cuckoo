@@ -1,9 +1,9 @@
 @import '../../styles/applications.scss';
 
 .header {
-  @include flex($align: flex-end, $justify: space-between);
+  @include flex($align: center, $justify: space-between);
   background-color: $background;
-  padding: 0 3rem;
+  padding: 3.6rem 3rem 2rem 3rem;
   width: calc(100vw - 20rem);
   height: 10vh;
   .icon {
@@ -20,6 +20,9 @@
     width: 100vw;
     padding: 3rem 3rem 2rem 3rem;
     filter: drop-shadow(0px 1px 15px rgba(0, 0, 0, 0.06));
+    position: fixed;
+    top: 0;
+    z-index: 2;
     .icon {
       display: block;
       width: 4rem;
@@ -28,5 +31,17 @@
     button {
       display: none;
     }
+  }
+}
+
+@include mobile-breakpoint {
+  .headerVisible {
+    visibility: visible;
+    transition: all 0.5s;
+  }
+  .headerHidden {
+    visibility: hidden;
+    transition: all 0.5s;
+    transform: translateY(-100%);
   }
 }
