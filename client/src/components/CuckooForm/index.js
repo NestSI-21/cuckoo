@@ -9,7 +9,6 @@ import ImageUpload from '../ImageUpload';
 import Button from '../../elements/Button';
 import { get, post } from '../../helpers/Networking';
 import { toast } from 'react-toastify';
-
 import {
   form,
   radioWrapper,
@@ -185,7 +184,6 @@ const CuckooForm = () => {
         ).toISOString(),
       );
     }
-    console.log(data);
     if (
       data.type != 0 &&
       data.title != '' &&
