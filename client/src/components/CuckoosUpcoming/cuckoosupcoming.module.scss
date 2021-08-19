@@ -21,8 +21,8 @@
     color: $green;
   }
   .upcomingCard {
-    padding: 1rem 0;
-    @include flex($justify: flex-start);
+    padding: 1.25rem 0;
+    @include flex($align: flex-start, $justify: flex-start);
     .upcomingDescription {
       margin-left: 1.2rem;
       p {

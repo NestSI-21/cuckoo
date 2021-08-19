@@ -9,9 +9,12 @@ import {
   contentContainer,
   filterContainer,
   search,
+  filtersCard,
+  hideFiltersCard,
   filters,
   typeFilters,
   categoryFilters,
+  cuckooList,
   show,
   hide,
 } from './cuckoos.module.scss';
@@ -23,9 +26,6 @@ const Cuckoos = () => {
   const [eventOptions, setEventOptions] = useState();
   const [cuckooFilters, setCuckooFilters] = useState({ query: '', types: '', categories: [] });
   const [showFilters, setShowFilters] = useState(false);
-
-  const width = window.innerWidth;
-  const breakpoint = 1024;
 
   useEffect(() => {
     getCuckooTypes();
@@ -121,7 +121,7 @@ const Cuckoos = () => {
               <i className='fas fa-sliders-h'></i>
             </button>
           </div>
-          {showFilters || width > breakpoint ? (
+          <div className={!showFilters ? filtersCard : hideFiltersCard}>
             <div className={filters}>
               <div>
                 {/* TODO: implement date filters
@@ -188,9 +188,11 @@ const Cuckoos = () => {
                 </div>
               </div>
             </div>
-          ) : null}
+          </div>
         </div>
-        <CuckooList cuckoos={cuckoos} />
+        <div className={cuckooList}>
+          <CuckooList cuckoos={cuckoos} />
+        </div>
       </div>
     </Layout>
   );
