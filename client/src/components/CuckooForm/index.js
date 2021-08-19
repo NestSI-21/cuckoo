@@ -8,6 +8,7 @@ import Textarea from '../../elements/Textarea';
 import ImageUpload from '../ImageUpload';
 import Button from '../../elements/Button';
 import { get, post } from '../../helpers/Networking';
+import { toast } from 'react-toastify';
 import {
   form,
   radioWrapper,
@@ -73,14 +74,14 @@ const CuckooForm = () => {
   const [typeError, setTypeError] = useState(false);
   const [titleError, setTitleError] = useState('');
   const [categoryError, setCategoryError] = useState('');
-  const [dateError, setDateError] = useState(false);
+  const [dateError, setDateError] = useState('');
   const [authError, setAuthError] = useState('');
 
   const formValidation = () => {
     let typeError = false;
     let titleError = null;
     let categoryError = null;
-    let dateError = false;
+    let dateError = null;
 
     if (!data.type) {
       typeError = true;
@@ -94,7 +95,7 @@ const CuckooForm = () => {
       categoryError = 'Please choose a category';
     }
     if (data.startDate > data.endDate) {
-      dateError = true;
+      dateError = 'Invalid date';
     }
 
     if (typeError || titleError || categoryError || dateError) {
@@ -183,127 +184,135 @@ const CuckooForm = () => {
         ).toISOString(),
       );
     }
-
     if (
-      (!data.type != 0 || data.title != '' || data.category != '') &&
+      data.type != 0 &&
+      data.title != '' &&
+      data.category != '' &&
       data.startDate <= data.endDate
     ) {
       post(formData, '/posts', function (resp) {
         if (resp.status === 200) {
           history.push('/cuckoos');
-        } else {
-          history.push('/create');
+          toast('Your Cuckoo was posted! 🎉', {
+            className: 'toast success',
+          });
         }
       });
     } else {
+      history.push('/create');
       setAuthError('Something went wrong');
+      toast('Something went wrong 😔', {
+        className: 'toast failure',
+      });
     }
   };
 
   return (
-    <form className={form} onSubmit={handleSubmit}>
-      <p className={!typeError ? radioDescription : errorRadioDescription}>
-        Select the type of Cuckoo you want to create
-        <span className={star}>
-          <i className='fas fa-asterisk'></i>
-        </span>
-      </p>
-      <div className={radioWrapper}>
-        {cuckooType &&
-          cuckooType.map((type, i) => (
-            <Radio
-              key={i}
-              id={type.id}
-              name='type'
-              label={type.name}
-              value={type.id}
-              checked={parseInt(data.type) === parseInt(type.id)}
-              onClick={resetCategory}
-              onChange={handleChange}
-            />
-          ))}
-      </div>
+    <>
+      <form className={form} onSubmit={handleSubmit}>
+        <p className={!typeError ? radioDescription : errorRadioDescription}>
+          Select the type of Cuckoo you want to create
+          <span className={star}>
+            <i className='fas fa-asterisk'></i>
+          </span>
+        </p>
+        <div className={radioWrapper}>
+          {cuckooType &&
+            cuckooType.map((type, i) => (
+              <Radio
+                key={i}
+                id={type.id}
+                name='type'
+                label={type.name}
+                value={type.id}
+                checked={parseInt(data.type) === parseInt(type.id)}
+                onClick={resetCategory}
+                onChange={handleChange}
+              />
+            ))}
+        </div>
 
-      <Input
-        type='text'
-        name='title'
-        value={data.title}
-        onChange={handleChange}
-        label='Give your Cuckoo a title'
-        mandatory
-        error={titleError}
-        onFocus={titleError ? () => setTitleError('') : null}
-      />
-      <div className={flexWrapper}>
         <Input
           type='text'
-          name='location'
-          value={data.location}
+          name='title'
+          value={data.title}
           onChange={handleChange}
-          label='Location'
-        />
-        <Select
-          name='category'
-          value={data.category}
-          onChange={handleChange}
-          options={data.type === 1 ? announcementOptions : data.type === 2 ? eventOptions : []}
-          label='Category'
+          label='Give your Cuckoo a title'
           mandatory
-          error={categoryError}
-          onFocus={categoryError ? () => setCategoryError('') : null}
+          error={titleError}
+          onFocus={titleError ? () => setTitleError('') : null}
         />
-      </div>
-      <Textarea
-        name='description'
-        value={data.description}
-        onChange={handleChange}
-        label='Tell us more about what you want to share'
-      />
-      <ImageUpload images={data.images} onChange={handleImageChange} />
-      <div className={gridWrapper}>
-        <Input
-          type='date'
-          name='startDate'
-          value={data.startDate}
-          onChange={handleStartDateChange}
-          label='From:'
-          dateValidation={dateError}
-          onFocus={dateError ? () => setDateError('') : null}
-        />
-        <Input
-          type='date'
-          name='endDate'
-          value={data.endDate}
+        <div className={flexWrapper}>
+          <Input
+            type='text'
+            name='location'
+            value={data.location}
+            onChange={handleChange}
+            label='Location'
+          />
+          <Select
+            name='category'
+            value={data.category}
+            onChange={handleChange}
+            options={data.type === 1 ? announcementOptions : data.type === 2 ? eventOptions : []}
+            label='Category'
+            mandatory
+            error={categoryError}
+            onFocus={categoryError ? () => setCategoryError('') : null}
+          />
+        </div>
+        <Textarea
+          name='description'
+          value={data.description}
           onChange={handleChange}
-          label='To:'
-          disabled={data.startDate === ''}
-          dateValidation={dateError}
-          onFocus={dateError ? () => setDateError('') : null}
+          label='Tell us more about what you want to share'
         />
-        <Input
-          type='time'
-          name='startTime'
-          value={data.startTime}
-          onChange={handleChange}
-          label='Starting at:'
-          disabled={data.startDate === ''}
-        />
+        <ImageUpload images={data.images} onChange={handleImageChange} />
+        <div className={gridWrapper}>
+          <Input
+            type='date'
+            name='startDate'
+            value={data.startDate}
+            onChange={handleStartDateChange}
+            label='From:'
+            error={dateError}
+            onFocus={dateError ? () => setDateError('') : null}
+          />
+          <Input
+            type='date'
+            name='endDate'
+            value={data.endDate}
+            onChange={handleChange}
+            label='To:'
+            disabled={data.startDate === ''}
+            error={dateError}
+            onFocus={dateError ? () => setDateError('') : null}
+          />
+          <Input
+            type='time'
+            name='startTime'
+            value={data.startTime}
+            onChange={handleChange}
+            label='Starting at:'
+            disabled={data.startDate === ''}
+          />
 
-        <Input
-          type='time'
-          name='endTime'
-          value={data.endTime}
-          onChange={handleChange}
-          label='Ending at:'
-          disabled={data.startTime === ''}
-        />
-        {dateError ? <p>Invalid date</p> : null}
-      </div>
-      <div className={btnWrapper}>
-        <Button text='PUBLISH' type='submit' style='green' />
-        {authError ? <p>{authError}</p> : null}
-      </div>
-    </form>
+          <Input
+            type='time'
+            name='endTime'
+            value={data.endTime}
+            onChange={handleChange}
+            label='Ending at:'
+            disabled={data.startTime === ''}
+          />
+          {dateError ? <p>{dateError}</p> : null}
+        </div>
+        <div className={btnWrapper}>
+          <Button text='PUBLISH' type='submit' style='green' />
+          {authError ? <p>{authError}</p> : null}
+        </div>
+      </form>
+    </>
   );
 };
 

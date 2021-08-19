@@ -1,0 +1,35 @@
+@import '../../styles/applications.scss';
+
+.toast {
+  top: 1rem;
+  right: 0.5rem;
+  font-size: $text;
+  color: #fff;
+  .Toastify__progress-bar {
+    background: rgba(31, 31, 31, 0.35);
+  }
+  .Toastify__close-button {
+    color: $gray;
+  }
+}
+.success {
+  background: $green;
+}
+.failure {
+  background: $error;
+}
+
+.justTest {
+  position: absolute;
+  width: fit-content;
+  display: block;
+  bottom: 0;
+  right: 0;
+  button {
+    background: none;
+    border: 0.1rem solid $gray;
+    width: 100%;
+    margin: 0.1rem;
+    padding: 0.5rem;
+  }
+}
