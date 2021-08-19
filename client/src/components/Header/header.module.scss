@@ -13,7 +13,7 @@
   @include tablet-breakpoint {
     @include flex($align: center, $justify: space-between);
     width: calc(100vw - 12rem);
-    padding: 4rem 3rem;
+    padding: 4rem 2rem;
   }
   @include mobile-breakpoint {
     @include flex($align: flex-end, $justify: flex-start);

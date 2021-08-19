@@ -3,7 +3,7 @@
 .contentContainer {
   @include main();
   @include tablet-breakpoint {
-    @include main(calc(100vw - 12rem), $mainPadding: 1rem 1.8rem);
+    @include main(calc(100vw - 12rem), $mainPadding: 1rem 1.8rem 2rem 1.8rem);
   }
   @include smallTablet-breakpoint {
     overflow-y: scroll;

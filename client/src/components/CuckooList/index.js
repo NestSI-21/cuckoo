@@ -1,18 +1,29 @@
 import React, { Fragment } from 'react';
 import PropTypes from 'prop-types';
 import CuckooCard from '../CuckooCard';
-import { container } from './cuckoolist.module.scss';
+import nocuckoos from '../../assets/logos/nocuckoos.svg';
+import { container, noCuckoos } from './cuckoolist.module.scss';
 
 const CuckooList = ({ cuckoos }) => {
   return (
-    <div className={container}>
-      {cuckoos &&
-        cuckoos.map((cuckoo, i) => (
-          <Fragment key={i}>
-            <CuckooCard cuckoo={cuckoo} />
-          </Fragment>
-        ))}
-    </div>
+    <>
+      {cuckoos != '' ? (
+        <div className={container}>
+          {cuckoos &&
+            cuckoos.map((cuckoo, i) => (
+              <Fragment key={i}>
+                <CuckooCard cuckoo={cuckoo} />
+              </Fragment>
+            ))}
+        </div>
+      ) : (
+        <div className={noCuckoos}>
+          <img src={nocuckoos} alt='nocuckoos' />
+          <h3>Cuck-OOPS</h3>
+          <p>There's no Cuckoos here</p>
+        </div>
+      )}
+    </>
   );
 };
 

@@ -15,7 +15,6 @@
         @include container();
         @include flex($align: center, $justify: flex-start);
         width: 100%;
-        min-height: 50rem;
       }
     }
   }
@@ -26,6 +25,36 @@
       button {
         border-radius: 50%;
       }
+    }
+  }
+}
+.noCuckoos {
+  @include container(50vh);
+  @include flex(column);
+  margin-bottom: 1.5rem;
+  width: 100%;
+  text-align: center;
+  img {
+    width: 20%;
+    opacity: 0.5;
+  }
+  h3 {
+    color: $light-gray;
+    margin-top: 1.5rem;
+    opacity: 0.5;
+  }
+  p {
+    margin-bottom: 3.5rem;
+    color: white;
+    color: $light-gray;
+    opacity: 0.5;
+  }
+  @include smallTablet-breakpoint {
+    img {
+      width: 30%;
+    }
+    p {
+      margin-bottom: 0;
     }
   }
 }

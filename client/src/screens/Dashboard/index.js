@@ -5,12 +5,10 @@ import Layout from '../../components/Layout';
 import CuckooList from '../../components/CuckooList';
 import CuckooCarousel from '../../components/CuckooCarousel';
 import Calendar from '../../components/Calendar';
-import { contentContainer } from './dashboard.module.scss';
+import { contentContainer, cuckooList, carousel } from './dashboard.module.scss';
 
 const Dashboard = () => {
   const [cuckoos, setCuckoos] = useState();
-  const width = window.innerWidth;
-  const breakpoint = 501;
 
   useEffect(() => {
     getCuckoos();
@@ -26,11 +24,12 @@ const Dashboard = () => {
   return (
     <Layout pageTitle='Dashboard'>
       <div className={contentContainer}>
-        {width < breakpoint ? (
-          <CuckooCarousel cuckoos={cuckoos} />
-        ) : (
+        <div className={cuckooList}>
           <CuckooList cuckoos={cuckoos} />
-        )}
+        </div>
+        <div className={carousel}>
+          <CuckooCarousel cuckoos={cuckoos} />
+        </div>
         <Calendar />
       </div>
     </Layout>
