@@ -4,7 +4,6 @@ import { companyMain, company, logoBox, companyInfo } from './companycard.module
 import CL1 from '../../assets/logos/CL1.png';
 
 const CompanyCard = ({ company: { name, description } }) => {
-  console.log(name, description);
   return (
     <div className={companyMain}>
       <div className={company}>

@@ -6,8 +6,6 @@ import CompanyCard from '../CompanyCard';
 const CompaniesList = () => {
   const [companies, setCompanies] = useState([]);
 
-  console.log(companies);
-
   useEffect(() => {
     getCompanies();
   }, []);
