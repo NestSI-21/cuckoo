@@ -4,6 +4,7 @@ import { companyMain, company, logoBox, companyInfo } from './companycard.module
 import CL1 from '../../assets/logos/CL1.png';
 
 const CompanyCard = ({ company: { name, description } }) => {
+  console.log(name, description);
   return (
     <div className={companyMain}>
       <div className={company}>
@@ -20,7 +21,7 @@ const CompanyCard = ({ company: { name, description } }) => {
 };
 
 CompanyCard.propTypes = {
-  company: PropTypes.object.isRequired,
+  company: PropTypes.object,
 };
 
 export default CompanyCard;

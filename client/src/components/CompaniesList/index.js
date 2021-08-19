@@ -1,38 +1,39 @@
 import React, { useState, useEffect, Fragment } from 'react';
-import PropTypes from 'prop-types';
+import denormalize from '@weareredlight/denormalize_json_api';
+import { get } from '../../helpers/Networking';
 import CompanyCard from '../CompanyCard';
-import jsondata from '../../mockcompanies.json';
 
-const CompaniesList = ({ searchTerm }) => {
+const CompaniesList = () => {
   const [companies, setCompanies] = useState([]);
+
+  console.log(companies);
+
   useEffect(() => {
-    const data = jsondata.map((value) => value);
-    setCompanies(data);
+    getCompanies();
   }, []);
+
+  // Get companies
+  const getCompanies = () => {
+    get('/companies', function (resp) {
+      const companies = denormalize(
+        resp.data.data.map(({ attributes: { name, description } }) => ({
+          name,
+          description,
+        })),
+      );
+      setCompanies(companies);
+    });
+  };
 
   return (
     <div>
-      {companies
-        .filter((company) => {
-          if (searchTerm === '') {
-            return company;
-          } else if (company.name.toLowerCase().includes(searchTerm.toLowerCase())) {
-            return company;
-          } else {
-            return false;
-          }
-        })
-        .map((company, i) => (
-          <Fragment key={i}>
-            <CompanyCard company={company} />
-          </Fragment>
-        ))}
+      {companies.map((company, i) => (
+        <Fragment key={i}>
+          <CompanyCard company={company} />
+        </Fragment>
+      ))}
     </div>
   );
-};
-
-CompaniesList.propTypes = {
-  searchTerm: PropTypes.string,
 };
 
 export default CompaniesList;
