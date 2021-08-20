@@ -20,7 +20,7 @@ const CompanyCard = ({ company: { name, description } }) => {
 };
 
 CompanyCard.propTypes = {
-  company: PropTypes.object.isRequired,
+  company: PropTypes.object,
 };
 
 export default CompanyCard;

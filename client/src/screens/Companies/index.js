@@ -1,18 +1,18 @@
-import React, { useState } from 'react';
+import React from 'react';
 import CompaniesList from '../../components/CompaniesList';
 import Layout from '../../components/Layout';
-import SearchBar from '../../elements/SearchBar';
-import { contentContainer, searchbar } from './companies.module.scss';
+// import SearchBar from '../../elements/SearchBar';
+import { contentContainer } from './companies.module.scss';
 
 const Companies = () => {
-  const [searchTerm, setSearchTerm] = useState('');
   return (
     <Layout pageTitle='Companies' hideCreateBtn>
       <div className={contentContainer}>
+        {/* TODO: Add search bar, see Cuckoos.js for functionality
         <div className={searchbar}>
-          <SearchBar setSearchTerm={setSearchTerm} />
-        </div>
-        <CompaniesList searchTerm={searchTerm} />
+          <SearchBar />
+        </div> */}
+        <CompaniesList />
       </div>
     </Layout>
   );
