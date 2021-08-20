@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import {
   imageGrid1,
@@ -6,9 +6,20 @@ import {
   imageGrid3,
   imageGrid4,
   imagePlaceHolder,
+  imagePlaceHolderZoomed,
 } from './cuckooimages.module.scss';
 
 const CuckooImages = ({ images }) => {
+  const [imgZoom, setImgZoom] = useState({
+    id: 0,
+    zoom: false,
+  });
+  const openModal = (index) => (e) => {
+    setImgZoom({ ...imgZoom, id: index, zoom: !imgZoom.zoom });
+    console.log(index);
+    console.log(imgZoom.zoom);
+    console.log(e.target.src);
+  };
   const imgCounter = images.length;
   return (
     <div
@@ -26,7 +37,12 @@ const CuckooImages = ({ images }) => {
     >
       {images.map((image, i) => {
         return (
-          <div className={imagePlaceHolder} key={i}>
+          <div
+            c
+            className={imgZoom.zoom && imgZoom.id === i ? imagePlaceHolderZoomed : imagePlaceHolder}
+            key={i}
+            onClick={openModal(i)}
+          >
             <img src={image} alt='' />
           </div>
         );
