@@ -65,19 +65,12 @@ button {
   font-weight: 400;
   border: none;
   cursor: pointer;
-
-  &:focus,
-  &:active,
-  &:visited,
-  &:link,
-  &:hover {
-    text-decoration: none;
-    color: inherit;
-    outline: none;
-  }
-
   @include mobile-breakpoint {
     font-size: 1.4rem;
+  }
+
+  &:focus {
+    outline: none;
   }
 }
 
