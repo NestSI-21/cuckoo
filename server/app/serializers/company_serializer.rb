@@ -2,5 +2,5 @@
 
 class CompanySerializer
   include JSONAPI::Serializer
-  attributes :name, :description, :status, :company_url, :images_url
+  attributes :name, :description, :status, :logo
 end
