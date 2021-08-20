@@ -12,7 +12,7 @@ const Companies = () => {
         <div className={searchbar}>
           <SearchBar />
         </div> */}
-        <CompaniesList searchTerm={searchTerm} />
+        <CompaniesList />
       </div>
     </Layout>
   );
