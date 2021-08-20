@@ -13,8 +13,8 @@ class Post < ApplicationRecord
 
   def send_message
     Slack.configure do |config|
-      config.token = ENV['SLACK_OAUTH_TOKEN']
-      raise 'Missing ENV[SLACK_OAUTH_TOKEN]!' unless config.token
+      config.token = ENV['SLACK_API_TOKEN']
+      raise 'Missing ENV[SLACK_API_TOKEN]!' unless config.token
     end
 
     client = Slack::Web::Client.new
