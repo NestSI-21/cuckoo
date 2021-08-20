@@ -13,4 +13,18 @@
     overflow-y: hidden;
   }
   overflow-y: scroll;
+  .searchbar {
+    width: 30rem;
+    position: absolute;
+    top: 2.4rem;
+    right: 3rem;
+    @include tablet-breakpoint {
+      top: 2rem;
+      width: 20rem;
+    }
+    @include smallTablet-breakpoint {
+      width: 100%;
+      position: initial;
+    }
+  }
 }
