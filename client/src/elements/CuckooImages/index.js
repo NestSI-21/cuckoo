@@ -16,9 +16,6 @@ const CuckooImages = ({ images }) => {
   });
   const openModal = (index) => (e) => {
     setImgZoom({ ...imgZoom, id: index, zoom: !imgZoom.zoom });
-    console.log(index);
-    console.log(imgZoom.zoom);
-    console.log(e.target.src);
   };
   const imgCounter = images.length;
   return (
