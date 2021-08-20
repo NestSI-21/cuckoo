@@ -35,7 +35,6 @@ const CuckooImages = ({ images }) => {
       {images.map((image, i) => {
         return (
           <div
-            c
             className={imgZoom.zoom && imgZoom.id === i ? imagePlaceHolderZoomed : imagePlaceHolder}
             key={i}
             onClick={openModal(i)}
