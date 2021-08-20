@@ -5,9 +5,7 @@ class Company < ApplicationRecord
   has_one_attached :logo
 
   def images_url
-    Rails.application.routes.default_url_options = { host: 'cuckoo-backend.herokuapp.com', protocol: 'https' }
-    images.map do |image|
-      Rails.application.routes.url_helpers.url_for(image)
-    end
+    Rails.application.routes.default_url_options = { host: 'localhost:3000', protocol: 'http' }
+    Rails.application.routes.url_helpers.url_for(logo)
   end
 end
