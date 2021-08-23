@@ -27,7 +27,12 @@
       margin-left: 2rem;
       padding-right: 3rem;
       p {
-        margin-top: 0.4rem;
+        margin: 0.4rem 0;
+      }
+      .website {
+        font-size: $text-small;
+        color: $green;
+        font-weight: 300;
       }
     }
   }
