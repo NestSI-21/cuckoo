@@ -13,23 +13,19 @@ const CompaniesList = () => {
   // Get companies
   const getCompanies = () => {
     get('/companies', function (resp) {
-      const companies = denormalize(
-        resp.data.data.map(({ attributes: { name, description } }) => ({
-          name,
-          description,
-        })),
-      );
-      setCompanies(companies);
+      const data = denormalize(resp.data).data;
+      setCompanies(data);
     });
   };
 
   return (
     <div>
-      {companies.map((company, i) => (
-        <Fragment key={i}>
-          <CompanyCard company={company} />
-        </Fragment>
-      ))}
+      {companies &&
+        companies.map((company, i) => (
+          <Fragment key={i}>
+            <CompanyCard company={company} />
+          </Fragment>
+        ))}
     </div>
   );
 };
