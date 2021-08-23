@@ -25,6 +25,35 @@ Cuckoo is a open source slackbot directed to companies and work teams that uses 
 <hr />
 
 ## Getting Started
+<h3>1. Install the <a href="/">application</a> on your organisation's Slack workspace </h3>
 
+<h3>2. Setup the App</h3>
+<p>- Go to <a href="https://api.slack.com/" target="_blank">api.slack</a> and search for Cuckoo in "Your Apps" section;<p>
+
+<p>- Go to settings and look for the following information to add to the respective files:<p>
+  
+In `client/.env`:
+```
+REACT_APP_SLACK_CLIENT_ID=
+REACT_APP_SLACK_REDIRECT_URL=
+REACT_APP_API_BASE_URL=
+```
+  
+In `server/.env`:
+```
+SLACK_CLIENT_ID =
+SLACK_CLIENT_SECRET =
+FRONTEND_HOST =
+SLACK_OAUTH_TOKEN =
+SLACK_WEBHOOK =
+```
+  
+<h3>3. Create AWS s3 container to store images</h3>
+
+- Add these 2 lines to the file `server/.env` with the requested information from AWS
+```
+AWS_ACCESS_KEY_ID = AKIAIOSFODNN7EXAMPLE
+AWS_SECRET_ACCESS_KEY = wJalrXUtnFEMI/K7MDENG/bPxRfiCYEXAMPLEKEY
+```
 
 
