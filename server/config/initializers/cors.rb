@@ -9,7 +9,7 @@
 
 Rails.application.config.middleware.insert_before(0, Rack::Cors) do
   allow do
-    origins '*'
+    origins ['https://cuckoo-frontend.herokuapp.com/','http://www.cuckoos.io/']
     resource '*',
              headers: :any,
              expose: ['Authorization'],
