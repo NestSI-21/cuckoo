@@ -13,16 +13,8 @@ const CompaniesList = () => {
   // Get companies
   const getCompanies = () => {
     get('/companies', function (resp) {
-      const dnResp = denormalize(resp.data.data);
-      const companies = dnResp.map(
-        ({ attributes: { name, description, company_url, logo_url } }) => ({
-          name,
-          description,
-          company_url,
-          logo_url,
-        }),
-      );
-      setCompanies(companies);
+      const data = denormalize(resp.data.data);
+      setCompanies(data);
     });
   };
 

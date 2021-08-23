@@ -2,7 +2,11 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { companyMain, company, logoBox, companyInfo, website } from './companycard.module.scss';
 
-const CompanyCard = ({ company: { name, description, logo_url: logo, company_url: url } }) => {
+const CompanyCard = ({
+  company: {
+    attributes: { name, description, logo_url: logo, company_url: url },
+  },
+}) => {
   return (
     <div className={companyMain}>
       <div className={company}>
