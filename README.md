@@ -1,6 +1,6 @@
 # Cuckoo
 
-![readmebanner](https://user-images.githubusercontent.com/44748017/130473873-442cb510-63dc-4e0f-8a66-f10a5c7af812.jpg)
+![cuckoobanner](https://user-images.githubusercontent.com/44748017/130648943-eae77a6d-21e2-450b-acb6-5e7241c7e5e3.jpg)
 
 ## What is Cuckoo ?
 
@@ -8,7 +8,7 @@ Cuckoo is a open source slackbot directed to companies and work teams that uses 
 
 <br/>
 
-<h1 align="center" color="red"><i>Keep your team in sync!</i></h1>
+<h1 align="center"><i>Keep your team in sync!</i></h1>
 
 <h3>How it works? 🤔</h3>
 <p>- With Cuckoo you can create <b>events or announcements</b> that will be published on the platform's "Cuckoos feed" where you can find all the posts previously published by other members of your organisation.</p>
@@ -25,19 +25,39 @@ Cuckoo is a open source slackbot directed to companies and work teams that uses 
 <hr />
 
 ## Getting Started
-<h3>1. Install the <a href="/">application</a> on your organisation's Slack workspace </h3>
+<h3>1. Clone this repository</h3>
 
+```
+$ git clone https://github.com/NestSI-21/cuckoo.git
+```
+
+
+<h3>1. Install the <a href="https://slack.com/apps/A0280GPQ9GU-cuckoo?next_id=0">application</a> on your organization's Slack workspace </h3>
+
+<h3>2. Create the App</h3>
+<p>- Go to <a href="https://api.slack.com/" target="_blank">api.slack</a> and create a new App from scratch<p>
+<p>- Call it Cuckoo and choose your workspace<p>
+<img width="546" alt="Screenshot 2021-08-24 at 17 34 38" src="https://user-images.githubusercontent.com/44748017/130656117-a7f780d7-36ae-43f9-bd93-d33a7b6dc756.png">
+  
 <h3>2. Setup the App</h3>
-<p>- Go to <a href="https://api.slack.com/" target="_blank">api.slack</a> and search for Cuckoo in "Your Apps" section;<p>
-
-<p>- Go to settings and look for the following information to add to the respective files:<p>
+  
+<p>- Go to Settings/Basic Information/App Credentials, and look for the following information to add to the respective files:<p>
   
 In `client/.env`:
+  
 ```
 REACT_APP_SLACK_CLIENT_ID=
-REACT_APP_SLACK_REDIRECT_URL=
-REACT_APP_API_BASE_URL=
 ```
+
+<p>- Now, cpomplete the file with the requested information:<p>
+ 
+  
+```
+REACT_APP_SLACK_REDIRECT_URL= yourFrontend.com/api/v1/auth/slack
+REACT_APP_API_BASE_URL= http://localhost:8000 (to run it locally)
+```
+
+##
   
 In `server/.env`:
 ```
@@ -47,13 +67,6 @@ FRONTEND_HOST =
 SLACK_OAUTH_TOKEN =
 SLACK_WEBHOOK =
 ```
-  
-<h3>3. Create AWS s3 container to store images</h3>
-
-- Add these 2 lines to the file `server/.env` with the requested information from AWS
-```
-AWS_ACCESS_KEY_ID = AKIAIOSFODNN7EXAMPLE
-AWS_SECRET_ACCESS_KEY = wJalrXUtnFEMI/K7MDENG/bPxRfiCYEXAMPLEKEY
-```
+ 
 
 
