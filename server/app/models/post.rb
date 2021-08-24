@@ -53,7 +53,7 @@ class Post < ApplicationRecord
     client.files_upload(
       channels: '#alerts',
       as_user: true,
-      file: Faraday::UploadIO.new('https://c8.alamy.com/comp/BHNG1N/rubber-duck-gift-BHNG1N.jpg','image/jpeg'),
+      file: Faraday::UploadIO.new('assets/images/deemaze.png','image/png'),
     )
   end
 
