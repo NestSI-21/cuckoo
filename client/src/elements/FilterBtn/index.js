@@ -32,9 +32,9 @@ const FilterBtn = ({
 };
 
 FilterBtn.propTypes = {
-  id: PropTypes.number,
+  id: PropTypes.string,
   name: PropTypes.string,
-  value: PropTypes.number,
+  value: PropTypes.string,
   text: PropTypes.string,
   active: PropTypes.bool,
   handleTypeFilterClick: PropTypes.func,

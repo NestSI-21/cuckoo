@@ -124,7 +124,7 @@ const Calendar = () => {
         selectedDays={interval.isMonth ? null : interval.start}
       />
       <CuckoosUpcoming
-        cuckoos={cuckoos.filter(
+        cuckoos={(cuckoos || []).filter(
           (cuckoo) =>
             new Date(cuckoo.start_date) <= interval.end &&
             interval.start <= new Date(cuckoo.end_date),
