@@ -1,14 +1,15 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { companyMain, company, logoBox, companyInfo, website } from './companycard.module.scss';
+import { companyMain, company, companyInfo, website } from './companycard.module.scss';
 
-const CompanyCard = ({ company: { name, description, logo_url: logo, company_url: url } }) => {
+const CompanyCard = ({ company: { name, description, company_url: url } }) => {
   return (
     <div className={companyMain}>
       <div className={company}>
+        {/* TODO: Add company images
         <div className={logoBox}>
           <img src={logo} alt={`${name} company logo`} />
-        </div>
+        </div> */}
         <div className={companyInfo}>
           <h3>{name}</h3>
           <p>{description}</p>
