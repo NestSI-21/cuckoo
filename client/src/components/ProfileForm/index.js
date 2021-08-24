@@ -8,8 +8,10 @@ import Input from '../../elements/Input';
 import Button from '../../elements/Button';
 import { form, errorMessage } from './profileform.module.scss';
 import { toast } from 'react-toastify';
+import { useUserContext } from '../../hooks/useUser';
 
 const ProfileForm = () => {
+  const { profileComplete, setProfileComplete } = useUserContext();
   const [companies, setCompanies] = useState([]);
   const [user, setUser] = useState();
   const [data, setData] = useState({
@@ -94,6 +96,9 @@ const ProfileForm = () => {
     if (data.company != '' && data.role != '') {
       put(formData, '/users/profiles', function (resp) {
         if (resp.status === 200) {
+          if (!profileComplete) {
+            setProfileComplete(true);
+          }
           history.push('/dashboard');
           toast('Your profile was updated! 🎉', {
             className: 'toast success',
