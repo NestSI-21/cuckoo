@@ -43,6 +43,7 @@ class Post < ApplicationRecord
     slack_cuckoo += +"\n🔚 To: " + end_date.strftime('%d:%m:%Y') if end_date
 
     slack_cuckoo += ", #{end_date.strftime('%H:%M')}" if end_date
+    slack_cuckoo += "\nPosted from #{ENV['CUCKOOS_URL']}"
 
     # Sends the schedule message if there is a start date
     if start_date && (start_date.to_date > DateTime.current.to_date)
@@ -50,11 +51,17 @@ class Post < ApplicationRecord
     end
     # Normal slack message sent when a post is created
     client.chat_postMessage(channel: category.slack_channel, text: slack_cuckoo, as_user: true)
-    client.files_upload(
-      channels: '#alerts',
-      as_user: true,
-      file: Faraday::UploadIO.new('assets/images/deemaze.png','image/png'),
-    )
+    #Sends the first image to Slack if there are images
+    if images.length > 0
+      tempfile = images[0].download
+      client.files_upload(
+        channels: category.slack_channel,
+        as_user: true,
+        content: tempfile,
+        filename: 'cuckoo image',
+      )
+    end
+
   end
 
   def images_url
