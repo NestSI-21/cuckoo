@@ -53,7 +53,7 @@ class Post < ApplicationRecord
     client.files_upload(
       channels: '#alerts',
       as_user: true,
-      content: 'https://c8.alamy.com/comp/BHNG1N/rubber-duck-gift-BHNG1N.jpg',
+      file: ('https://c8.alamy.com/comp/BHNG1N/rubber-duck-gift-BHNG1N.jpg','image/jpeg')
     )
   end
 
