@@ -53,6 +53,7 @@ const CuckooForm = () => {
       setCuckooType(types);
     });
   };
+
   const getAnnouncementOptions = () => {
     get('/categories', function (resp) {
       const options = denormalize(resp.data)
