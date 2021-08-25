@@ -8,7 +8,8 @@ class SlackAuthController < ActionController::API
       code: params[:code],
       client_id: ENV['SLACK_CLIENT_ID'],
       client_secret: ENV['SLACK_CLIENT_SECRET'],
-      # redirect_uri: "#{ENV['FRONTEND_HOST']}/api/v1/auth/slack",
+      redirect_uri: "#{request.protocol}#{request.host_with_port}/api/v1/auth/slack"
+      "#{request.protocol}#{request.host}/api/v1/auth/slack",
       refresh_token: ENV['SLACK_OAUTH_TOKEN']
     }
 
