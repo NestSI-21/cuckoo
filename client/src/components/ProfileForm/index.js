@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useHistory } from 'react-router-dom';
 import denormalize from '@weareredlight/denormalize_json_api';
-import { get, put } from '../../helpers/Networking';
+import apiConfig from '../../helpers/Networking';
 import Avatar from '../../elements/Avatar';
 import Select from '../../elements/Select';
 import Input from '../../elements/Input';
@@ -61,7 +61,7 @@ const ProfileForm = () => {
 
   // Get companies
   const getCompanies = () => {
-    get('/companies', function (resp) {
+    apiConfig.get('/companies', function (resp) {
       const companies = denormalize(
         resp.data.data.map(({ id, attributes: { name } }) => ({ id, name })),
       );
@@ -71,7 +71,7 @@ const ProfileForm = () => {
 
   // Get user
   const getUser = () => {
-    get('/users/profiles', function (resp) {
+    apiConfig.get('/users/profiles', function (resp) {
       const user = denormalize(resp.data).data;
       setUser(user);
     });
@@ -94,7 +94,7 @@ const ProfileForm = () => {
     formData.append('user[birthday]', data.birthday);
 
     if (data.company != '' && data.role != '') {
-      put(formData, '/users/profiles', function (resp) {
+      apiConfig.put(formData, '/users/profiles', function (resp) {
         if (resp.status === 200) {
           if (!profileComplete) {
             setProfileComplete(true);

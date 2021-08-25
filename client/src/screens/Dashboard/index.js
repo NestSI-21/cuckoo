@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import denormalize from '@weareredlight/denormalize_json_api';
-import { get } from '../../helpers/Networking';
+import apiConfig from '../../helpers/Networking';
 import Layout from '../../components/Layout';
 import CuckooList from '../../components/CuckooList';
 import CuckooCarousel from '../../components/CuckooCarousel';
@@ -15,7 +15,7 @@ const Dashboard = () => {
   }, []);
 
   const getCuckoos = () => {
-    get('/posts', function (resp) {
+    apiConfig.get('/posts', function (resp) {
       const cuckoos = denormalize(resp.data).data;
       setCuckoos(cuckoos);
     });
