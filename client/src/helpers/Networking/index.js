@@ -15,7 +15,6 @@ export function post(formData, url, callback) {
     'Content-Type': 'multipart/form-data',
     authorization: localStorage.getItem('token'),
   };
-  console.log(process.env.REACT_APP_API_BASE_URL);
 
   return axios
     .post(`${process.env.REACT_APP_API_BASE_URL}${url}`, formData, {
