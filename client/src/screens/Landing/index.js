@@ -10,6 +10,7 @@ const Landing = () => {
   const { login, isLoggedIn, profileComplete } = useUserContext();
 
   const onFailed = (error) => {
+    console.log(process.env.REACT_APP_API_BASE_URL);
     console.log(error);
   };
 
