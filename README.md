@@ -15,6 +15,8 @@ Cuckoo is a open source slackbot directed to companies and work teams that uses 
 <p>- These posts will also be sent to a channel on your <b>slack workspace</b>, depending on their category. A <b>reminder</b> will also be sent 1 day before the event starts.</p>
 <p>- Events will go into a <b>collective calendar</b>. This way you will quickly have access to what will be happening in the following days, so that you don’t miss a thing.</p>
 
+<a href="http://www.cuckoos.io/"><h3>Learn more</h3></a>
+
 #
 <p align="center">
   <img align="center" width="702" alt="devices" src="https://user-images.githubusercontent.com/44748017/130469973-84bb814b-b16a-43e3-ace2-50cba78b524e.png">
@@ -31,42 +33,63 @@ Cuckoo is a open source slackbot directed to companies and work teams that uses 
 $ git clone https://github.com/NestSI-21/cuckoo.git
 ```
 
-
-<h3>1. Install the <a href="https://slack.com/apps/A0280GPQ9GU-cuckoo?next_id=0">application</a> on your organization's Slack workspace </h3>
-
-<h3>2. Create the App</h3>
+<h3>2. Create the App on your organization's Slack workspace</h3>
 <p>- Go to <a href="https://api.slack.com/" target="_blank">api.slack</a> and create a new App from scratch<p>
 <p>- Call it Cuckoo and choose your workspace<p>
-<img width="546" alt="Screenshot 2021-08-24 at 17 34 38" src="https://user-images.githubusercontent.com/44748017/130656117-a7f780d7-36ae-43f9-bd93-d33a7b6dc756.png">
+<img width="350" alt="Screenshot 2021-08-24 at 17 34 38" src="https://user-images.githubusercontent.com/44748017/130656117-a7f780d7-36ae-43f9-bd93-d33a7b6dc756.png">
   
-<h3>2. Setup the App</h3>
+<h3>3. Setup the App</h3>
   
 <p>- Go to Settings/Basic Information/App Credentials, and look for the following information to add to the respective files:<p>
   
 In `client/.env`:
   
 ```
-REACT_APP_SLACK_CLIENT_ID=
+REACT_APP_SLACK_CLIENT_ID = 
 ```
 
-<p>- Now, cpomplete the file with the requested information:<p>
+<p>- Now, complete the file with the requested information:<p>
  
   
 ```
-REACT_APP_SLACK_REDIRECT_URL= yourFrontend.com/api/v1/auth/slack
-REACT_APP_API_BASE_URL= http://localhost:8000 (to run it locally)
+REACT_APP_SLACK_REDIRECT_URL = https://yourFrontend.com/api/v1/auth/slack
+REACT_APP_API_BASE_URL = http://localhost:8000 (to run it locally)
 ```
 
 ##
   
 In `server/.env`:
 ```
-SLACK_CLIENT_ID =
+//found on Basic Information/App Credentials
+/*-----------------------------------------*/    
+SLACK_CLIENT_ID = 
 SLACK_CLIENT_SECRET =
-FRONTEND_HOST =
-SLACK_OAUTH_TOKEN =
-SLACK_WEBHOOK =
+/*-----------------------------------------*/  
+  
+FRONTEND_HOST = https://yourFrontend.com
+  
+SLACK_OAUTH_TOKEN = ?
+SLACK_API_TOKEN = ?
 ```
- 
+To get this tokens you need to install the App on your workspace.
+For that, go to Settings/OAuth & Permissions and follow the next steps:
+  
+- Add a Redirect URL that should be something like: 'https://yourFrontend.com/api/v1/auth/slack'
+<img width="500" alt="url" src="https://user-images.githubusercontent.com/44748017/130781324-b4148ffd-8141-44cf-af58-36691433d4f3.png">
+
+- Insert the Bot and User Token Scopes specified below:
+<img width="750" alt="url" src="https://user-images.githubusercontent.com/44748017/130781370-60833c0c-f6ed-4f97-a402-ff5393869e1a.png">
+
+- Install the App on your Workspace by pressing the button
+<img width="500" alt="install" src="https://user-images.githubusercontent.com/44748017/130781610-2c9984cf-2b53-489a-95fe-65ca4c80e264.png">
+
+Now you can past the generated tokens to the file `server/.env`:
+  
+```
+SLACK_OAUTH_TOKEN = User OAuth Token
+SLACK_API_TOKEN = Bot User OAuth Token
+```  
+  
+<h3>4. Run the project</h3>  
 
 
