@@ -4,7 +4,7 @@
 
 ## What is Cuckoo ?
 
-Cuckoo is a open source **slackbot** directed to companies and work teams that uses Slack to communicate. It focuses on **storing your important Slack Posts** in one place so that you don’t miss a thing. 
+Cuckoo is an open source product directed to companies and work teams that use Slack to communicate. It focuses on storing your important Slack Posts in one place so that you don’t miss a thing. 
 
 <br/>
 
@@ -12,8 +12,8 @@ Cuckoo is a open source **slackbot** directed to companies and work teams that u
 
 <h3>How it works? 🤔</h3>
 <p>- With Cuckoo you can create <b>events or announcements</b> that will be published on the platform's "Cuckoos feed" where you can find all the posts previously published by other members of your organisation.</p>
-<p>- These posts will also be sent to a channel on your <b>slack workspace</b>, depending on their category. A <b>reminder</b> will also be sent 1 day before the event starts.</p>
-<p>- Events will go into a <b>collective calendar</b>. This way you will quickly have access to what will be happening in the following days, so that you don’t miss a thing.</p>
+<p>- These posts will also be sent to a channel on your <b>slack</b> workspace, depending on their category. A reminder will also be sent 1 day before the event starts.</p>
+<p>- Events will go into a <b>collective calendar</b>. This way you can quickly have access to what will be happening in the following days, so you don’t miss a thing.</p>
 
 <a href="http://www.cuckoos.io/"><h3>Learn more</h3></a>
 
