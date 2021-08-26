@@ -73,14 +73,13 @@ const ImageUpload = ({ images, onChange, maxFileSize = defaultMaxFileSize }) => 
           <img
             style={{ display: images >= 0 ? 'none' : 'inline-block' }}
             src={addIcon}
-            alt='Upload images test'
+            alt='Upload images'
           />
           <div style={{ display: images >= 0 ? '' : 'none' }}>
             <img src={addIcon} alt='Upload images' />
-            <p>Upload images</p>
+            <p>Upload images (Max: {`${maxImages}`} images, 10MB)</p>
+            <p>*only the first image will be displayed on Slack</p>
           </div>
-          <p style={{ display: images >= 0 ? '' : 'none' }}>Max: {`${maxImages}`} images (10MB)</p>
-          <p>*only the first image will be displayed on Slack</p>
           <input
             type='file'
             accept='image/*'

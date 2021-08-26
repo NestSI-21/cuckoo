@@ -22,6 +22,7 @@ import {
 
 const CuckooForm = () => {
   const [cuckooType, setCuckooType] = useState();
+  const [allOptions, setAllOptions] = useState();
   const [announcementOptions, setAnnouncementOptions] = useState();
   const [eventOptions, setEventOptions] = useState();
   const [typeError, setTypeError] = useState(false);
@@ -48,7 +49,18 @@ const CuckooForm = () => {
     getCuckooTypes();
     getAnnouncementOptions();
     getEventOptions();
+    getAllOptions();
   }, []);
+
+  // get Slack Channel and change Post button
+  const getSlackChannel = () => {
+    const found = allOptions && allOptions.find((option) => option.id == data.category);
+    if (found) {
+      return `to ${found.slack_channel}`;
+    } else {
+      return '';
+    }
+  };
 
   const getCuckooTypes = () => {
     apiConfig.get('/categories', function (resp) {
@@ -56,6 +68,13 @@ const CuckooForm = () => {
         resp.data.included.map(({ id, attributes: { name } }) => ({ id, name })),
       );
       setCuckooType(types);
+    });
+  };
+
+  const getAllOptions = () => {
+    apiConfig.get('/categories', function (resp) {
+      const options = denormalize(resp.data).data;
+      setAllOptions(options);
     });
   };
 
@@ -199,7 +218,6 @@ const CuckooForm = () => {
         }
       });
     } else {
-      history.push('/create');
       setAuthError('Something went wrong');
       toast('Something went wrong 😔', {
         className: 'toast failure',
@@ -312,7 +330,7 @@ const CuckooForm = () => {
           {dateError ? <p>{dateError}</p> : null}
         </div>
         <div className={btnWrapper}>
-          <Button text='PUBLISH' type='submit' style='green' />
+          <Button text={`Post ${getSlackChannel()}`} type='submit' style='green' />
           {authError ? <p>{authError}</p> : null}
         </div>
       </form>
