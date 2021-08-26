@@ -7,7 +7,7 @@ import Select from '../../elements/Select';
 import Textarea from '../../elements/Textarea';
 import ImageUpload from '../ImageUpload';
 import Button from '../../elements/Button';
-import { get, post } from '../../helpers/Networking';
+import apiConfig from '../../helpers/Networking';
 import { toast } from 'react-toastify';
 import {
   form,
@@ -24,6 +24,11 @@ const CuckooForm = () => {
   const [cuckooType, setCuckooType] = useState();
   const [announcementOptions, setAnnouncementOptions] = useState();
   const [eventOptions, setEventOptions] = useState();
+  const [typeError, setTypeError] = useState(false);
+  const [titleError, setTitleError] = useState('');
+  const [categoryError, setCategoryError] = useState('');
+  const [dateError, setDateError] = useState('');
+  const [authError, setAuthError] = useState('');
   const [data, setData] = useState({
     type: 0,
     title: '',
@@ -46,7 +51,7 @@ const CuckooForm = () => {
   }, []);
 
   const getCuckooTypes = () => {
-    get('/categories', function (resp) {
+    apiConfig.get('/categories', function (resp) {
       const types = denormalize(
         resp.data.included.map(({ id, attributes: { name } }) => ({ id, name })),
       );
@@ -55,7 +60,7 @@ const CuckooForm = () => {
   };
 
   const getAnnouncementOptions = () => {
-    get('/categories', function (resp) {
+    apiConfig.get('/categories', function (resp) {
       const options = denormalize(resp.data)
         .data.filter((option) => option.type.id === '1')
         .map(({ id, name }) => ({ id, name }));
@@ -64,19 +69,13 @@ const CuckooForm = () => {
   };
 
   const getEventOptions = () => {
-    get('/categories', function (resp) {
+    apiConfig.get('/categories', function (resp) {
       const options = denormalize(resp.data)
         .data.filter((option) => option.type.id === '2')
         .map(({ id, name }) => ({ id, name }));
       setEventOptions(options);
     });
   };
-
-  const [typeError, setTypeError] = useState(false);
-  const [titleError, setTitleError] = useState('');
-  const [categoryError, setCategoryError] = useState('');
-  const [dateError, setDateError] = useState('');
-  const [authError, setAuthError] = useState('');
 
   const formValidation = () => {
     let typeError = false;
@@ -191,7 +190,7 @@ const CuckooForm = () => {
       data.category != '' &&
       data.startDate <= data.endDate
     ) {
-      post(formData, '/posts', function (resp) {
+      apiConfig.post(formData, '/posts', function (resp) {
         if (resp.status === 200) {
           history.push('/cuckoos');
           toast('Your Cuckoo was posted! 🎉', {

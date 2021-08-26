@@ -3,7 +3,7 @@ import denormalize from '@weareredlight/denormalize_json_api';
 import Helmet from 'react-helmet';
 import DayPicker from 'react-day-picker';
 import 'react-day-picker/lib/style.css';
-import { get } from '../../helpers/Networking';
+import apiConfig from '../../helpers/Networking';
 import CuckoosUpcoming from '../CuckoosUpcoming';
 import { calendar, container } from './calendar.module.scss';
 
@@ -40,7 +40,7 @@ const Calendar = () => {
   }, [cuckoos]);
 
   const getCuckoos = () => {
-    get('/posts', function (resp) {
+    apiConfig.get('/posts', function (resp) {
       const cuckoos = denormalize(resp.data).data;
       setCuckoos(cuckoos);
     });

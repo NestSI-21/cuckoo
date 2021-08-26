@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { format } from 'date-fns';
 import denormalize from '@weareredlight/denormalize_json_api';
-import { get } from '../../helpers/Networking';
+import apiConfig from '../../helpers/Networking';
 import Layout from '../../components/Layout';
 import Avatar from '../../elements/Avatar';
 import { contentContainer, edit, logout, profileSection } from './profile.module.scss';
@@ -14,7 +14,7 @@ const Profile = () => {
   }, []);
 
   const getUser = () => {
-    get('/users/profiles', function (resp) {
+    apiConfig.get('/users/profiles', function (resp) {
       const user = denormalize(resp.data).data;
       setUser(user);
     });
@@ -23,7 +23,7 @@ const Profile = () => {
   const handleSignOutClick = (e) => {
     e.preventDefault();
 
-    get('/users/sign_out', function (resp) {
+    apiConfig.get('/users/sign_out', function (resp) {
       if (resp.status === 200) {
         localStorage.clear();
         window.location.href = '/';
