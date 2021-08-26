@@ -8,7 +8,7 @@ class Post < ApplicationRecord
   has_many_attached :images
   scope :filter_by_categories, ->(category) { joins(:category).where(category: { id: category }) }
   scope :filter_by_types, ->(type) { joins(:type).where(type: { id: type }) }
-  pg_search_scope :search, against: [:title, :description]
+  pg_search_scope :search, against: %i[title description]
   # filter by category and type or just one of them
 
   def send_message
@@ -24,7 +24,7 @@ class Post < ApplicationRecord
     category = Category.find(category_id)
 
     # Format the message that will be sent to slack
-    slack_cuckoo = "#{title}\n\n#{description}\n\n"
+    slack_cuckoo = "*#{title}*\n\n#{description}\n\n"
 
     slack_cuckoo += "📍 At: #{location}\n" if location != ''
 
@@ -43,6 +43,8 @@ class Post < ApplicationRecord
     slack_cuckoo += +"\n🔚 To: " + end_date.strftime('%d:%m:%Y') if end_date
 
     slack_cuckoo += ", #{end_date.strftime('%H:%M')}" if end_date
+    post_user = User.find(user_id)
+    slack_cuckoo += "\nPosted to #{ENV['CUCKOOS_URL']} by @" + post_user.name
 
     # Sends the schedule message if there is a start date
     if start_date && (start_date.to_date > DateTime.current.to_date)
@@ -50,11 +52,16 @@ class Post < ApplicationRecord
     end
     # Normal slack message sent when a post is created
     client.chat_postMessage(channel: category.slack_channel, text: slack_cuckoo, as_user: true)
-    client.files_upload(
-      channels: '#alerts',
-      as_user: true,
-      file: 'https://c8.alamy.com/comp/BHNG1N/rubber-duck-gift-BHNG1N.jpg',
-    )
+    # Sends the first image to Slack if there are images
+    if images.length.positive?
+      tempfile = images[0].download
+      client.files_upload(
+        channels: category.slack_channel,
+        as_user: true,
+        content: tempfile,
+        filename: 'cuckoo image'
+      )
+    end
   end
 
   def images_url

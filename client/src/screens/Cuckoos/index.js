@@ -4,7 +4,7 @@ import Layout from '../../components/Layout';
 import SearchBar from '../../elements/SearchBar';
 import FilterBtn from '../../elements/FilterBtn';
 import CuckooList from '../../components/CuckooList';
-import { get } from '../../helpers/Networking';
+import apiConfig from '../../helpers/Networking';
 import {
   contentContainer,
   filterContainer,
@@ -72,7 +72,7 @@ const Cuckoos = () => {
   };
 
   const getCuckooTypes = () => {
-    get('/categories', function (resp) {
+    apiConfig.get('/categories', function (resp) {
       const types = denormalize(
         resp.data.included.map(({ id, attributes: { name } }) => ({ id, name })),
       );
@@ -80,7 +80,7 @@ const Cuckoos = () => {
     });
   };
   const getAnnouncementOptions = () => {
-    get('/categories', function (resp) {
+    apiConfig.get('/categories', function (resp) {
       const options = denormalize(resp.data)
         .data.filter((option) => option.type.id === '1')
         .map(({ id, name }) => ({ id, name }));
@@ -89,7 +89,7 @@ const Cuckoos = () => {
   };
 
   const getEventOptions = () => {
-    get('/categories', function (resp) {
+    apiConfig.get('/categories', function (resp) {
       const options = denormalize(resp.data)
         .data.filter((option) => option.type.id === '2')
         .map(({ id, name }) => ({ id, name }));
@@ -98,7 +98,7 @@ const Cuckoos = () => {
   };
 
   const getCuckoos = () => {
-    get(
+    apiConfig.get(
       `/posts?query=${cuckooFilters.query}&types=${
         cuckooFilters.types
       }${cuckooFilters.categories.map((category) => {
