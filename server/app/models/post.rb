@@ -52,17 +52,16 @@ class Post < ApplicationRecord
     end
     # Normal slack message sent when a post is created
     client.chat_postMessage(channel: category.slack_channel, text: slack_cuckoo, as_user: true)
-    #Sends the first image to Slack if there are images
-    if images.length > 0
+    # Sends the first image to Slack if there are images
+    if images.length.positive?
       tempfile = images[0].download
       client.files_upload(
         channels: category.slack_channel,
         as_user: true,
         content: tempfile,
-        filename: 'cuckoo image',
+        filename: 'cuckoo image'
       )
     end
-
   end
 
   def images_url
