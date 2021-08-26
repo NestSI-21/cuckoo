@@ -43,7 +43,8 @@ class Post < ApplicationRecord
     slack_cuckoo += +"\n🔚 To: " + end_date.strftime('%d:%m:%Y') if end_date
 
     slack_cuckoo += ", #{end_date.strftime('%H:%M')}" if end_date
-    slack_cuckoo += "\nPosted to #{ENV['CUCKOOS_URL']} by @" + current_user.name
+    post_user = User.find(user_id)
+    slack_cuckoo += "\nPosted to #{ENV['CUCKOOS_URL']} by @" + post_user.name
 
     # Sends the schedule message if there is a start date
     if start_date && (start_date.to_date > DateTime.current.to_date)
