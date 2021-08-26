@@ -2,7 +2,8 @@
 
 .form {
   margin-top: 1rem;
-  max-width: 75rem;
+  padding: 0 5rem;
+  max-width: 85rem;
   position: relative;
   overflow-x: hidden;
   .radioWrapper {
@@ -98,7 +99,7 @@
   }
 }
 
-@include mobile-breakpoint {
+@include smallTablet-breakpoint {
   .form {
     width: 100%;
     padding: 0 2rem;
