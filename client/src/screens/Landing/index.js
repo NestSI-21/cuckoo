@@ -40,6 +40,9 @@ import {
 } from './landing.module.scss';
 
 const Landing = () => {
+  const [scrolling, setScrolling] = useState(false);
+  const [scrollTop, setScrollTop] = useState(0);
+
   const { login, isLoggedIn, profileComplete } = useUserContext();
 
   const onFailed = (error) => {
@@ -53,9 +56,6 @@ const Landing = () => {
   if (isLoggedIn && !profileComplete) {
     return <Redirect to='/profile/edit' />;
   }
-
-  const [scrolling, setScrolling] = useState(false);
-  const [scrollTop, setScrollTop] = useState(0);
 
   useEffect(() => {
     const onScroll = (e) => {
