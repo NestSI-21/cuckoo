@@ -1,5 +1,7 @@
 import React from 'react';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
+import AOS from 'aos';
+import 'aos/dist/aos.css';
 import Landing from './screens/Landing';
 import Dashboard from './screens/Dashboard';
 import Cuckoos from './screens/Cuckoos';
@@ -12,6 +14,7 @@ import './styles/base.scss';
 import Toast from './elements/Toast';
 
 function App() {
+  AOS.init();
   return (
     <>
       <Toast />
