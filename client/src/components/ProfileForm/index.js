@@ -106,7 +106,6 @@ const ProfileForm = () => {
         }
       });
     } else {
-      history.push('/profile/edit');
       setAuthError('Something went wrong');
       toast('Something went wrong 😔', {
         className: 'toast failure',

@@ -24,7 +24,7 @@ const Profile = () => {
     e.preventDefault();
 
     apiConfig.get('/users/sign_out', function (resp) {
-      if (resp.status === 200) {
+      if (resp.status === 200 || resp.status === 204) {
         localStorage.clear();
         window.location.href = '/';
       }
