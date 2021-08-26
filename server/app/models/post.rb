@@ -24,7 +24,7 @@ class Post < ApplicationRecord
     category = Category.find(category_id)
 
     # Format the message that will be sent to slack
-    slack_cuckoo = "#{title}\n\n#{description}\n\n"
+    slack_cuckoo = "*#{title}*\n\n#{description}\n\n"
 
     slack_cuckoo += "📍 At: #{location}\n" if location != ''
 
@@ -43,7 +43,7 @@ class Post < ApplicationRecord
     slack_cuckoo += +"\n🔚 To: " + end_date.strftime('%d:%m:%Y') if end_date
 
     slack_cuckoo += ", #{end_date.strftime('%H:%M')}" if end_date
-    slack_cuckoo += "\nPosted from #{ENV['CUCKOOS_URL']}"
+    slack_cuckoo += "\nPosted to #{ENV['CUCKOOS_URL']} by @" + current_user.name
 
     # Sends the schedule message if there is a start date
     if start_date && (start_date.to_date > DateTime.current.to_date)
