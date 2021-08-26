@@ -24,7 +24,7 @@ Company.find_or_create_by(name: 'RedLight',
                           description: 'We are a software development studio focusing on seamless communication and process transparency.', status: 'a ver', company_url: 'https://redlight.dev/')
 Company.find_or_create_by(name: 'srgsoftware.io',
                           description: '"No-shore" custom software development - on-shore quality with off-shore discounted rates with 30+ years of experience!', status: 'a ver', company_url: 'https://www.srgsoftware.io/')
-Company.find_or_create_by(name: 'Versatil', description: 'A tua equipa de IT personalizada.', status: 'a ver', 
+Company.find_or_create_by(name: 'Versatil', description: 'A tua equipa de IT personalizada.', status: 'a ver',
                           company_url: 'https://versatil-contexto.pt/')
 Category.find_or_create_by(type_id: 1, name: 'Alert', slack_channel: '#alerts')
 Category.find_or_create_by(type_id: 1, name: 'New Company', slack_channel: '#alerts')
@@ -34,5 +34,4 @@ Category.find_or_create_by(type_id: 2, name: 'Education', slack_channel: '#educa
 Category.find_or_create_by(type_id: 2, name: 'Social', slack_channel: '#social')
 Category.find_or_create_by(type_id: 2, name: 'Other', slack_channel: '#other')
 AdminUser.create(email: 'admin@example.com', password: 'password',
-                password_confirmation: 'password')
-
+                 password_confirmation: 'password')

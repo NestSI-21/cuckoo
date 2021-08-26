@@ -12,9 +12,6 @@ class SlackAuthController < ActionController::API
       refresh_token: ENV['SLACK_OAUTH_TOKEN']
     }
 
-    
-    
-
     response = RestClient.post('https://slack.com/api/oauth.v2.access', payload)
     body = JSON.parse(response.body)
 
