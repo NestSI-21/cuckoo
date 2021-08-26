@@ -132,9 +132,9 @@ const Landing = () => {
               <div className={aboutMessage}>
                 <h3>Welcome to Cuckoo</h3>
                 <p>
-                  Cuckoo is a <span>open source product</span> directed to companies and work teams
-                  that uses Slack to communicate. It focuses on <span>storing</span> your important
-                  <span>Slack Posts</span>
+                  Cuckoo is an <span>open source product</span> directed to companies and work teams
+                  that use Slack to communicate. It focuses on <span>storing</span> your important
+                  <span> Slack Posts </span>
                   in one place so that you don’t miss a thing.
                 </p>
               </div>
@@ -144,6 +144,7 @@ const Landing = () => {
                 data-aos='fade-up'
                 data-aos-offset='200'
                 data-aos-delay='150'
+                data-aos-duration='1000'
               />
             </section>
 
@@ -151,13 +152,15 @@ const Landing = () => {
               className={setup}
               id='setup'
               data-aos='fade-in'
-              data-aos-offset='200'
-              data-aos-delay='100'
+              data-aos-offset='100'
+              data-aos-delay='50'
+              data-aos-duration='1000'
             >
               <div className={setupMessage}>
                 <h3>Setup your Cuckoo</h3>
                 <p>
-                  Go to our GitHub repository to setup Cuckoo in your organization Slack workspace
+                  Visit our GitHub repository to setup Cuckoo in your organization&apos;s Slack
+                  workspace
                 </p>
               </div>
               <div className={setupIcons}>
@@ -178,6 +181,7 @@ const Landing = () => {
                 data-aos='fade-up'
                 data-aos-offset='200'
                 data-aos-delay='50'
+                data-aos-duration='500'
               />
               <p>
                 Cuckoo is a platform that can be used through your desktop computer, phone, or any
@@ -192,13 +196,14 @@ const Landing = () => {
                 data-aos='fade-up'
                 data-aos-offset='200'
                 data-aos-delay='150'
+                data-aos-duration='750'
               />
               <div className={howMessage}>
                 <h3>How it works?</h3>
                 <p>
                   With Cuckoo you can create <span>events</span> or <span>announcements</span> that
-                  will be published on the platforms Cuckoos feed where you can find all the posts
-                  previously published by other members of your organisation.
+                  will be published on the platform&apos;s Cuckoos feed where you can find all the
+                  posts previously published by other members of your organisation.
                 </p>
                 <p>
                   These posts will also be sent to a channel on your <span>slack workspace</span>,
@@ -206,9 +211,9 @@ const Landing = () => {
                   starts.
                 </p>
                 <p>
-                  Events will go into a <span>collective calendar</span>. This way you will quickly
-                  have access to what will be happening in the following days, so that you dont miss
-                  a thing.
+                  Events will go into a <span>collective calendar</span>. This way you can quickly
+                  have access to what will be happening in the following days, so you don&apos;t
+                  miss a thing.
                 </p>
               </div>
             </section>
@@ -218,14 +223,14 @@ const Landing = () => {
               data-aos='fade-in'
               data-aos-offset='300'
               data-aos-delay='100'
+              data-aos-duration='1000'
             >
               <div className={getStartedMessage}>
                 <h3>Get Started!</h3>
                 <p>
                   To use Cuckoo you will need to <span>sign in with slack</span> and fill some
                   required personal information (name of the company you work for and your job
-                  title). You can even let your colleagues know when your birthday is, so that they
-                  can be notified. This personal information can be change at any time.
+                  title). This personal information can be change at any time.
                 </p>
                 <div className={steps}>
                   <div className={step}>
@@ -266,10 +271,10 @@ const Landing = () => {
                 <h3>How can you create a Cuckoo?</h3>
                 <p>
                   To create a Cuckoo (Slack Post that will be stored in the platform) you will only
-                  need to tell us that type of cuckoo you want o create, give it a title and a
-                  category, all the other spaces are not required. Your Cuckoo will be{' '}
-                  <span>send to Slack</span>
-                  as well as <span>storage</span> in the platform.
+                  need to tell us the type of cuckoo you want to create, give it a title and a
+                  category, all the other fields are not required. Your Cuckoo will be
+                  <span> send to Slack </span>
+                  as well as <span>stored</span> in the platform.
                 </p>
                 <div className={steps}>
                   <div className={step}>
@@ -282,7 +287,7 @@ const Landing = () => {
                   </div>
                   <div className={step}>
                     <h1>3.</h1>
-                    <p>Category of the Cuckoo</p>
+                    <p>Choose a category</p>
                   </div>
                 </div>
               </div>

@@ -21,13 +21,14 @@ h3 {
   nav {
     @include flex(row, center, space-between);
     padding: 2rem 3rem 3rem 2rem;
-    transition: 0.3s;
+    transition: all 0.35s;
     .logo {
       display: inline-block;
       width: 10rem;
       height: 5rem;
       background-repeat: no-repeat;
       background-image: url(../../assets/landing/nestlogo.svg);
+      transition: all 0.35s;
       &:hover {
         opacity: 0.5;
       }
@@ -55,6 +56,7 @@ h3 {
         width: 100%;
         padding-right: 3rem;
         @include flex(row, center, space-between);
+        transition: all 0.35s;
         @include mobile-breakpoint {
           display: none;
         }
@@ -106,6 +108,7 @@ h3 {
 
   .introContainer {
     @include flex(row);
+    margin-top: 5rem;
     @include tablet-breakpoint {
       @include flex(column-reverse);
     }
@@ -148,6 +151,9 @@ h3 {
   padding-top: 20rem;
   max-height: 100vh;
   overflow: hidden;
+  @include tablet-breakpoint {
+    @include main(100vw, 80vh, $background, 0);
+  }
   @include mobile-breakpoint {
     @include main(100vw, 100vh, $background, 0);
     @include flex(column);
@@ -232,7 +238,8 @@ h3 {
   @include main(100vw, 80vh, $background, 0 9rem);
   @include flex(column);
   @include tablet-breakpoint {
-    margin-top: 15rem;
+    @include main(100vw, 60vh, $background, 0 9rem);
+    margin-top: 0;
   }
   @include mobile-breakpoint {
     @include main(100vw, 80vh, $background, 3rem);
@@ -295,6 +302,9 @@ h3 {
 .getStarted {
   @include main(100vw, 100vh, $background, 0 9rem);
   @include flex(row);
+  @include tablet-breakpoint {
+    @include main(100vw, 70vh, $background, 0 9rem);
+  }
   @include mobile-breakpoint {
     width: 100%;
     @include main(100vw, 100vh, $background, 3rem);
@@ -335,6 +345,9 @@ h3 {
 .create {
   @include main(100vw, 100vh, $background, 0);
   @include flex(row, flex-end);
+  @include tablet-breakpoint {
+    @include main(100vw, 70vh, $background, 0 9rem);
+  }
   @include mobile-breakpoint {
     width: 100%;
     @include main(100vw, 70vh, $background, 3rem);
