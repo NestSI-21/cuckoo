@@ -1,5 +1,7 @@
 import React from 'react';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
+import AOS from 'aos';
+import 'aos/dist/aos.css';
 import Toast from './elements/Toast';
 import ProtectedRoute from './components/ProtectedRoute';
 import Landing from './screens/Landing';
@@ -13,6 +15,7 @@ import PageNotFound from './screens/PageNotFound';
 import './styles/base.scss';
 
 function App() {
+  AOS.init();
   return (
     <>
       <Toast />
