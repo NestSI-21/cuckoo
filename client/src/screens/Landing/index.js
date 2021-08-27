@@ -100,7 +100,7 @@ const Landing = () => {
                 slackClientId={process.env.REACT_APP_SLACK_CLIENT_ID}
                 slackUserScope='team:read,users:read,identify,users.profile:read,chat:write'
               />
-              <p>for NEST Collective workers</p>
+              <p>for NEST Collective employees</p>
             </div>
           </ul>
         </nav>
@@ -113,7 +113,7 @@ const Landing = () => {
               <object type='image/svg+xml' data={animatedLogo}>
                 svg-animation
               </object>
-              <h3>Store and organize slack posts</h3>
+              <h3>Store and organize Slack posts</h3>
             </div>
           </div>
         </section>
@@ -192,13 +192,12 @@ const Landing = () => {
             <h3>How it works?</h3>
             <p>
               With Cuckoo you can create <span>events</span> or <span>announcements</span> that will
-              be published on the platform&apos;s Cuckoos feed where you can find all the posts
+              be published on the platform&apos;s Cuckoos feed. Here you can find all the posts
               previously published by other members of your organisation.
             </p>
             <p>
-              These posts will also be sent to a channel on your <span>slack workspace</span>,
-              depending on their category. A reminder will also be sent 1 day before the event
-              starts.
+              These posts will be sent to a channel on your <span>Slack workspace</span>, depending
+              on their category. A reminder will also be sent 1 day before the event starts.
             </p>
             <p>
               Events will go into a <span>collective calendar</span>. This way you can quickly have
@@ -218,9 +217,9 @@ const Landing = () => {
           <div className={getStartedMessage}>
             <h3>Get Started!</h3>
             <p>
-              To use Cuckoo you will need to <span>sign in with slack</span> and fill in some
+              To use Cuckoo you will need to <span>sign in with Slack</span> and fill in some
               required personal information (name of the company you work for and your job title).
-              Change your data at any time.
+              You can change your data at any time.
             </p>
             <div className={steps}>
               <div className={step}>
@@ -241,7 +240,7 @@ const Landing = () => {
                 <h1>3.</h1>
                 <p>
                   Change your
-                  <br /> data anytime
+                  <br /> data at any time
                 </p>
               </div>
             </div>
@@ -269,7 +268,7 @@ const Landing = () => {
             <div className={steps}>
               <div className={step}>
                 <h1>1.</h1>
-                <p>Choose a Type</p>
+                <p>Choose a type</p>
               </div>
               <div className={step}>
                 <h1>2.</h1>
