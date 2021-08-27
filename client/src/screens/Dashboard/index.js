@@ -22,7 +22,7 @@ const Dashboard = () => {
   };
 
   return (
-    <Layout pageTitle='Dashboard'>
+    <Layout pageTitle={`${process.env.REACT_APP_ORGANIZATION_NAME} Dashboard`}>
       <div className={contentContainer}>
         <div className={cuckooList}>
           <CuckooList cuckoos={cuckoos} />
