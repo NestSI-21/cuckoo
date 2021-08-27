@@ -42,8 +42,6 @@ import {
 const Landing = () => {
   const [scrolling, setScrolling] = useState(false);
   const [scrollTop, setScrollTop] = useState(0);
-  const test = process.env.ORGANIZATION_NAME;
-  console.log(test);
 
   useEffect(() => {
     const onScroll = (e) => {
