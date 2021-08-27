@@ -40,8 +40,11 @@ html {
         }
         .loginBtn {
           position: relative;
+          @include flex(column, center);
+
           p {
-            width: 110%;
+            margin-top: 6rem;
+            width: 115%;
             text-align: left;
             position: absolute;
             font-size: $text-small;
