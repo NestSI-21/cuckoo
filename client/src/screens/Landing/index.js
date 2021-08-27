@@ -43,6 +43,16 @@ const Landing = () => {
   const [scrolling, setScrolling] = useState(false);
   const [scrollTop, setScrollTop] = useState(0);
 
+  useEffect(() => {
+    const onScroll = (e) => {
+      setScrollTop(e.target.documentElement.scrollTop);
+      if (scrollTop >= 300) {
+        setScrolling(e.target.documentElement.scrollTop > scrollTop);
+      }
+    };
+    window.addEventListener('scroll', onScroll);
+  }, [scrollTop]);
+
   const { login, isLoggedIn, profileComplete } = useUserContext();
 
   const onFailed = (error) => {
@@ -56,16 +66,6 @@ const Landing = () => {
   if (isLoggedIn && !profileComplete) {
     return <Redirect to='/profile/edit' />;
   }
-
-  useEffect(() => {
-    const onScroll = (e) => {
-      setScrollTop(e.target.documentElement.scrollTop);
-      if (scrollTop >= 300) {
-        setScrolling(e.target.documentElement.scrollTop > scrollTop);
-      }
-    };
-    window.addEventListener('scroll', onScroll);
-  }, [scrollTop]);
 
   return (
     <>
