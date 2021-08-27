@@ -42,6 +42,8 @@ import {
 const Landing = () => {
   const [scrolling, setScrolling] = useState(false);
   const [scrollTop, setScrollTop] = useState(0);
+  const test = process.env.ORGANIZATION_NAME;
+  console.log(test);
 
   useEffect(() => {
     const onScroll = (e) => {
@@ -100,7 +102,7 @@ const Landing = () => {
                 slackClientId={process.env.REACT_APP_SLACK_CLIENT_ID}
                 slackUserScope='team:read,users:read,identify,users.profile:read,chat:write'
               />
-              <p>for NEST Collective employees</p>
+              <p>for {process.env.REACT_APP_ORGANIZATION_NAME} employees</p>
             </div>
           </ul>
         </nav>
