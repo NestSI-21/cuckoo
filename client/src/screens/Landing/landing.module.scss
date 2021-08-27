@@ -3,441 +3,443 @@
 html {
   scroll-behavior: smooth;
 }
-body {
-  overflow-x: hidden;
-}
-h3 {
-  color: $green;
-  margin: 0 0 1rem 0;
-}
 
-.headerFirst,
-.headerSecond {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100vw;
-  z-index: 2;
-  nav {
-    @include flex(row, center, space-between);
-    padding: 2rem 3rem 3rem 2rem;
-    transition: all 0.35s;
-    .logo {
-      display: inline-block;
-      width: 10rem;
-      height: 5rem;
-      background-repeat: no-repeat;
-      background-image: url(../../assets/landing/nestlogo.svg);
+.content {
+  overflow-x: hidden;
+
+  .headerFirst,
+  .headerSecond {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    z-index: 2;
+    nav {
+      @include flex(row, center, space-between);
+      padding: 2rem 3rem 3rem 2rem;
       transition: all 0.35s;
-      &:hover {
-        opacity: 0.5;
-      }
-    }
-    ul {
-      @include flex(row, center, flex-end);
-      width: 45%;
-      @include tablet-breakpoint {
-        width: 70%;
-      }
-      @include smallTablet-breakpoint {
-        width: 80%;
-      }
-      .loginBtn {
-        position: relative;
-        p {
-          width: 110%;
-          text-align: left;
-          position: absolute;
-          font-size: $text-small;
-          color: $light-gray;
-        }
-      }
-      .menu {
-        width: 100%;
-        padding-right: 3rem;
-        @include flex(row, center, space-between);
+      .logo {
+        display: inline-block;
+        width: 10rem;
+        height: 5rem;
+        background-repeat: no-repeat;
+        background-image: url(../../assets/landing/nestlogo.svg);
         transition: all 0.35s;
-        @include mobile-breakpoint {
-          display: none;
+        &:hover {
+          opacity: 0.5;
         }
-        a li {
-          transition: 0.3s;
-          color: $light-gray;
-          &:hover {
-            color: $green;
+      }
+      ul {
+        @include flex(row, center, flex-end);
+        width: 45%;
+        @include tablet-breakpoint {
+          width: 70%;
+        }
+        @include smallTablet-breakpoint {
+          width: 80%;
+        }
+        .loginBtn {
+          position: relative;
+          p {
+            width: 110%;
+            text-align: left;
+            position: absolute;
+            font-size: $text-small;
+            color: $light-gray;
+          }
+        }
+        .menu {
+          width: 100%;
+          padding-right: 3rem;
+          @include flex(row, center, space-between);
+          transition: all 0.35s;
+          @include mobile-breakpoint {
+            display: none;
+          }
+          a li {
+            transition: 0.3s;
+            color: $light-gray;
+            &:hover {
+              color: $green;
+            }
           }
         }
       }
     }
   }
-}
-.headerFirst {
-  nav {
-    background: rgba(238, 241, 240, 0);
-    ul {
-      .menu {
-        opacity: 0;
-      }
-    }
-  }
-}
-.headerSecond {
-  nav {
-    background: rgba(238, 241, 240, 0.85);
-    .logo {
-      filter: invert(62%) sepia(72%) saturate(445%) hue-rotate(115deg) brightness(89%) contrast(90%);
-    }
-  }
-}
-
-.intro {
-  @include main(100vw, 100vh, $background, 9rem);
-  @include flex();
-  position: relative;
-  background: radial-gradient(
-    46.67% 73.74% at 61.58% 41.45%,
-    rgba(33, 196, 156, 0.66) 0%,
-    #21c49c 85%
-  );
-  @include tablet-breakpoint {
-    @include main(100vw, 100vh, $background, 15rem 9rem 9rem 9rem);
-  }
-  @include mobile-breakpoint {
-    @include main(100vw, 100vh, $background, 0);
-  }
-
-  .introContainer {
-    @include flex(row);
-    margin-top: 5rem;
-    @include tablet-breakpoint {
-      @include flex(column-reverse);
-    }
-    @include mobile-breakpoint {
-      margin-top: 7.5rem;
-      overflow-x: hidden;
-    }
-    img {
-      width: 65%;
-      @include tablet-breakpoint {
-        width: 100%;
-      }
-      @include mobile-breakpoint {
-        width: 125%;
-        margin-left: 20rem;
-        z-index: 2;
-      }
-    }
-    .introMessage {
-      margin: -10rem 0 0 -25rem;
-      width: 50%;
-      @include tablet-breakpoint {
-        width: 100%;
-        margin: 0;
-      }
-      @include mobile-breakpoint {
-        padding: 3rem;
-      }
-      h3 {
-        margin: 1rem 0;
-        text-align: right;
-        color: white;
-      }
-    }
-  }
-}
-.about {
-  @include main(100vw, 100vh, $background, 0);
-  @include flex(row);
-  padding-top: 20rem;
-  max-height: 100vh;
-  overflow: hidden;
-  @include tablet-breakpoint {
-    @include main(100vw, 80vh, $background, 0);
-  }
-  @include mobile-breakpoint {
-    @include main(100vw, 100vh, $background, 0);
-    @include flex(column);
-    padding: 3rem;
-  }
-  .aboutMessage {
-    margin: -50rem -25rem 0 0;
-    width: 40%;
-    z-index: 1;
-    @include mobile-breakpoint {
-      margin: 20rem 0 0 0;
-      width: 100%;
-      padding-right: 15rem;
-    }
-  }
-  img {
-    width: 60%;
-    @include mobile-breakpoint {
-      width: 150%;
-      margin: -7rem -10rem 0 0;
-    }
-  }
-}
-.setup {
-  @include main(100vw, 75vh, $background, 0);
-  @include flex(column);
-  @include mobile-breakpoint {
-    @include main(100vw, 70vh, $background, 3rem);
-  }
-  .setupMessage {
-    margin-top: -10rem;
-    text-align: center;
-    width: 35%;
-    @include mobile-breakpoint {
-      width: 100%;
-      max-height: 80vh;
-      margin: 0;
-    }
-  }
-  .setupIcons {
-    @include flex(row, center, space-between);
-    padding: 10rem 0;
-    width: 35%;
-    @include tablet-breakpoint {
-      width: 65%;
-    }
-    @include mobile-breakpoint {
-      width: 100%;
-    }
-    img {
-      width: 12.5rem;
-      @include mobile-breakpoint {
-        width: 7.5rem;
-      }
-    }
-  }
-  a {
-    @include flex();
-    border: none;
-    background: $green;
-    text-decoration: none;
-    border-radius: 0.5rem;
-    padding: 1rem 1.7rem;
-    cursor: pointer;
-    height: 4rem;
-    transition: 0.3s;
-    &:hover {
-      filter: drop-shadow(-0.1rem 0.1rem 1rem rgba(0, 0, 0, 0.2));
-    }
-    p {
-      color: #fff;
-    }
-    i {
-      font-size: 2rem;
-      margin-right: 1rem;
-      color: #fff;
-    }
-  }
-}
-
-.allDevices {
-  @include main(100vw, 80vh, $background, 0 9rem);
-  @include flex(column);
-  @include tablet-breakpoint {
-    @include main(100vw, 60vh, $background, 0 9rem);
-    margin-top: 0;
-  }
-  @include mobile-breakpoint {
-    @include main(100vw, 80vh, $background, 3rem);
-    padding-top: 0;
-    margin: 0;
-  }
-  img {
-    width: 75%;
-    @include tablet-breakpoint {
-      width: 100%;
-    }
-  }
-  p {
-    width: 40%;
-    padding-top: 5rem;
-    text-align: center;
-    @include tablet-breakpoint {
-      width: 100%;
-    }
-  }
-}
-
-.how {
-  @include main(100vw, fit-content, $background, 0 9rem);
-  @include flex(row, flex-end);
-  @include tablet-breakpoint {
-    @include flex(column-reverse);
-  }
-  @include mobile-breakpoint {
-    @include main(100vw, 100vh, $background, 3rem 0 0 0);
-    @include flex(column-reverse);
-  }
-  img {
-    width: 45%;
-    box-shadow: inset 0 -1rem 0.8rem -1rem #ccc;
-    @include tablet-breakpoint {
-      width: 90%;
-      margin: -10rem 0 0 -50rem;
-    }
-    @include mobile-breakpoint {
-      width: 100%;
-      margin: 0;
-      padding: 0 3rem;
-    }
-  }
-  .howMessage {
-    padding: 0 0 5rem 5rem;
-    @include tablet-breakpoint {
-      padding: 0 0 0 10rem;
-    }
-    @include mobile-breakpoint {
-      padding: 3rem;
-    }
-    p {
-      margin-bottom: 2rem;
-    }
-  }
-}
-
-.getStarted {
-  @include main(100vw, 100vh, $background, 0 9rem);
-  @include flex(row);
-  @include tablet-breakpoint {
-    @include main(100vw, 70vh, $background, 0 9rem);
-  }
-  @include mobile-breakpoint {
-    width: 100%;
-    @include main(100vw, 100vh, $background, 3rem);
-    position: relative;
-    overflow-x: hidden;
-  }
-  .getStartedMessage {
-    width: 45%;
-    position: relative;
-    padding-right: 5rem;
-    @include tablet-breakpoint {
-      width: 100%;
-    }
-    @include mobile-breakpoint {
-      padding: 0;
-    }
-    .steps {
-      .step {
-        @include flex(column);
-      }
-    }
-  }
-  img {
-    width: 50%;
-    @include tablet-breakpoint {
-      width: 75%;
-      margin-right: -20rem;
-    }
-    @include mobile-breakpoint {
-      position: absolute;
-      margin: 0;
-      right: -5rem;
-      bottom: 10rem;
-    }
-  }
-}
-
-.create {
-  @include main(100vw, 100vh, $background, 0);
-  @include flex(row, flex-end);
-  @include tablet-breakpoint {
-    @include main(100vw, 70vh, $background, 0 9rem);
-  }
-  @include mobile-breakpoint {
-    width: 100%;
-    @include main(100vw, 70vh, $background, 3rem);
-    position: relative;
-    overflow-x: hidden;
-  }
-  overflow: hidden;
-  .createMessage {
-    width: 40%;
-    position: relative;
-    padding: 0 0 9rem 9rem;
-    @include tablet-breakpoint {
-      width: 100%;
-      padding-right: 9rem;
-    }
-    @include mobile-breakpoint {
-      padding: 0 0 5rem 0;
-      margin: -20rem 0 0 0;
-    }
-    .steps {
-      float: right;
-      .step {
-        @include flex(column);
-        @include mobile-breakpoint {
-          @include flex(row, center, flex-start);
-          width: 100%;
-          margin-top: 2rem;
+  .headerFirst {
+    nav {
+      background: rgba(238, 241, 240, 0);
+      ul {
+        .menu {
+          opacity: 0;
         }
       }
     }
   }
-  img {
-    width: 30%;
-    box-shadow: inset 0 -1rem 0.8rem -1rem #ccc;
+  .headerSecond {
+    nav {
+      background: rgba(238, 241, 240, 0.85);
+      .logo {
+        filter: invert(62%) sepia(72%) saturate(445%) hue-rotate(115deg) brightness(89%)
+          contrast(90%);
+      }
+    }
+  }
+
+  .intro {
+    @include main(100vw, 100vh, $background, 9rem);
+    @include flex();
+    position: relative;
+    background: radial-gradient(
+      46.67% 73.74% at 61.58% 41.45%,
+      rgba(33, 196, 156, 0.66) 0%,
+      #21c49c 85%
+    );
     @include tablet-breakpoint {
-      width: 45%;
-      margin-left: -20rem;
+      @include main(100vw, 100vh, $background, 15rem 9rem 9rem 9rem);
     }
     @include mobile-breakpoint {
-      width: 50%;
-      position: absolute;
-      margin: 0;
-      left: -5rem;
-      bottom: 0rem;
+      @include main(100vw, 100vh, $background, 0);
+    }
+
+    .introContainer {
+      @include flex(row);
+      margin-top: 5rem;
+      @include tablet-breakpoint {
+        @include flex(column-reverse);
+      }
+      @include mobile-breakpoint {
+        margin-top: 7.5rem;
+        overflow-x: hidden;
+      }
+      img {
+        width: 65%;
+        @include tablet-breakpoint {
+          width: 100%;
+        }
+        @include mobile-breakpoint {
+          width: 125%;
+          margin-left: 20rem;
+          z-index: 2;
+        }
+      }
+      .introMessage {
+        margin: -10rem 0 0 -25rem;
+        width: 50%;
+        @include tablet-breakpoint {
+          width: 100%;
+          margin: 0;
+        }
+        @include mobile-breakpoint {
+          padding: 3rem;
+        }
+        h3 {
+          margin: 1rem 0;
+          text-align: right;
+          color: white;
+        }
+      }
     }
   }
-}
+  .about {
+    @include main(100vw, 100vh, $background, 0);
+    @include flex(row);
+    padding-top: 20rem;
+    max-height: 100vh;
+    overflow: hidden;
+    @include tablet-breakpoint {
+      @include main(100vw, 80vh, $background, 0);
+    }
+    @include mobile-breakpoint {
+      @include main(100vw, 100vh, $background, 0);
+      @include flex(column);
+      padding: 3rem;
+    }
+    .aboutMessage {
+      margin: -50rem -25rem 0 0;
+      width: 40%;
+      z-index: 1;
+      @include mobile-breakpoint {
+        margin: 20rem 0 0 0;
+        width: 100%;
+        padding-right: 15rem;
+      }
+    }
+    img {
+      width: 60%;
+      @include mobile-breakpoint {
+        width: 150%;
+        margin: -7rem -10rem 0 0;
+      }
+    }
+  }
+  .setup {
+    @include main(100vw, 75vh, $background, 0);
+    @include flex(column);
+    @include mobile-breakpoint {
+      @include main(100vw, 70vh, $background, 3rem);
+    }
+    .setupMessage {
+      margin-top: -10rem;
+      text-align: center;
+      width: 35%;
+      @include mobile-breakpoint {
+        width: 100%;
+        max-height: 80vh;
+        margin: 0;
+      }
+    }
+    .setupIcons {
+      @include flex(row, center, space-between);
+      padding: 10rem 0;
+      width: 35%;
+      @include tablet-breakpoint {
+        width: 65%;
+      }
+      @include mobile-breakpoint {
+        width: 100%;
+      }
+      img {
+        width: 12.5rem;
+        @include mobile-breakpoint {
+          width: 7.5rem;
+        }
+      }
+    }
+    a {
+      @include flex();
+      border: none;
+      background: $green;
+      text-decoration: none;
+      border-radius: 0.5rem;
+      padding: 1rem 1.7rem;
+      cursor: pointer;
+      height: 4rem;
+      transition: 0.3s;
+      &:hover {
+        filter: drop-shadow(-0.1rem 0.1rem 1rem rgba(0, 0, 0, 0.2));
+      }
+      p {
+        color: #fff;
+      }
+      i {
+        font-size: 2rem;
+        margin-right: 1rem;
+        color: #fff;
+      }
+    }
+  }
 
-footer {
-  @include main(100vw, 100vh, $background, 0);
-  @include flex(column, center, space-between);
-
-  .demo {
-    width: 100vw;
-    height: 85vh;
-    background-image: url('../../assets/landing/demomockup.png');
-    background-size: cover;
-    background-position: center;
-  }
-  p {
-    @include main(100vw, 10vh, $green, 0 3rem);
-    @include flex(row, center, flex-start);
-    bottom: 0;
-    z-index: 2;
-    color: #fff;
-    z-index: 2;
-  }
-}
-.steps {
-  @include flex(row, flex-start, space-between);
-  width: 100%;
-  padding: 5rem 0;
-  @include mobile-breakpoint {
-    @include flex(column, center, space-between);
-    width: fit-content;
-  }
-  .step {
-    h1 {
-      color: $green;
-      font-size: 4rem;
+  .allDevices {
+    @include main(100vw, 80vh, $background, 0 9rem);
+    @include flex(column);
+    @include tablet-breakpoint {
+      @include main(100vw, 60vh, $background, 0 9rem);
+      margin-top: 0;
+    }
+    @include mobile-breakpoint {
+      @include main(100vw, 80vh, $background, 3rem);
+      padding-top: 0;
+      margin: 0;
+    }
+    img {
+      width: 75%;
+      @include tablet-breakpoint {
+        width: 100%;
+      }
     }
     p {
+      width: 40%;
+      padding-top: 5rem;
       text-align: center;
-      padding: 1rem 0;
+      @include tablet-breakpoint {
+        width: 100%;
+      }
     }
   }
-}
 
-p {
-  span {
+  .how {
+    @include main(100vw, fit-content, $background, 0 9rem);
+    @include flex(row, flex-end);
+    @include tablet-breakpoint {
+      @include flex(column-reverse);
+    }
+    @include mobile-breakpoint {
+      @include main(100vw, 100vh, $background, 3rem 0 0 0);
+      @include flex(column-reverse);
+    }
+    img {
+      width: 45%;
+      box-shadow: inset 0 -1rem 0.8rem -1rem #ccc;
+      @include tablet-breakpoint {
+        width: 90%;
+        margin: -10rem 0 0 -50rem;
+      }
+      @include mobile-breakpoint {
+        width: 100%;
+        margin: 0;
+        padding: 0 3rem;
+      }
+    }
+    .howMessage {
+      padding: 0 0 5rem 5rem;
+      @include tablet-breakpoint {
+        padding: 0 0 0 10rem;
+      }
+      @include mobile-breakpoint {
+        padding: 3rem;
+      }
+      p {
+        margin-bottom: 2rem;
+      }
+    }
+  }
+
+  .getStarted {
+    @include main(100vw, 100vh, $background, 0 9rem);
+    @include flex(row);
+    @include tablet-breakpoint {
+      @include main(100vw, 70vh, $background, 0 9rem);
+    }
+    @include mobile-breakpoint {
+      width: 100%;
+      @include main(100vw, 100vh, $background, 3rem);
+      position: relative;
+      overflow-x: hidden;
+    }
+    .getStartedMessage {
+      width: 45%;
+      position: relative;
+      padding-right: 5rem;
+      @include tablet-breakpoint {
+        width: 100%;
+      }
+      @include mobile-breakpoint {
+        padding: 0;
+      }
+      .steps {
+        .step {
+          @include flex(column);
+        }
+      }
+    }
+    img {
+      width: 50%;
+      @include tablet-breakpoint {
+        width: 75%;
+        margin-right: -20rem;
+      }
+      @include mobile-breakpoint {
+        position: absolute;
+        margin: 0;
+        right: -5rem;
+        bottom: 10rem;
+      }
+    }
+  }
+
+  .create {
+    @include main(100vw, 100vh, $background, 0);
+    @include flex(row, flex-end);
+    @include tablet-breakpoint {
+      @include main(100vw, 70vh, $background, 0 9rem);
+    }
+    @include mobile-breakpoint {
+      width: 100%;
+      @include main(100vw, 70vh, $background, 3rem);
+      position: relative;
+      overflow-x: hidden;
+    }
+    overflow: hidden;
+    .createMessage {
+      width: 40%;
+      position: relative;
+      padding: 0 0 9rem 9rem;
+      @include tablet-breakpoint {
+        width: 100%;
+        padding-right: 9rem;
+      }
+      @include mobile-breakpoint {
+        padding: 0 0 5rem 0;
+        margin: -20rem 0 0 0;
+      }
+      .steps {
+        float: right;
+        .step {
+          @include flex(column);
+          @include mobile-breakpoint {
+            @include flex(row, center, flex-start);
+            width: 100%;
+            margin-top: 2rem;
+          }
+        }
+      }
+    }
+    img {
+      width: 30%;
+      box-shadow: inset 0 -1rem 0.8rem -1rem #ccc;
+      @include tablet-breakpoint {
+        width: 45%;
+        margin-left: -20rem;
+      }
+      @include mobile-breakpoint {
+        width: 50%;
+        position: absolute;
+        margin: 0;
+        left: -5rem;
+        bottom: 0rem;
+      }
+    }
+  }
+
+  footer {
+    @include main(100vw, 100vh, $background, 0);
+    @include flex(column, center, space-between);
+
+    .demo {
+      width: 100vw;
+      height: 85vh;
+      background-image: url('../../assets/landing/demomockup.png');
+      background-size: cover;
+      background-position: center;
+    }
+    p {
+      @include main(100vw, 10vh, $green, 0 3rem);
+      @include flex(row, center, flex-start);
+      bottom: 0;
+      z-index: 2;
+      color: #fff;
+      z-index: 2;
+    }
+  }
+  .steps {
+    @include flex(row, flex-start, space-between);
+    width: 100%;
+    padding: 5rem 0;
+    @include mobile-breakpoint {
+      @include flex(column, center, space-between);
+      width: fit-content;
+    }
+    .step {
+      h1 {
+        color: $green;
+        font-size: 4rem;
+      }
+      p {
+        text-align: center;
+        padding: 1rem 0;
+      }
+    }
+  }
+
+  h3 {
     color: $green;
+    margin: 0 0 1rem 0;
+  }
+  p {
+    span {
+      color: $green;
+    }
   }
 }
