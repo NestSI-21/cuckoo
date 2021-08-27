@@ -49,14 +49,15 @@ REACT_APP_SLACK_CLIENT_ID =
 ```
 
 <p>- Now, complete the file with the requested information:<p>
- 
+<p>Because Slack Api requires an https connection, we recomend you to use <a href="https://ngrok.com/download">ngrok</a> in case you want run it locally</p>
   
 ```
-REACT_APP_SLACK_REDIRECT_URL = https://yourFrontend.com/api/v1/auth/slack
+REACT_APP_SLACK_REDIRECT_URL = https://example-94-61-25-158.ngrok.io/api/v1/auth/slack
 REACT_APP_API_BASE_URL = http://localhost:8000 (to run it locally)
-```
+```  
+
   
-<p>- Add the name of your organization<p> 
+<p>- Then, add the name of your organization<p> 
   
 ```
 REACT_APP_ORGANIZATION_NAME = 
@@ -69,20 +70,23 @@ In `server/.env`:
 SLACK_CLIENT_ID = 
 SLACK_CLIENT_SECRET =
   
-FRONTEND_HOST = https://yourFrontend.com
+FRONTEND_HOST = https://example-94-61-25-158.ngrok.io
   
 SLACK_OAUTH_TOKEN =
 SLACK_API_TOKEN =
   
+SLACK_SCHEDULED_HOURS = 23
+SLACK_SCHEDULED_MINUTES = 59
+  
 CUCKOOS_URL = cuckoos.io
 ```
 `SLACK_CLIENT_ID` and `SLACK_CLIENT_SECRET` can be found on Basic Information/App Credentials.
-  ##
+##
 To get these tokens (`SLACK_OAUTH_TOKEN` and `SLACK_API_TOKEN`) you need to install the App on your workspace.
   
 For that, go to <i>Settings/OAuth & Permissions</i> and follow the next steps:
   
-- Add a **Redirect URL** that should be something like: 'https://yourFrontend.com/api/v1/auth/slack'
+- Add the **Redirect URL** (`REACT_APP_SLACK_REDIRECT_URL`)
 <img width="500" alt="url" src="https://user-images.githubusercontent.com/44748017/131146665-be191d25-ab15-4230-b5e2-7320d9eee50c.png">
 
 
@@ -97,21 +101,44 @@ Now you can paste the generated tokens to the file `server/.env`:
 ```
 SLACK_OAUTH_TOKEN = User OAuth Token
 SLACK_API_TOKEN = Bot User OAuth Token
-```  
+```
   
 ##
   
-<h3>4. Run the project</h3>  
-- Open cuckoo directory on terminal
+In `server/config/initializers/cors.rb` add your fontend url to **origins**.
+  
+```Ruby
+Rails.application.config.middleware.insert_before(0, Rack::Cors) do
+  allow do
+    origins 'https://example-94-61-25-158.ngrok.io'
+    resource '*',
+             headers: :any,
+             expose: ['Authorization'],
+             methods: %i[get
+                         post
+                         put
+                         patch
+                         delete
+                         options
+                         head]
+  end
+end
+```  
+  
+##
+  <h3>4. Add the bot to channels you want</h3>
+  <img width="433" alt="Screenshot 2021-08-27 at 16 52 48" src="https://user-images.githubusercontent.com/44748017/131154884-a2878061-df8b-4a1c-b675-28af684ad526.png">
+  
 
-- Setup
-  `$ docker-compose build`
+##
+ 
+<h3>5. Run the project</h3>
+<p>- Install <a href="https://docs.docker.com/get-docker/">Docker</a> on your computer</p>
+<p>- Run Docker</p>
+<p>- Open cuckoo directory on terminal</p>
 
 - Run App
   `$ docker-compose up`
-
-- Update Gemfile with new gems and install those gems
-  `$ docker-compose build`
 
 <hr/>
 
@@ -124,6 +151,6 @@ SLACK_API_TOKEN = Bot User OAuth Token
 <hr/>
 
 ## License
-Cuckoo is licensed under MIT. Refer to LICENSE.txt for more information.
+<p>Cuckoo is licensed under <a href="https://github.com/NestSI-21/cuckoo/blob/main/LICENSE">MIT</a>. Refer to LICENSE.txt for more information.</p>
 
 
